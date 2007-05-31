@@ -31,20 +31,33 @@
       </product>
    </extension>
    <extension
-         point="org.eclipse.ui.intro">
-      <intro
-            class="org.eclipse.ui.intro.config.CustomizableIntroPart"
-            id="bugcrawler.intro"/>
-      <introProductBinding
-            introId="bugcrawler.intro"
-            productId="bugcrawler.product"/>
-   </extension>
-   <extension
          point="org.eclipse.ui.intro.config">
       <config
             content="introContent.xml"
             id="bugcrawler.introConfigId"
             introId="bugcrawler.intro">
+         <presentation home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx"
+                  style="content/shared.css"/>
+         </presentation>
+      </config>
+      <config
+            content="introContent.xml"
+            id="bugcrawler.introConfigId"
+            introId="bugcrawler.intro1">
+         <presentation home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx"
+                  style="content/shared.css"/>
+         </presentation>
+      </config>
+      <config
+            content="introContent.xml"
+            id="bugcrawler.introConfigId"
+            introId="bugcrawler.introView">
          <presentation home-page-id="root">
             <implementation
                   kind="html"

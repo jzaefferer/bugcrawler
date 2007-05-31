@@ -21,7 +21,7 @@
       </win>
    </launcher>
 
-   <intro introId="bugcrawler.intro"/>
+   <intro introId="bugcrawler.introView"/>
 
    <plugins>
       <plugin id="bugcrawler"/>
