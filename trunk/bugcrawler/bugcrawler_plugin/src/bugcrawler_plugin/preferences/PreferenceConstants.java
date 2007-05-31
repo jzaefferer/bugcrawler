@@ -5,12 +5,21 @@ package bugcrawler_plugin.preferences;
  */
 public class PreferenceConstants {
 
-	public static final String P_PATH = "pathPreference";
-
-	public static final String P_BOOLEAN = "booleanPreference";
-
-	public static final String P_CHOICE = "choicePreference";
-
-	public static final String P_STRING = "stringPreference";
+    /**
+     * Preference key for style sheet location
+     */
+    public static final String USERNAME = "userName";
+    /**
+     * Preference key for style sheet location
+     */
+    public static final String PASSWORD = "userPassword";    
+    /**
+     * Preference key for location of generated TOC page
+     */
+    public static final String HOSTNAME = "hostName";
+    /**
+     * Preference key for location of supplied frameset
+     */
+    public static final String PORT = "port";
 	
 }

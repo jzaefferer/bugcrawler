@@ -1,9 +1,16 @@
 package bugcrawler_plugin.preferences;
 
 import org.eclipse.jface.preference.*;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import bugcrawler_plugin.Activator;
+import bugcrawler_plugin.jfaceutils.SpinnerFieldEditor;
 
 /**
  * This class represents a preference page that
@@ -23,42 +30,109 @@ public class PreferencePageExt
 	extends FieldEditorPreferencePage
 	implements IWorkbenchPreferencePage {
 
+    private StringFieldEditor usereditor;
+    
+    private StringFieldEditor passwordeditor;
+
+    private StringFieldEditor hosteditor;
+
+    private SpinnerFieldEditor porteditor;
+    
 	public PreferencePageExt() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("A demonstration of a preference page implementation");
 	}
 	
-	/**
-	 * Creates the field editors. Field editors are abstractions of
-	 * the common GUI blocks needed to manipulate various types
-	 * of preferences. Each field editor knows how to save and
-	 * restore itself.
-	 */
-	public void createFieldEditors() {
-		addField(new DirectoryFieldEditor(PreferenceConstants.P_PATH, 
-				"&Directory preference:", getFieldEditorParent()));
-		addField(
-			new BooleanFieldEditor(
-				PreferenceConstants.P_BOOLEAN,
-				"&An example of a boolean preference",
-				getFieldEditorParent()));
+    @Override
+    protected Control createContents(Composite parent) {
+        Composite page = new Composite(parent, SWT.LEFT);
+        page.setLayout(new GridLayout(2, false));
 
-		addField(new RadioGroupFieldEditor(
-				PreferenceConstants.P_CHOICE,
-			"An example of a multiple-choice preference",
-			1,
-			new String[][] { { "&Choice 1", "choice1" }, {
-				"C&hoice 2", "choice2" }
-		}, getFieldEditorParent()));
-		addField(
-			new StringFieldEditor(PreferenceConstants.P_STRING, "A &text preference:", getFieldEditorParent()));
-	}
+        GridData griddata = new GridData(GridData.FILL_HORIZONTAL);
+        griddata.horizontalSpan = 2;
+        Label userinfo = new Label(page, SWT.NULL);
+        userinfo
+                .setText("Hier den Benutzernamen eingeben mit dem man bei Bugcrawler Projekte oder Bug-Reports anlegt.");
+        userinfo.setLayoutData(griddata);
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        usereditor = new StringFieldEditor(PreferenceConstants.USERNAME, "Username:", page);
+        usereditor.setPage(this);
+        usereditor.setPreferenceStore(getPreferenceStore());
+        usereditor.load();
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        griddata.horizontalSpan = 2;
+        Label passwordinfo = new Label(page, SWT.NULL);
+        passwordinfo
+                .setText("Hier das Passwort angeben mit dem man sich bei Bugcrawler anmeldet.");
+        passwordinfo.setLayoutData(griddata);
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        passwordeditor = new StringFieldEditor(PreferenceConstants.PASSWORD, "Passwort:", page);
+        passwordeditor.setPage(this);
+        passwordeditor.setPreferenceStore(getPreferenceStore());
+        passwordeditor.load();        
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        griddata.horizontalSpan = 2;
+        Label hostinfo = new Label(page, SWT.NULL);
+        hostinfo
+                .setText("Hier den Bugcrawler-Host angeben zu dem sich das Plugin verbinden soll.");
+        hostinfo.setLayoutData(griddata);
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        hosteditor = new StringFieldEditor(PreferenceConstants.HOSTNAME, "Host:", page);
+        hosteditor.setPage(this);
+        hosteditor.setPreferenceStore(getPreferenceStore());
+        hosteditor.load();
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        griddata.horizontalSpan = 2;
+        Label portinfo = new Label(page, SWT.NULL);
+        portinfo
+                .setText("Hier den Port angeben mit dem sich man sich bei Bugcrawler anmelden möchte.");
+        portinfo.setLayoutData(griddata);
+
+        griddata = new GridData(GridData.FILL_HORIZONTAL);
+        porteditor = new SpinnerFieldEditor(PreferenceConstants.PORT, "Port:", page);
+        porteditor.getSpinner().setMaximum(10000);
+        porteditor.getSpinner().setMinimum(1500);
+        porteditor.setPage(this);
+        porteditor.setPreferenceStore(getPreferenceStore());
+        porteditor.load();
+
+        return page;
+    }	
+    
+    @Override
+    protected void performDefaults() {
+        usereditor.loadDefault();
+        hosteditor.loadDefault();
+        porteditor.loadDefault();
+        super.performDefaults();
+    }
+
+    @Override
+    public boolean performOk() {
+        usereditor.store();
+        hosteditor.store();
+        porteditor.store();
+        return true;
+    }
+	
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
+	}
+
+	@Override
+	protected void createFieldEditors() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

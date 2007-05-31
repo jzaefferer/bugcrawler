@@ -9,7 +9,7 @@ import bugcrawler_plugin.Activator;
  * Class used to initialize default preference values.
  */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
-
+    
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -18,10 +18,11 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault()
 				.getPreferenceStore();
-		store.setDefault(PreferenceConstants.P_BOOLEAN, true);
-		store.setDefault(PreferenceConstants.P_CHOICE, "choice2");
-		store.setDefault(PreferenceConstants.P_STRING,
-				"Default value");
+        store.setDefault(PreferenceConstants.USERNAME,"Unknown");
+        store.setDefault(PreferenceConstants.PASSWORD,"");
+        store.setDefault(PreferenceConstants.HOSTNAME,"localhost");
+        store.setDefault(PreferenceConstants.PORT,4000);
 	}
+	
 
 }
