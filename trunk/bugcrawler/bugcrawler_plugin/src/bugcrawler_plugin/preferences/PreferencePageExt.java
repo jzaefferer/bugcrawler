@@ -41,7 +41,7 @@ public class PreferencePageExt
 	public PreferencePageExt() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("A demonstration of a preference page implementation");
+		setDescription("Bugcrawler Preferences");
 	}
 	
     @Override
