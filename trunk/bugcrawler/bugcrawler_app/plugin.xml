@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="bugcrawler.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Bugcrawler"
+            class="bugcrawler.Perspective"
+            id="bugcrawler.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="bugcrawler.application"
+            name="Bugcrawler">
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif"/>
+         <property
+               name="startupProgressRect"
+               value="50,50,200,10"/>
+         <property
+               name="startupMessageRect"
+               value="50,50,200,10"/>
+         <property
+               name="startupForegroundColor"
+               value="000000"/>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.config">
+      <config
+            content="introContent.xml"
+            id="bugcrawler.introConfigId"
+            introId="bugcrawler.intro">
+         <presentation home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx"
+                  style="content/shared.css"/>
+         </presentation>
+      </config>
+      <config
+            content="introContent.xml"
+            id="bugcrawler.introConfigId"
+            introId="bugcrawler.intro1">
+         <presentation home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx"
+                  style="content/shared.css"/>
+         </presentation>
+      </config>
+      <config
+            content="introContent.xml"
+            id="bugcrawler.introConfigId"
+            introId="bugcrawler.introView">
+         <presentation home-page-id="root">
+            <implementation
+                  kind="html"
+                  os="win32,linux,macosx"
+                  style="content/shared.css"/>
+         </presentation>
+      </config>
+   </extension>
+
+</plugin>
