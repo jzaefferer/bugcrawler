@@ -28,15 +28,6 @@
          <property
                name="windowImages"
                value="icons/alt_window_16.gif"/>
-         <property
-               name="startupProgressRect"
-               value="50,50,200,10"/>
-         <property
-               name="startupMessageRect"
-               value="50,50,200,10"/>
-         <property
-               name="startupForegroundColor"
-               value="000000"/>
       </product>
    </extension>
    <extension

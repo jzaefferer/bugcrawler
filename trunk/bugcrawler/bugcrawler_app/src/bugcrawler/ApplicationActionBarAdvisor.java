@@ -11,19 +11,16 @@ import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
-
+	
 	private IWorkbenchAction preferenceAction;
 	
 	private IWorkbenchAction aboutAction;
-	
-	private IMenuManager menuBar;
 	
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
         super(configurer);
     }
 
     protected void makeActions(IWorkbenchWindow window) {
-    	
 		preferenceAction = ActionFactory.PREFERENCES.create(window);
 		preferenceAction.setText("Configure...");
 		preferenceAction.setAccelerator(SWT.CTRL | 'c');
@@ -35,8 +32,6 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
     }
 
     protected void fillMenuBar(IMenuManager menuBar) {
-    	this.menuBar = menuBar;
-    	
     	MenuManager settingsMenu = new MenuManager("Preferences", null);
 		settingsMenu.add(preferenceAction);
 		menuBar.add(settingsMenu);

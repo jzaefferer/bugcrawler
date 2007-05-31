@@ -23,6 +23,7 @@
 
    <plugins>
       <plugin id="bugcrawler"/>
+      <plugin id="bugcrawler_plugin"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="org.apache.lucene"/>
       <plugin id="org.apache.xerces"/>

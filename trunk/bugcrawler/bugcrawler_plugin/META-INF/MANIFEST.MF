@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Bugcrawler_plugin Plug-in
-Bundle-SymbolicName: bugcrawler_plugin
+Bundle-SymbolicName: bugcrawler_plugin;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: bugcrawler_plugin.Activator
 Bundle-Localization: plugin
