@@ -15,13 +15,7 @@ public class ImageStore {
 
     // creating a new ImageRegistry
     private ImageRegistry imageRegistry = new ImageRegistry();
-
-    // all imageNames that will be found in the directory
-    private String[] imageNames;
-
-    // the given imageDirectory where to search for images
-    private String imageDirectory;
-
+    
     /**
      * Creates an ImageStore to get Links which are located in a
      * plugins-folder
@@ -32,24 +26,21 @@ public class ImageStore {
     public ImageStore(String imageDirectory) {
 	try {
 
-	    this.imageDirectory = pathEndsWithSeperator(imageDirectory) == true ? imageDirectory.substring(0,
+	    imageDirectory = pathEndsWithSeperator(imageDirectory) == true ? imageDirectory.substring(0,
 		    imageDirectory.length() - 1) : imageDirectory;
 
 	    // get the bundleDirectoryURL in the jar
 	    URL bundelDirectoryURL = Activator.getDefault().getBundle().getEntry(imageDirectory);
 
 	    // get all files in the cached directory
-	    imageNames = new File(FileLocator.toFileURL(bundelDirectoryURL).getFile()).list();
+	    String[] imageNames = new File(FileLocator.toFileURL(bundelDirectoryURL).getFile()).list();
 
 	    // registering all images
-	    registerImages();
-	} catch (NullPointerException ne) {
-	    System.err.println("Error while handling the ImageDirectory \"" + imageDirectory
-		    + "\" may it doesn't exist.");
+	    registerImages(imageDirectory,imageNames);
 	} catch (IOException e) {
-	    System.err.println("Error while handling the ImageDirectory \"" + imageDirectory + "\"");
+	    throw new RuntimeException ("Error while handling the ImageDirectory \"" + imageDirectory + "\"",e);
 	} catch (SecurityException sec) {
-	    System.err.println("Access to the ImageDirectory \"" + imageDirectory + "\"denied");
+	    throw new RuntimeException ("Access to the ImageDirectory \"" + imageDirectory + "\"denied",sec);
 	}
     }
 
@@ -61,7 +52,7 @@ public class ImageStore {
      * registering all Images in the ImageRegistry so that user can easily
      * access them.
      */
-    private void registerImages() {
+    private void registerImages(String imageDirectory,String[] imageNames) {
 	for (int i = 0; i < imageNames.length; i++) {
 	    imageRegistry.put(imageNames[i], ImageDescriptor.createFromURL(Activator.getDefault().getBundle()
 		    .getEntry(imageDirectory + "/" + imageNames[i])));

@@ -12,9 +12,6 @@ public class Intro extends IntroPart {
 
     private Composite parent = null;
 
-    private ImageStore imageStore = null;
-
-
     public void createPartControl(Composite parent) {
 	this.parent = parent;
 	Label lab = new Label(this.parent, SWT.NONE);
