@@ -28,43 +28,10 @@
          <property
                name="windowImages"
                value="icons/alt_window_16.gif"/>
+         <property
+               name="aboutText"
+               value="Dummes stupides Drecksprogramm"/>
       </product>
-   </extension>
-   <extension
-         point="org.eclipse.ui.intro.config">
-      <config
-            content="introContent.xml"
-            id="bugcrawler.introConfigId"
-            introId="bugcrawler.intro">
-         <presentation home-page-id="root">
-            <implementation
-                  kind="html"
-                  os="win32,linux,macosx"
-                  style="content/shared.css"/>
-         </presentation>
-      </config>
-      <config
-            content="introContent.xml"
-            id="bugcrawler.introConfigId"
-            introId="bugcrawler.intro1">
-         <presentation home-page-id="root">
-            <implementation
-                  kind="html"
-                  os="win32,linux,macosx"
-                  style="content/shared.css"/>
-         </presentation>
-      </config>
-      <config
-            content="introContent.xml"
-            id="bugcrawler.introConfigId"
-            introId="bugcrawler.introView">
-         <presentation home-page-id="root">
-            <implementation
-                  kind="html"
-                  os="win32,linux,macosx"
-                  style="content/shared.css"/>
-         </presentation>
-      </config>
    </extension>
 
 </plugin>

@@ -3,6 +3,11 @@
 
 <product name="Bugcrawler" id="bugcrawler.product" application="bugcrawler.application" useFeatures="false">
 
+   <aboutInfo>
+      <text>
+         Dummes stupides Drecksprogramm
+      </text>
+   </aboutInfo>
 
    <configIni use="default"/>
 
