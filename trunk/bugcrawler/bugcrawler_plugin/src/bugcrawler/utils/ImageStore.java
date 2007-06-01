@@ -46,10 +46,12 @@ public class ImageStore {
 				
 				// registering all images 
 				registerImages();			
+			} catch (NullPointerException ne){
+				System.err.println("Error while handling the ImageDirectory \""+imageDirectory+"\" may it doesn't exist.");
 			} catch (IOException e) {
-				throw new RuntimeException("Error while handling the ImageDirectory \""+imageDirectory+"\"",e);
+				System.err.println("Error while handling the ImageDirectory \""+imageDirectory+"\"");
 			} catch (SecurityException sec){
-				throw new RuntimeException("Access to the ImageDirectory \""+imageDirectory+"\"denied",sec);
+				System.err.println("Access to the ImageDirectory \""+imageDirectory+"\"denied");
 			}
 	}
 	

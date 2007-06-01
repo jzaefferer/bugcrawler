@@ -45,8 +45,8 @@ public class Intro implements IIntroPart {
 	}
 
 	public Image getTitleImage() {
-		imageStore = new ImageStore("icons");
-		return imageStore.getImage("alt_window_32.gif");
+		imageStore = new ImageStore("images");
+		return imageStore.getImage("alt_window_16.gif");
 	}
 
 	public void init(IIntroSite site, IMemento memento)
