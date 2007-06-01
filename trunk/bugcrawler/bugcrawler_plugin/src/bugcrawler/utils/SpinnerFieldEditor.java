@@ -1,4 +1,4 @@
-package bugcrawler_plugin.jfaceutils;
+package bugcrawler.utils;
 
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.swt.SWT;

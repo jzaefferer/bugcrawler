@@ -9,8 +9,9 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
+
+import bugcrawler.utils.SpinnerFieldEditor;
 import bugcrawler_plugin.Activator;
-import bugcrawler_plugin.jfaceutils.SpinnerFieldEditor;
 
 /**
  * This class represents a preference page that

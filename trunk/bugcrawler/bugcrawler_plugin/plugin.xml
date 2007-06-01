@@ -6,7 +6,7 @@
       <page
             class="bugcrawler_plugin.preferences.PreferencePageExt"
             id="bugcrawler_plugin.preferences.PreferencePageExt"
-            name="Preferences"/>
+            name="Bugcrawler"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
@@ -17,6 +17,10 @@
       <intro
             class="bugcrawler_plugin.intro.Intro"
             id="bugcrawler_plugin.intro"/>
+		<introProductBinding
+			introId="bugcrawler_plugin.intro"
+			productId="bugcrawler.product">
+		</introProductBinding>            
    </extension>
 
 </plugin>
