@@ -13,7 +13,6 @@ import bugcrawler.runtime.Activator;
 
 public class ImageStore {
 
-    // creating a new ImageRegistry
     private ImageRegistry imageRegistry = new ImageRegistry();
     
     /**
