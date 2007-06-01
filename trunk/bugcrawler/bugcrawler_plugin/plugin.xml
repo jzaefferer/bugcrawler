@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="bugcrawler.runtime.preferences.PreferencePageExt"
+            id="bugcrawler_plugin.preferences.PreferencePageExt"
+            name="Bugcrawler"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="bugcrawler.runtime.preferences.PreferenceInitializer"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="bugcrawler.runtime.intro.Intro"
+            id="bugcrawler_plugin.intro"/>
+		<introProductBinding
+			introId="bugcrawler_plugin.intro"
+			productId="bugcrawler.product">
+		</introProductBinding>            
+   </extension>
+
+</plugin>
