@@ -1,5 +1,8 @@
 package bugcrawler.testing;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -22,12 +25,15 @@ public class BugTestingLabelProvider extends LabelProvider implements ITableLabe
 	Bug bug = (Bug)element;
 	switch(columnIndex){
         	case 0: return null;
-        	case 1: return bug.getBugname();
+        	case 1: return bug.getName();
         	case 2: return bug.getCreator();
-        	case 3: return bug.getCreationdate();
-        	case 4: return bug.getLastmodifier();
-        	case 5:	return bug.getLastmodificationdate();
+        	case 3: return convertDate(bug.getCreationDate());
+        	case 4: return bug.getLastModifier();
+        	case 5:	return convertDate(bug.getLastModificationDate());
         	default: return null;
 	}
+    }
+    public String convertDate(Date date){
+	return new SimpleDateFormat().format(date);
     }
 }

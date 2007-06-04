@@ -2,7 +2,7 @@ package bugcrawler.runtime.bugwizzard;
 
 import org.eclipse.jface.wizard.Wizard;
 
-public class BugWizzard extends Wizard {
+public class ProjectWizard extends Wizard {
 
     
     @Override

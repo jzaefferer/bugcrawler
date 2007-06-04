@@ -1,66 +1,69 @@
 package bugcrawler.testing;
 
+import java.util.Date;
+
 public class Bug {
 
-    private boolean solved = false;
-    private String bugname="";
-    private String creator="";
-    private String creationdate="";
-    private String lastmodifier="";
-    private String lastmodificationdate="";
+    private boolean solved = false; 
+    private String name;
+    private String creator;
+    private Date creationDate;
+    private String lastModifier;
+    private Date lastModificationDate;
     
     public Bug(){}
     
-    public Bug(String bugname, 
+    public Bug(String name, 
 	       String creator, 
-	       String creationdate,
-	       String lastmodifier,
-	       String lastmodificationdate){
-	this.bugname=bugname;
+	       Date creationDate,
+	       String lastModifier,
+	       Date lastModificationDate){
+	this.name=name;
 	this.creator=creator;
-	this.creationdate=creationdate;
-	this.lastmodifier=lastmodifier;
-	this.lastmodificationdate=lastmodificationdate;
+	this.creationDate=creationDate;
+	this.lastModifier=lastModifier;
+	this.lastModificationDate=lastModificationDate;
 	
     }
-    public String getCreationdate() {
-        return creationdate;
+
+    public Date getCreationDate() {
+        return creationDate;
     }
-    
-    public void setCreationdate(String creationdate) {
-        this.creationdate = creationdate;
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
-    
+
     public String getCreator() {
         return creator;
     }
-    
+
     public void setCreator(String creator) {
         this.creator = creator;
     }
-    
-    public String getLastmodificationdate() {
-        return lastmodificationdate;
-    }
-    
-    public void setLastmodificationdate(String lastmodificationdate) {
-        this.lastmodificationdate = lastmodificationdate;
-    }
-    
-    public String getLastmodifier() {
-        return lastmodifier;
-    }
-    
-    public void setLastmodifier(String lastmodifier) {
-        this.lastmodifier = lastmodifier;
+
+    public Date getLastModificationDate() {
+        return lastModificationDate;
     }
 
-    public String getBugname() {
-        return bugname;
+    public void setLastModificationDate(Date lastModificationDate) {
+        this.lastModificationDate = lastModificationDate;
     }
 
-    public void setBugname(String bugname) {
-        this.bugname = bugname;
+    public String getLastModifier() {
+        return lastModifier;
+    }
+
+    public void setLastModifier(String lastModifier) {
+        this.lastModifier = lastModifier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isSolved() {
