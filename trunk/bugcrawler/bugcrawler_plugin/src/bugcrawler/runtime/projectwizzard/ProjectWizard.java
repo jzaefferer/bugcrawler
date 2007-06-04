@@ -1,4 +1,4 @@
-package bugcrawler.runtime.bugwizzard;
+package bugcrawler.runtime.projectwizzard;
 
 import org.eclipse.jface.wizard.Wizard;
 
