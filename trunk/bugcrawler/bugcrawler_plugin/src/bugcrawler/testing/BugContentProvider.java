@@ -1,20 +1,22 @@
-package bugcrawler.runtime.views;
+package bugcrawler.testing;
 
 import java.util.Date;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
+import bugcrawler.runtime.views.Bug;
 
-public class ProjectContentProvider implements IStructuredContentProvider{
+
+public class BugContentProvider implements IStructuredContentProvider{
 
     public Object[] getElements(Object inputElement) {
-	Project[] projects = new Project[]{
-		new Project("TestProj","Tobias",new Date()),
-		new Project("TestProj","Jörn",new Date())
+	Bug[] bugs = new Bug[]{
+		new Bug("Testbug","Tobias",new Date(),"Jörn",new Date()),
+		new Bug("Testbug","Jörn",new Date(),"Tobias",new Date())
 	};
 	
-	return projects;
+	return bugs;
     }
 
     public void dispose() {
