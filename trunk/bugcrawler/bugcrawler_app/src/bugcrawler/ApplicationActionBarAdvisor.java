@@ -11,35 +11,34 @@ import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 
 public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
-	
-	private IWorkbenchAction preferenceAction;
-	
-	private IWorkbenchAction aboutAction;
-	
+
+    private IWorkbenchAction preferenceAction;
+
+    private IWorkbenchAction aboutAction;
+
     public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
-        super(configurer);
+	super(configurer);
     }
 
     protected void makeActions(IWorkbenchWindow window) {
-		preferenceAction = ActionFactory.PREFERENCES.create(window);
-		preferenceAction.setText("Configure...");
-		preferenceAction.setAccelerator(SWT.CTRL | 'c');
-		register(preferenceAction);
-		
-		aboutAction = ActionFactory.ABOUT.create(window);
-		aboutAction.setText("About");
-		aboutAction.setAccelerator(SWT.CTRL | 'a');
+	preferenceAction = ActionFactory.PREFERENCES.create(window);
+	preferenceAction.setText("Configure...");
+	preferenceAction.setAccelerator(SWT.CTRL | 'c');
+	register(preferenceAction);
+
+	aboutAction = ActionFactory.ABOUT.create(window);
+	aboutAction.setText("About");
+	aboutAction.setAccelerator(SWT.CTRL | 'a');
     }
 
     protected void fillMenuBar(IMenuManager menuBar) {
-    	MenuManager settingsMenu = new MenuManager("Preferences", null);
-		settingsMenu.add(preferenceAction);
-		menuBar.add(settingsMenu);
-		
-		MenuManager helpMenu = new MenuManager("Help",
-				IWorkbenchActionConstants.M_HELP);
-		helpMenu.add(aboutAction);
-		menuBar.add(helpMenu);
+	MenuManager settingsMenu = new MenuManager("Preferences", null);
+	settingsMenu.add(preferenceAction);
+	menuBar.add(settingsMenu);
+
+	MenuManager helpMenu = new MenuManager("Help", IWorkbenchActionConstants.M_HELP);
+	helpMenu.add(aboutAction);
+	menuBar.add(helpMenu);
     }
-    
+
 }

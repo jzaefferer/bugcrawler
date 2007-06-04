@@ -5,6 +5,16 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 public class Perspective implements IPerspectiveFactory {
 
-	public void createInitialLayout(IPageLayout layout) {
-	}
+    private static IPageLayout perspectiveLayout;
+    
+    public void createInitialLayout(IPageLayout layout) {
+	layout.setEditorAreaVisible(false);
+	perspectiveLayout = layout;
+    }
+    
+    public static IPageLayout getPerspectiveLayout(){
+	return perspectiveLayout;
+    }
+    
+    
 }
