@@ -6,15 +6,15 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 
-public class BugTestingContentProvider implements IStructuredContentProvider{
+public class ProjectContentProvider implements IStructuredContentProvider{
 
     public Object[] getElements(Object inputElement) {
-	Bug[] bugs = new Bug[]{
-		new Bug("Testbug","Tobias",new Date(),"Jörn",new Date()),
-		new Bug("Testbug","Jörn",new Date(),"Tobias",new Date())
+	Project[] projects = new Project[]{
+		new Project("TestProj","Tobias",new Date()),
+		new Project("TestProj","Jörn",new Date())
 	};
 	
-	return bugs;
+	return projects;
     }
 
     public void dispose() {

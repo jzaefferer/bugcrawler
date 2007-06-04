@@ -27,7 +27,7 @@ class BugViewer extends TableViewer {
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
 	    buildColumnHeaders();	
-	    this.setContentProvider(new BugTestingContentProvider());
+	    this.setContentProvider(new BugContentProvider());
 	    this.setInput("");
 	    this.setLabelProvider(new BugTestingLabelProvider());
 	    
