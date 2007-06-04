@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.IntroPart;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.utils.ImageStore;
 
 public class Intro extends IntroPart {
@@ -24,7 +25,7 @@ public class Intro extends IntroPart {
     }
 
     public Image getTitleImage() {
-	return new ImageStore("images").get("alt_window_16.gif");
+	return Activator.getImagestore().get("alt_window_16.gif");
     }
 
     @Override

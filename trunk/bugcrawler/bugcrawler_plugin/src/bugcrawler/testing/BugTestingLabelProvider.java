@@ -1,18 +1,25 @@
 package bugcrawler.testing;
 
+import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-public class BugTestingLabelProvider extends LabelProvider{
+import bugcrawler.runtime.Activator;
+
+public class BugTestingLabelProvider extends LabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-	// TODO Auto-generated method stub
-	return null;
+	Bug bug = (Bug)element;
+	switch(columnIndex){
+		case 0: return bug.isSolved()? 
+			       Activator.getImagestore().get("checkbox_checked.gif"):
+			       Activator.getImagestore().get("checkbox_unchecked.gif");
+		default: return null;
+	}
     }
 
     public String getColumnText(Object element, int columnIndex) {
 	Bug bug = (Bug)element;
-	
 	switch(columnIndex){
         	case 0: return null;
         	case 1: return bug.getBugname();

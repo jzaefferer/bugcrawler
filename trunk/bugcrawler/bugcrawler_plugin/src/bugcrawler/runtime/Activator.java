@@ -3,6 +3,8 @@ package bugcrawler.runtime;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import bugcrawler.utils.ImageStore;
+
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -11,25 +13,17 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 	
-	/**
-	 * The constructor
-	 */
+	private static ImageStore imageStore;
+	
 	public Activator() {
 		plugin = this;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		imageStore = new ImageStore("images");
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
@@ -42,6 +36,10 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+	
+	public static ImageStore getImagestore(){
+	    return imageStore;
 	}
 
 }

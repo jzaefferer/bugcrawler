@@ -27,12 +27,12 @@ class BugViewer extends TableViewer {
 	    this.table = this.getTable();
 	    table.setHeaderVisible(true);
 	    table.setLinesVisible(true);
-	    buildColumnHeaders();
-	    BugTestingContentProvider contentProvider = new BugTestingContentProvider();
-	    this.setContentProvider(contentProvider);
-	    BugTestingLabelProvider labelProvider = new BugTestingLabelProvider();
-	    this.setLabelProvider(labelProvider);
+	    buildColumnHeaders();	
+	    this.setContentProvider(new BugTestingContentProvider());
+	    this.setInput("");
+	    this.setLabelProvider(new BugTestingLabelProvider());
 	    
+    
 	}
 
 	private void buildColumnHeaders() {
