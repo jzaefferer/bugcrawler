@@ -9,6 +9,7 @@
             name="Bugcrawler"/>
    </extension>
    <extension
+         id="bugcrawler.runtime.preferences"
          point="org.eclipse.core.runtime.preferences">
       <initializer class="bugcrawler.runtime.preferences.PreferenceInitializer"/>
    </extension>
