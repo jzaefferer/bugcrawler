@@ -11,7 +11,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.runtime.projectwizzard.ProjectWizard;
+import bugcrawler.runtime.projectwizard.ProjectWizard;
 
 public class ProgramView extends ViewPart {
     
