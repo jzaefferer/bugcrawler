@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.views.Bug;
 
 public class BugTestingLabelProvider extends LabelProvider implements ITableLabelProvider {
 

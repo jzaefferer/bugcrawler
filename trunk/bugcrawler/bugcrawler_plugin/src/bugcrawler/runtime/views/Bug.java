@@ -1,4 +1,4 @@
-package bugcrawler.testing;
+package bugcrawler.runtime.views;
 
 import java.util.Date;
 

@@ -6,7 +6,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
-import bugcrawler.testing.BugTestingContentProvider;
 import bugcrawler.testing.BugTestingLabelProvider;
 
 class BugViewer extends TableViewer {
