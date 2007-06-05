@@ -1,4 +1,4 @@
-package bugcrawler.runtime.views;
+package bugcrawler.testing.Table;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.views.Bug;
 
 public class BugLabelProvider extends LabelProvider implements ITableLabelProvider {
 

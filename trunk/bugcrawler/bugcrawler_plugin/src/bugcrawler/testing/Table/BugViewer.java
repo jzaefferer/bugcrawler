@@ -1,4 +1,4 @@
-package bugcrawler.runtime.views;
+package bugcrawler.testing.Table;
 
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import bugcrawler.testing.BugContentProvider;
 
 
-class BugViewer extends TableViewer {
+public class BugViewer extends TableViewer {
 
 	private Table table;
 	
