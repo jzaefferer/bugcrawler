@@ -2,9 +2,12 @@ package bugcrawler.runtime.views;
 
 import java.util.Date;
 
+import bugcrawler.testing.tree.Priority;
+
 public class Bug {
 
     private boolean solved = false; 
+    private Priority priority;
     private String name;
     private String creator;
     private Date creationDate;
@@ -82,5 +85,13 @@ public class Bug {
             lastModifier,
             lastModificationDate.toString()
 	};
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 }
