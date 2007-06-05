@@ -12,8 +12,8 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
-import bugcrawler.testing.Tree.TreeViewer;
-import bugcrawler.testing.table.BugViewer;
+import bugcrawler.testing.table1.BugViewer;
+import bugcrawler.testing.tree1.TreeViewer;
 
 public class ProgramView extends ViewPart {
     

@@ -1,4 +1,4 @@
-package bugcrawler.testing.Tree;
+package bugcrawler.testing.tree1;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TreeEditor;
