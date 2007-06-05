@@ -73,4 +73,14 @@ public class Bug {
     public void setSolved(boolean solved) {
         this.solved = solved;
     }
+    
+    public String[] getValues(){
+	return new String[]{    
+            name,
+            creator,
+            creationDate.toString(),
+            lastModifier,
+            lastModificationDate.toString()
+	};
+    }
 }

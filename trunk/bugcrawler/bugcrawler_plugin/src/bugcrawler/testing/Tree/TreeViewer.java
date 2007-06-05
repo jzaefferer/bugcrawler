@@ -24,6 +24,9 @@ import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 public class TreeViewer {
 
 	public TreeViewer(final Composite parent){
+	    
+	    	TreeViewerContentProvider contentProvider = new TreeViewerContentProvider();
+	    
 		final Tree tree = new Tree(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.setLayout(new WeightedTableLayout(new int[] { 25, 10, 25, 20, 20}));
 		tree.setHeaderVisible(true);
@@ -40,10 +43,10 @@ public class TreeViewer {
 			Display display = parent.getDisplay();
 			chooseColor(priority, item, display);
 
-			for (int j = 0; j < 4; j++) {
+			for (int j = 0; j < contentProvider.getContent().length; j++) {
 				TreeItem subItem = new TreeItem(item, SWT.NONE);
 				chooseColor(priority, subItem, display);
-				subItem.setText(new String[] { "subitem " + j,"pups"});
+				subItem.setText(contentProvider.getContent()[j].getValues());
 			}
 		}
 		
