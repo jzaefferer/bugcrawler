@@ -9,7 +9,6 @@ import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
-import bugcrawler.runtime.views.Bug;
 
 
 public class TreeViewer {

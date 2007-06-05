@@ -1,4 +1,4 @@
-package bugcrawler.testing.table1;
+package bugcrawler.testing.table;
 
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;

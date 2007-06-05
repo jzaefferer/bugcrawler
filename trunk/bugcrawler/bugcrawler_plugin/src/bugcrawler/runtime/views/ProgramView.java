@@ -1,23 +1,19 @@
 package bugcrawler.runtime.views;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.runtime.projectwizard.ProjectWizard;
-import bugcrawler.testing.table1.BugViewer;
 import bugcrawler.testing.tree1.TreeViewer;
 
 public class ProgramView extends ViewPart {
     
-    private BugViewer bugViewer;
+    //private BugViewer bugViewer;
     
     private Action preferences;
     
@@ -35,17 +31,17 @@ public class ProgramView extends ViewPart {
 	//createPulldownMenu();
 	createActions();
 	contributeToActionBars();
-	TreeViewer snip = new TreeViewer(parent);
+	new TreeViewer(parent);
     }
     
-    private void createPulldownMenu() {
+    /*private void createPulldownMenu() {
 	MenuManager menuManager = new MenuManager("#PopupMenu");
 	menuManager.setRemoveAllWhenShown(true);
 	Menu menu = menuManager.createContextMenu(bugViewer.getControl());
 	bugViewer.getControl().setMenu(menu);
 	getSite().registerContextMenu(menuManager, bugViewer);
 
-    }
+    }*/
     
     private void contributeToActionBars(){
 	IActionBars bars = getViewSite().getActionBars();
@@ -68,7 +64,8 @@ public class ProgramView extends ViewPart {
 	
 	projects = new Action() {
 		public void run() {
-		    ProjectWizard projectWizard = new ProjectWizard();
+		    //ProjectWizard projectWizard = new ProjectWizard();
+		    
 		}
 	};
 	projects.setText("Projekte...");
