@@ -1,4 +1,4 @@
-package bugcrawler.testing.Table;
+package bugcrawler.testing.table1;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
