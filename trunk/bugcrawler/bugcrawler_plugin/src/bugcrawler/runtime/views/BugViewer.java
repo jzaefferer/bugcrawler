@@ -30,7 +30,7 @@ class BugViewer extends TableViewer {
 	    buildColumnHeaders();	
 	    this.setContentProvider(new BugContentProvider());
 	    this.setInput("");
-	    this.setLabelProvider(new BugTestingLabelProvider());
+	    this.setLabelProvider(new BugLabelProvider());
 	    
     
 	}

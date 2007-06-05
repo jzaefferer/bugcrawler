@@ -9,8 +9,9 @@ public class ProjectWizard extends Wizard implements INewWizard{
 
     
     public ProjectWizard(){
-	super();
+	super();	
 	setNeedsProgressMonitor(true);
+	System.out.println("test");
     }
     
     @Override

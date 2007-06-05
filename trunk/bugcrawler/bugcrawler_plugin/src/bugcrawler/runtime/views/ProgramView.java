@@ -12,6 +12,7 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
+import bugcrawler.testing.TreeTable.TreeTableViewer;
 
 public class ProgramView extends ViewPart {
     
@@ -29,10 +30,11 @@ public class ProgramView extends ViewPart {
      * initialize it.
      */
     public void createPartControl(Composite parent) {
-	bugViewer = new BugViewer(parent);
-	createPulldownMenu();
-	createActions();
-	contributeToActionBars();
+	//bugViewer = new BugViewer(parent);
+	//createPulldownMenu();
+	//createActions();
+	//contributeToActionBars();
+	TreeTableViewer snip = new TreeTableViewer(parent);
     }
     
     private void createPulldownMenu() {

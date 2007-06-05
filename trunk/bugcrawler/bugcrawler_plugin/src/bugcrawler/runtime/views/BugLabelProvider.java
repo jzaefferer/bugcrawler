@@ -9,7 +9,7 @@ import org.eclipse.swt.graphics.Image;
 
 import bugcrawler.runtime.Activator;
 
-public class BugTestingLabelProvider extends LabelProvider implements ITableLabelProvider {
+public class BugLabelProvider extends LabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
 	Bug bug = (Bug)element;
