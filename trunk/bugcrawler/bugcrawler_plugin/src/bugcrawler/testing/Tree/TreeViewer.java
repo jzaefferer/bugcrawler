@@ -11,16 +11,9 @@
 package bugcrawler.testing.Tree;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.TreeEditor;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
@@ -54,41 +47,7 @@ public class TreeViewer {
 			}
 		}
 		
-
-		final TreeEditor editor = new TreeEditor(tree);
-		//The editor must have the same size as the cell and must
-		//not be any smaller than 50 pixels.
-		editor.horizontalAlignment = SWT.LEFT;
-		editor.grabHorizontal = true;
-		editor.minimumWidth = 50;
-		// editing the second column
-		final int EDITABLECOLUMN = 1;
-		
-		tree.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-			    	
-				// Clean up any previous editor control
-				Control oldEditor = editor.getEditor();
-				if (oldEditor != null) oldEditor.dispose();
-		
-				// Identify the selected row
-				TreeItem item = (TreeItem)e.item;
-				if (item == null) return;
-		
-				// The control that will be the editor must be a child of the Table
-				Text newEditor = new Text(tree, SWT.NONE);
-				newEditor.setText(item.getText(EDITABLECOLUMN));
-				newEditor.addModifyListener(new ModifyListener() {
-					public void modifyText(ModifyEvent e) {
-						Text text = (Text)editor.getEditor();
-						editor.getItem().setText(EDITABLECOLUMN, text.getText());
-					}
-				});
-				newEditor.selectAll();
-				newEditor.setFocus();
-				editor.setEditor(newEditor, item, EDITABLECOLUMN);
-			}
-		});
+		new TreeViewerEditor(tree);
 	}
 	
 	public void setTreeItemColor(TreeItem item,Display display,int r,int g,int b){
