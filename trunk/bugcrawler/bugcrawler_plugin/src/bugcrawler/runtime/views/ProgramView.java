@@ -33,8 +33,8 @@ public class ProgramView extends ViewPart {
     public void createPartControl(Composite parent) {
 	//bugViewer = new BugViewer(parent);
 	//createPulldownMenu();
-	//createActions();
-	//contributeToActionBars();
+	createActions();
+	contributeToActionBars();
 	TreeTableViewer snip = new TreeTableViewer(parent);
     }
     
