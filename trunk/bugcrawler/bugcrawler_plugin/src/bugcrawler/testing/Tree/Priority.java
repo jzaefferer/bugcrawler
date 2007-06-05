@@ -1,4 +1,4 @@
-package bugcrawler.testing.TreeTable;
+package bugcrawler.testing.Tree;
 
 /*public class Priority {
 	

@@ -8,7 +8,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package bugcrawler.testing.TreeTable;
+package bugcrawler.testing.Tree;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TreeEditor;
@@ -28,9 +28,9 @@ import org.eclipse.swt.widgets.TreeItem;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 
 
-public class TreeTableViewer {
+public class TreeViewer {
 
-	public TreeTableViewer(final Composite parent){
+	public TreeViewer(final Composite parent){
 		final Tree tree = new Tree(parent, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.setLayout(new WeightedTableLayout(new int[] { 25, 10, 25, 20, 20}));
 		tree.setHeaderVisible(true);
@@ -66,7 +66,7 @@ public class TreeTableViewer {
 		
 		tree.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-			    	System.out.println("test");
+			    	
 				// Clean up any previous editor control
 				Control oldEditor = editor.getEditor();
 				if (oldEditor != null) oldEditor.dispose();

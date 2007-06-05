@@ -13,7 +13,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.testing.Table.BugViewer;
-import bugcrawler.testing.TreeTable.TreeTableViewer;
+import bugcrawler.testing.Tree.TreeViewer;
 
 public class ProgramView extends ViewPart {
     
@@ -35,7 +35,7 @@ public class ProgramView extends ViewPart {
 	//createPulldownMenu();
 	createActions();
 	contributeToActionBars();
-	TreeTableViewer snip = new TreeTableViewer(parent);
+	TreeViewer snip = new TreeViewer(parent);
     }
     
     private void createPulldownMenu() {
