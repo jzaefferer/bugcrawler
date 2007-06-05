@@ -1,4 +1,4 @@
-package bugcrawler.testing.tree1;
+package bugcrawler.testing.tree;
 
 
 public enum ColumnTitles {

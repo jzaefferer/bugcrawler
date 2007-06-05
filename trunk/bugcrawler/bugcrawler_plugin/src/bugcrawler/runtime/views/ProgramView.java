@@ -9,7 +9,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.testing.tree1.TreeViewer;
+import bugcrawler.testing.tree.TreeViewer;
 
 public class ProgramView extends ViewPart {
     
