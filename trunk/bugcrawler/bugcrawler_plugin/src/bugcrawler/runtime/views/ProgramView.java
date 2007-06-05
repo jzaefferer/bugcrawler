@@ -9,7 +9,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.testing.tree.BugTreeViewer;
+import bugcrawler.testing.tree.TreeViewer;
 
 public class ProgramView extends ViewPart {
     
@@ -31,7 +31,7 @@ public class ProgramView extends ViewPart {
 	//createPulldownMenu();
 	createActions();
 	contributeToActionBars();
-	new BugTreeViewer(parent);
+	new TreeViewer(parent);
     }
     
     /*private void createPulldownMenu() {

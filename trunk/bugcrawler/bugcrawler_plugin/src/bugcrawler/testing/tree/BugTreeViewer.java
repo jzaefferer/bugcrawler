@@ -36,17 +36,5 @@ public class BugTreeViewer extends TreeViewer{
         	}
 	}
 	
-	public void setTreeItemColor(TreeItem item,Display display,int r,int g,int b){
-	    item.setBackground(new Color(display,r,g,b));
-	}
-	
-	public void chooseColor(Priority priority, TreeItem item, Display display){
-		switch(priority){
-        		case Highest: setTreeItemColor(item,display,255, 220, 204); break;
-        		case High: setTreeItemColor(item, display, 255, 238, 222); break;
-        		case Medium: setTreeItemColor(item, display, 255, 250, 205); break;
-        		case Low: setTreeItemColor(item, display, 246, 246, 246); break;
-        		case Lowest: setTreeItemColor(item,display,251, 251, 251 ); break;
-		}	    
-	}
+
 }
