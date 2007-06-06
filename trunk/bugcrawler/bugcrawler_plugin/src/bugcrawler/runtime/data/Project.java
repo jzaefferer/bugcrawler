@@ -14,6 +14,7 @@ public class Project {
     public void addBugToProject(Bug bug){
 	bugs.add(bug);
     }
+    
     public Object[] getBugs(){
 	return bugs.toArray();
     }

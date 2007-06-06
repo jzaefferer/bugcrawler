@@ -60,7 +60,7 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	if(element instanceof Bug){
 	    priority = ((Bug)element).getPriority();
 	}else if(element instanceof Priority)
-	    priority = ((Priority)element);
+	    priority = (Priority)element;
 	if(priority!=null){
 	    return chooseColor(priority, parent.getDisplay());
 	}

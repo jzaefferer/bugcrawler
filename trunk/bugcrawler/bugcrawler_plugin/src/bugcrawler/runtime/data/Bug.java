@@ -84,10 +84,10 @@ public class Bug {
 	};
     }
 
-    public Priority getPriority() {
-        return priority;
+    public Priority getPriority(){
+	return priority;
     }
-
+    
     public void setPriority(Priority priority) {
         this.priority = priority;
     }

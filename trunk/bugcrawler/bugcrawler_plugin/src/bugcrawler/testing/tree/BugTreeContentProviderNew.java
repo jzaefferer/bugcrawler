@@ -11,6 +11,7 @@ import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
 
 public class BugTreeContentProviderNew implements ITreeContentProvider {
+    
     Project proj;
 
     public Object[] getChildren(Object parentElement) {

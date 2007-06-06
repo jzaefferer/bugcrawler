@@ -1,8 +1,6 @@
 package bugcrawler.testing.tree;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 
 import org.eclipse.jface.viewers.TreeViewer;
@@ -35,7 +33,7 @@ public class BugTreeViewer extends TreeViewer {
 	bug1.setPriority(Priority.High);
 	proj.addBugToProject(bug1);
 	Bug bug2 = new Bug("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date());
-	bug2.setPriority(Priority.High);
+	bug2.setPriority(Priority.Low);
 	proj.addBugToProject(bug2);
 
 	this.setInput(Arrays.asList(new Object[]{proj}));
