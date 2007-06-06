@@ -7,7 +7,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.part.IntroPart;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.utils.ImageStore;
 
 public class Intro extends IntroPart {
 

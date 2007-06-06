@@ -5,7 +5,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-public class ProjectWizard extends Wizard implements INewWizard{
+public class ProjectWizard extends Wizard {
 
     
     public ProjectWizard(){

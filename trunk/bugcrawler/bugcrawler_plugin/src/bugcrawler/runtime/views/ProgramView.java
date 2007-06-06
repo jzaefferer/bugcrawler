@@ -1,19 +1,21 @@
 package bugcrawler.runtime.views;
 
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.testing.tree.TreeViewer;
+import bugcrawler.testing.tree.BugTreeViewer;
 
 public class ProgramView extends ViewPart {
     
-    //private BugViewer bugViewer;
+    private BugTreeViewer bugTreeViewer;
     
     private Action preferences;
     
@@ -27,21 +29,21 @@ public class ProgramView extends ViewPart {
      * initialize it.
      */
     public void createPartControl(Composite parent) {
-	//bugViewer = new BugViewer(parent);
-	//createPulldownMenu();
+	bugTreeViewer = new BugTreeViewer(parent);
+	createPulldownMenu();
 	createActions();
 	contributeToActionBars();
-	new TreeViewer(parent);
+	
     }
     
-    /*private void createPulldownMenu() {
+    private void createPulldownMenu() {
 	MenuManager menuManager = new MenuManager("#PopupMenu");
 	menuManager.setRemoveAllWhenShown(true);
-	Menu menu = menuManager.createContextMenu(bugViewer.getControl());
-	bugViewer.getControl().setMenu(menu);
-	getSite().registerContextMenu(menuManager, bugViewer);
+	Menu menu = menuManager.createContextMenu(bugTreeViewer.getControl());
+	bugTreeViewer.getControl().setMenu(menu);
+	getSite().registerContextMenu(menuManager, bugTreeViewer);
 
-    }*/
+    }
     
     private void contributeToActionBars(){
 	IActionBars bars = getViewSite().getActionBars();

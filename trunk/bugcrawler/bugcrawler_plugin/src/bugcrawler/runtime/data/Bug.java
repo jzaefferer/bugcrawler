@@ -1,8 +1,7 @@
-package bugcrawler.runtime.views;
+package bugcrawler.runtime.data;
 
 import java.util.Date;
 
-import bugcrawler.testing.tree.Priority;
 
 public class Bug {
 
@@ -13,8 +12,6 @@ public class Bug {
     private Date creationDate;
     private String lastModifier;
     private Date lastModificationDate;
-    
-    public Bug(){}
     
     public Bug(String name, 
 	       String creator, 

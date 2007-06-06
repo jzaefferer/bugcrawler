@@ -5,7 +5,7 @@ import java.util.Date;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import bugcrawler.runtime.views.Bug;
+import bugcrawler.runtime.data.Bug;
 
 
 public class BugContentProvider implements IStructuredContentProvider{

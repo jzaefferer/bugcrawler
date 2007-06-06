@@ -1,15 +1,14 @@
-package bugcrawler.runtime.views;
+package bugcrawler.runtime.data;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 
 public class Project {
 
     private String name;
     private String creator;
     private Date creationDate;
-    
-    
     private ArrayList<Bug> bugs = new ArrayList<Bug>();
     
     public void addBugToProject(Bug bug){
@@ -19,8 +18,6 @@ public class Project {
 	return bugs.toArray();
     }
     
-    
-
     public Project(String name, 
 	       String creator, 
 	       Date creationDate){
