@@ -22,7 +22,8 @@ public class BugTreeViewer extends TreeViewer {
     public BugTreeViewer(final Composite parent) {
 	super(parent);
 	tree = this.getTree();
-	tree.setLayout(new WeightedTableLayout(new int[] { 25, 10, 25, 20, 20 }));
+	tree.setLayout(new WeightedTableLayout(new int[] { 50, -1, 25, -1, 25, -1 },
+					       new int[] {-1, 18, -1, 85, -1, 105 }));
 	tree.setLinesVisible(true);
 	tree.setHeaderVisible(true);
 	buildColumnsHeaders();

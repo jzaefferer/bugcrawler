@@ -11,19 +11,28 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
 
-public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider,ITableColorProvider {
+public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
 
     private Composite parent;
-    
-    public BugTreeLabelProvider(Composite parent){
-	this.parent=parent;
+
+    public BugTreeLabelProvider(Composite parent) {
+	this.parent = parent;
     }
-        
+
     public Image getColumnImage(Object element, int columnIndex) {
+	if ((element instanceof Bug) && (columnIndex == 1)) {
+	    if (((Bug) element).isSolved()) {
+		return Activator.getImagestore().get("solved.png");
+	    }else{
+		return Activator.getImagestore().get("notsolved.png");
+	    }
+	}
+
 	return null;
     }
 
@@ -38,12 +47,14 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	    case 0:
 		return bug.getName();
 	    case 1:
-		return bug.getCreator();
+		return null;
 	    case 2:
-		return convertDate(bug.getCreationDate());
+		return bug.getCreator();
 	    case 3:
-		return bug.getLastModifier();
+		return convertDate(bug.getCreationDate());
 	    case 4:
+		return bug.getLastModifier();
+	    case 5:
 		return convertDate(bug.getLastModificationDate());
 	    default:
 		return null;
@@ -52,22 +63,25 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	return null;
     }
 
+    public String convertDate(Date date) {
+	return new SimpleDateFormat().format(date);
+    }
+
     public Color getBackground(Object element, int columnIndex) {
-	if(element instanceof Project){
-	    return new Color(parent.getDisplay(),225,225,225);
+	if (element instanceof Project) {
+	    return new Color(parent.getDisplay(), 225, 225, 225);
 	}
 	Priority priority = null;
-	if(element instanceof Bug){
-	    priority = ((Bug)element).getPriority();
-	}else if(element instanceof Priority)
-	    priority = (Priority)element;
-	if(priority!=null){
+	if (element instanceof Bug) {
+	    priority = ((Bug) element).getPriority();
+	} else if (element instanceof Priority)
+	    priority = (Priority) element;
+	if (priority != null) {
 	    return chooseColor(priority, parent.getDisplay());
 	}
 	return null;
     }
 
-    
     public Color getForeground(Object element, int columnIndex) {
 	return null;
     }
@@ -92,9 +106,5 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	    break;
 	}
 	return color;
-    }
-    
-    public String convertDate(Date date) {
-	return new SimpleDateFormat().format(date);
     }
 }

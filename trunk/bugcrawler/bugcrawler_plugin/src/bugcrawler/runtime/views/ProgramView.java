@@ -11,7 +11,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.testing.tree.BugTreeViewer;
+import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
     
@@ -61,9 +63,9 @@ public class ProgramView extends ViewPart {
 	};
 	preferences.setText("Bugcrawler Konfigurieren...");
 	preferences.setToolTipText("Einstellungen zum Konfigurieren des Bugcrawlers...");
-	preferences.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-		getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
-	
+	//preferences.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+	//	getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
+	preferences.setImageDescriptor(ImageStore.getImageDescriptor("images/preferences.png"));
 	projects = new Action() {
 		public void run() {
 		    //ProjectWizard projectWizard = new ProjectWizard();
