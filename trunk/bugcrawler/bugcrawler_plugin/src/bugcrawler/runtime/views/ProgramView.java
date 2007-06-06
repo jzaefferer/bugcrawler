@@ -11,7 +11,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
-import bugcrawler.runtime.Activator;
 import bugcrawler.testing.tree.BugTreeViewer;
 import bugcrawler.utils.ImageStore;
 
@@ -69,7 +68,6 @@ public class ProgramView extends ViewPart {
 	projects = new Action() {
 		public void run() {
 		    //ProjectWizard projectWizard = new ProjectWizard();
-		    
 		}
 	};
 	projects.setText("Projekte...");

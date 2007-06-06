@@ -1,7 +1,9 @@
 package bugcrawler.runtime.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 
 public class Project {
@@ -49,5 +51,9 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public List getInput(){
+	return Arrays.asList(new Object[]{this});
     }
 }

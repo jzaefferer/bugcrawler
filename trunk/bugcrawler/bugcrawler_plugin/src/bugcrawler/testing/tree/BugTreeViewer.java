@@ -1,6 +1,5 @@
 package bugcrawler.testing.tree;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import org.eclipse.jface.viewers.TreeViewer;
@@ -28,7 +27,10 @@ public class BugTreeViewer extends TreeViewer {
 	tree.setHeaderVisible(true);
 	buildColumnsHeaders();
 	this.setLabelProvider(new BugTreeLabelProvider(parent));
-	this.setContentProvider(new BugTreeContentProviderNew());
+	this.setContentProvider(new BugTreeContentProvider());
+	// this.addFilter(new BugViewerFilter());
+	// this.setComparator(new BugTreeComperator());
+	
 	Project proj = new Project("testproj", "tobi", new Date());
 	Bug bug1 = new Bug("Ah damn little Bug", "Tobi", new Date(), "Jörn", new Date());
 	bug1.setPriority(Priority.High);
@@ -36,12 +38,8 @@ public class BugTreeViewer extends TreeViewer {
 	Bug bug2 = new Bug("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date());
 	bug2.setPriority(Priority.Low);
 	proj.addBugToProject(bug2);
-
-	this.setInput(Arrays.asList(new Object[]{proj}));
-
-	// new TreeViewerEditor(tree);
-	// this.addFilter(new BugViewerFilter());
-	// this.setComparator(new BugTreeComperator());
+	
+	this.setInput(proj.getInput());
     }
 
     public void buildColumnsHeaders() {

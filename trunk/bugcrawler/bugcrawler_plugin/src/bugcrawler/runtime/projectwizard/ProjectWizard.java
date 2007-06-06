@@ -2,7 +2,6 @@ package bugcrawler.runtime.projectwizard;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 public class ProjectWizard extends Wizard {
