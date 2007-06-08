@@ -22,6 +22,9 @@ package bugcrawler.runtime.data;
 	};
 }*/
 
+/**
+ * Priorities in which the bugs can be categorized
+ */
 public enum Priority{
 	Highest, High, Medium, Low, Lowest
 }
