@@ -5,55 +5,55 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-
 public class Project {
 
-    private String name;
-    private String creator;
-    private Date creationDate;
-    private ArrayList<Bug> bugs = new ArrayList<Bug>();
-    
-    public void addBugToProject(Bug bug){
-	bugs.add(bug);
-    }
-    
-    public Object[] getBugs(){
-	return bugs.toArray();
-    }
-    
-    public Project(String name, 
-	       String creator, 
-	       Date creationDate){
-	this.name=name;
-	this.creator=creator;
-	this.creationDate=creationDate;	
-    }
+	private String name;
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+	private String creator;
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+	private Date creationDate;
 
-    public String getCreator() {
-        return creator;
-    }
+	private ArrayList<Bug> bugs = new ArrayList<Bug>();
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
+	public void addBugToProject(Bug bug) {
+		bugs.add(bug);
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Object[] getBugs() {
+		return bugs.toArray();
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public List getInput(){
-	return Arrays.asList(new Object[]{this});
-    }
+	public Project(String name, String creator, Date creationDate) {
+		this.name = name;
+		this.creator = creator;
+		this.creationDate = creationDate;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public String getCreator() {
+		return creator;
+	}
+
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List getInput() {
+		return Arrays.asList(new Object[] { this });
+	}
 }
