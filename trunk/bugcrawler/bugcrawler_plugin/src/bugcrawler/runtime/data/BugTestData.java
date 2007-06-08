@@ -1,18 +1,24 @@
 package bugcrawler.runtime.data;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class BugTestData {
 	public static Object[] getTestData(){
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(2007, 11, 15);
 		Project proj = new Project("Bugcrawler", "Tobias", new Date());
 		new Bug("#3", "Keine Selektionsmöglichkeiten für die Projekte", "Other", "0.1 aplha", "0.1",
-				"task","normal","Tobias",new Date(),Priority.Highest,proj);
+				"task","normal","Tobias",cal.getTime(),Priority.Highest,proj);
 		
+		cal.set(2006, 11, 12);
 		new Bug("#1", "Das Wizard wird nicht angezeigt", "Wizard", "0.1 aplha", "0.1",
-				"defect","normal","Tobias",new Date(),Priority.High,proj);
+				"defect","normal","Tobias",cal.getTime(),Priority.High,proj);
 
+		cal.set(2006, 11, 11);
 		new Bug("#6", "PreferencesMenü soll für Projektauswahlen erweitert werden.", "Preferences", "0.1 aplha", "0.1",
-				"task","normal","Tobias",new Date(),Priority.High,proj);		
+				"task","normal","Tobias",cal.getTime(),Priority.High,proj);		
 		
 		new Bug("#4", "Keine Filtermöglichkeiten", "Filters", "0.1 aplha", "0.1",
 				"task","normal","Tobias",new Date(),Priority.Medium,proj);

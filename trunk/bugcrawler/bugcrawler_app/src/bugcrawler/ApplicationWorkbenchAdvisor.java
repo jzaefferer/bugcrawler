@@ -1,6 +1,5 @@
 package bugcrawler;
 
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
@@ -10,9 +9,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
     private static final String PERSPECTIVE_ID = "bugcrawler.perspective";
 
-    private IWorkbenchWindowConfigurer configurer;
     public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
-	this.configurer = configurer;
 	return new ApplicationWorkbenchWindowAdvisor(configurer);
     }
 
