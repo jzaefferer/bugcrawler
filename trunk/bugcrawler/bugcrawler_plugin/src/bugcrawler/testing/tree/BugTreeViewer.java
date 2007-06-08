@@ -37,9 +37,15 @@ public class BugTreeViewer extends TreeViewer {
 				Priority.Highest, proj);
 		new Bug("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date(),
 				Priority.Highest, proj);
+		
+		Project proj2 = new Project("testproj2", "jörn", new Date());
+		new Bug("Ah damn little Bug in Proj2", "Tobi", new Date(), "Jörn", new Date(),
+				Priority.Medium, proj2);
+		new Bug("Ah damn little Bug2 in Proj2", "Jörn", new Date(), "Tobi", new Date(),
+				Priority.Low, proj2);
 		// System.out.println(((BugNew)proj.getBugContainer(Priority.High).getBugs()[1]).getName());
 
-		this.setInput(Arrays.asList(new Object[] { proj }));
+		this.setInput(Arrays.asList(new Object[] { proj, proj2 }));
 		this.expandToLevel(-1);
 	}
 
