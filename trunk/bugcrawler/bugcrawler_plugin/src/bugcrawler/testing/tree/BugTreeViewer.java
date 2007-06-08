@@ -9,10 +9,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
-import bugcrawler.runtime.data.BugNew;
+import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.data.Priority;
-import bugcrawler.runtime.data.ProjectNew;
+import bugcrawler.runtime.data.Project;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
@@ -32,10 +32,10 @@ public class BugTreeViewer extends TreeViewer {
 		// this.addFilter(new BugViewerFilter());
 		// this.setComparator(new BugTreeComperator());
 
-		ProjectNew proj = new ProjectNew("testproj", "tobi", new Date());
-		new BugNew("Ah damn little Bug", "Tobi", new Date(), "Jörn", new Date(),
+		Project proj = new Project("testproj", "tobi", new Date());
+		new Bug("Ah damn little Bug", "Tobi", new Date(), "Jörn", new Date(),
 				Priority.Highest, proj);
-		new BugNew("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date(),
+		new Bug("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date(),
 				Priority.Highest, proj);
 		// System.out.println(((BugNew)proj.getBugContainer(Priority.High).getBugs()[1]).getName());
 

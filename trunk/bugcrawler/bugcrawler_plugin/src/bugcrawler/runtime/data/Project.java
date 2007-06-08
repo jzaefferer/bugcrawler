@@ -1,9 +1,6 @@
 package bugcrawler.runtime.data;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 public class Project {
 
@@ -13,14 +10,30 @@ public class Project {
 
 	private Date creationDate;
 
-	private ArrayList<Bug> bugs = new ArrayList<Bug>();
+	private BugContainer[] bugsContainers = { 
+			new BugContainer(Priority.Highest,this), 
+			new BugContainer(Priority.High,this),
+			new BugContainer(Priority.Medium,this), 
+			new BugContainer(Priority.Low,this),
+			new BugContainer(Priority.Lowest,this) 
+	};
 
 	public void addBugToProject(Bug bug) {
-		bugs.add(bug);
+		BugContainer bugContainer = getBugContainer(bug.getPriority());
+		bugContainer.addBug(bug);
 	}
 
-	public Object[] getBugs() {
-		return bugs.toArray();
+	public BugContainer getBugContainer(Priority priority){
+		for(BugContainer bugContainer:bugsContainers){
+			if(bugContainer.getPriority()==priority){
+				return bugContainer;
+			}
+		}
+		return null;
+	}
+	
+	public BugContainer[] getBugContainers(){
+		return bugsContainers;
 	}
 
 	public Project(String name, String creator, Date creationDate) {
@@ -51,9 +64,5 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List getInput() {
-		return Arrays.asList(new Object[] { this });
 	}
 }

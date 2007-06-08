@@ -6,11 +6,11 @@ public class BugContainer {
 
 	private Priority priority;
 	
-	private ProjectNew project;
+	private Project project;
 	
-	private ArrayList<BugNew> bugs = new ArrayList<BugNew>();
+	private ArrayList<Bug> bugs = new ArrayList<Bug>();
 	
-	public BugContainer(Priority priority,ProjectNew project){
+	public BugContainer(Priority priority,Project project){
 		this.priority = priority;
 		this.project = project;
 	}
@@ -19,7 +19,7 @@ public class BugContainer {
 		return priority;
 	}
 	
-	public void addBug(BugNew bug){
+	public void addBug(Bug bug){
 		bugs.add(bug);
 	}
 	
@@ -27,7 +27,7 @@ public class BugContainer {
 		return bugs.toArray();
 	}
 	
-	public ProjectNew getProject(){
+	public Project getProject(){
 		return project;
 	}
 }

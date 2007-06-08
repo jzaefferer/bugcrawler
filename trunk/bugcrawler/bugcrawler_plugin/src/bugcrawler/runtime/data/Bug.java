@@ -2,89 +2,96 @@ package bugcrawler.runtime.data;
 
 import java.util.Date;
 
+
 public class Bug {
 
-	private boolean solved = false;
+    private boolean solved = false; 
+    private BugContainer bugContainer;
+    private String name;
+    private String creator;
+    private Date creationDate;
+    private String lastModifier;
+    private Date lastModificationDate;
+    
+    public Bug(String name, 
+	       String creator, 
+	       Date creationDate,
+	       String lastModifier,
+	       Date lastModificationDate,
+	       Priority priority,
+	       Project project){
+	this.name=name;
+	this.creator=creator;
+	this.creationDate=creationDate;
+	this.lastModifier=lastModifier;
+	this.lastModificationDate=lastModificationDate;
+	this.bugContainer=project.getBugContainer(priority);
+	project.addBugToProject(this);
+    }
 
-	private Priority priority;
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-	private String name;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 
-	private String creator;
+    public String getCreator() {
+        return creator;
+    }
 
-	private Date creationDate;
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
 
-	private String lastModifier;
+    public Date getLastModificationDate() {
+        return lastModificationDate;
+    }
 
-	private Date lastModificationDate;
+    public void setLastModificationDate(Date lastModificationDate) {
+        this.lastModificationDate = lastModificationDate;
+    }
 
-	public Bug(String name, String creator, Date creationDate, String lastModifier, Date lastModificationDate) {
-		this.name = name;
-		this.creator = creator;
-		this.creationDate = creationDate;
-		this.lastModifier = lastModifier;
-		this.lastModificationDate = lastModificationDate;
+    public String getLastModifier() {
+        return lastModifier;
+    }
 
-	}
+    public void setLastModifier(String lastModifier) {
+        this.lastModifier = lastModifier;
+    }
 
-	public Date getCreationDate() {
-		return creationDate;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getCreator() {
-		return creator;
-	}
+    public boolean isSolved() {
+        return solved;
+    }
 
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
+    public void setSolved(boolean solved) {
+        this.solved = solved;
+    }
+    
+    public String[] getValues(){
+	return new String[]{    
+            name,
+            creator,
+            creationDate.toString(),
+            lastModifier,
+            lastModificationDate.toString()
+	};
+    }
 
-	public Date getLastModificationDate() {
-		return lastModificationDate;
-	}
-
-	public void setLastModificationDate(Date lastModificationDate) {
-		this.lastModificationDate = lastModificationDate;
-	}
-
-	public String getLastModifier() {
-		return lastModifier;
-	}
-
-	public void setLastModifier(String lastModifier) {
-		this.lastModifier = lastModifier;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public boolean isSolved() {
-		return solved;
-	}
-
-	public void setSolved(boolean solved) {
-		this.solved = solved;
-	}
-
-	public String[] getValues() {
-		return new String[] { name, creator, creationDate.toString(), lastModifier,
-				lastModificationDate.toString() };
-	}
-
-	public Priority getPriority() {
-		return priority;
-	}
-
-	public void setPriority(Priority priority) {
-		this.priority = priority;
-	}
+    public BugContainer getBugContainer(){
+    	return bugContainer;
+    }
+    
+    public Priority getPriority(){
+    	return bugContainer.getPriority();
+    }
 }

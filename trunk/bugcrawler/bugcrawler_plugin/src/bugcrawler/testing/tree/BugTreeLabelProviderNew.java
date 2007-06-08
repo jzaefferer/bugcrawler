@@ -13,9 +13,9 @@ import org.eclipse.swt.widgets.Display;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.BugContainer;
-import bugcrawler.runtime.data.BugNew;
+import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.Priority;
-import bugcrawler.runtime.data.ProjectNew;
+import bugcrawler.runtime.data.Project;
 
 public class BugTreeLabelProviderNew extends LabelProvider implements ITableLabelProvider,
 		ITableColorProvider {
@@ -27,8 +27,8 @@ public class BugTreeLabelProviderNew extends LabelProvider implements ITableLabe
 	}
 
 	public Image getColumnImage(Object element, int columnIndex) {
-		if ((element instanceof BugNew) && (columnIndex == 1)) {
-			if (((BugNew) element).isSolved()) {
+		if ((element instanceof Bug) && (columnIndex == 1)) {
+			if (((Bug) element).isSolved()) {
 				return Activator.getImagestore().get("solved.png");
 			} else {
 				return Activator.getImagestore().get("notsolved.png");
@@ -38,12 +38,12 @@ public class BugTreeLabelProviderNew extends LabelProvider implements ITableLabe
 	}
 
 	public String getColumnText(Object element, int columnIndex) {
-		if (element instanceof ProjectNew && columnIndex == 0) {
-			return ((ProjectNew) element).getName();
+		if (element instanceof Project && columnIndex == 0) {
+			return ((Project) element).getName();
 		} else if (element instanceof BugContainer && columnIndex == 0) {
 			return ((BugContainer) element).getPriority().toString();
-		} else if (element instanceof BugNew) {
-			BugNew bug = (BugNew) element;
+		} else if (element instanceof Bug) {
+			Bug bug = (Bug) element;
 			switch (columnIndex) {
 			case 0:
 				return bug.getName();
@@ -69,12 +69,12 @@ public class BugTreeLabelProviderNew extends LabelProvider implements ITableLabe
 	}
 
 	public Color getBackground(Object element, int columnIndex) {
-		if (element instanceof ProjectNew) {
+		if (element instanceof Project) {
 			return new Color(parent.getDisplay(), 225, 225, 225);
 		}
 		Priority priority = null;
-		if (element instanceof BugNew) {
-			priority = ((BugNew) element).getPriority();
+		if (element instanceof Bug) {
+			priority = ((Bug) element).getPriority();
 		} else if (element instanceof BugContainer)
 			priority = ((BugContainer) element).getPriority();
 		if (priority != null) {
