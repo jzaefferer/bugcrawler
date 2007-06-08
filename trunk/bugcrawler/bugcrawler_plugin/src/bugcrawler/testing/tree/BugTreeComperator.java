@@ -11,7 +11,8 @@ public class BugTreeComperator extends ViewerComparator{
 		if(e1 instanceof BugContainer){
 			String priorityName1 = ((BugContainer)e1).getPriority().toString();
 			String priorityName2 = ((BugContainer)e2).getPriority().toString();
-			return getComparator().compare(priorityName1, priorityName2);
+//			return getComparator().compare(priorityName1, priorityName2);
+			return priorityName1.compareTo(priorityName2);
 		}
 		return 0;
 	}
