@@ -27,8 +27,7 @@ public class BugTreeViewer extends TreeViewer {
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
 		// this.addFilter(new BugViewerFilter());
-		// this.setComparator(new BugTreeComperator());
-
+		this.setComparator(new BugTreeComperator());
 		this.setInput(Arrays.asList(BugTestData.getTestData()));
 		this.expandToLevel(-1);
 	}

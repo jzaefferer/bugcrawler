@@ -12,14 +12,14 @@ public class BugTestData {
 				"defect","normal","Tobias",new Date(),Priority.High,proj);
 
 		new Bug("#6", "PreferencesMenü soll für Projektauswahlen erweitert werden.", "Preferences", "0.1 aplha", "0.1",
-				"task","normal","Tobias",new Date(),Priority.High,proj);			
+				"task","normal","Tobias",new Date(),Priority.High,proj);		
 		
 		new Bug("#4", "Keine Filtermöglichkeiten", "Filters", "0.1 aplha", "0.1",
 				"task","normal","Tobias",new Date(),Priority.Medium,proj);
-		
+					
 		new Bug("#5", "TreeTable kann nicht sortiert werden", "Tree", "0.1 aplha", "0.1",
 				"task","normal","Tobias",new Date(),Priority.Low,proj);
-		
+	
 		new Bug("#2", "Der Tree soll nur ein Projekt anzeigen!1 :SSS", "Tree", "0.1 aplha", "0.1",
 				"task","normal","Jörn",new Date(),Priority.Lowest,proj);
 		
