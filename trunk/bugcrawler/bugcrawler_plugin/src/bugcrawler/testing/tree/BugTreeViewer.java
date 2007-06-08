@@ -41,10 +41,9 @@ public class BugTreeViewer extends TreeViewer {
 			column.setText(titles.toString());
 			addListener(column);
 		}
-
 	}
 
-	public void addListener(TreeColumn column) {
+	public void addListener(final TreeColumn column) {
 		column.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				TreeColumn sortColumn = tree.getSortColumn();
@@ -57,14 +56,15 @@ public class BugTreeViewer extends TreeViewer {
 					dir = SWT.UP;
 				}
 				ColumnTitles sortIdentifier = null;
-				for (TreeColumn column : tree.getColumns()) {
-					if (column.getText().equals(ColumnTitles.Created.toString())) {
-						sortIdentifier = ColumnTitles.Created;
-					}
+				
+				if (column.getText().equals(ColumnTitles.Created.toString())) {
+					sortIdentifier = ColumnTitles.Created;
+				}else if(column.getText().equals(ColumnTitles.Ticket.toString())){
+					sortIdentifier = ColumnTitles.Ticket;
 				}
+				
 				tree.setSortDirection(dir);
-				viewer.setSorter(new BugTreeComperator(sortIdentifier, dir));						
-
+				viewer.setSorter(new BugTreeComperator(sortIdentifier, dir));
 			}
 		});
 	}

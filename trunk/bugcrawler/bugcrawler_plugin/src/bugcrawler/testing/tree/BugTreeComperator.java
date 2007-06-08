@@ -22,10 +22,16 @@ public class BugTreeComperator extends ViewerSorter {
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		if (e1 instanceof Bug) {
 			int returnValue = 0;
-			for (int i=0;i<ColumnTitles.values().length;i++){
-				if (columnToSort == ColumnTitles.Created) {
-					returnValue = ((Bug) e1).getCreated().compareTo(((Bug) e2).getCreated());
-				}
+			
+			if (columnToSort == ColumnTitles.Created) {
+				returnValue = ((Bug) e2).getCreated().compareTo(((Bug) e1).getCreated());
+			}else if(columnToSort == ColumnTitles.Ticket){
+				String ticketNumberAsString1 = ((Bug) e1).getTicket().substring(1);
+				int ticketNumber1 = Integer.parseInt(ticketNumberAsString1);
+				String ticketNumberAsString2 = ((Bug) e2).getTicket().substring(1);
+				int ticketNumber2 = Integer.parseInt(ticketNumberAsString2);				
+				returnValue = ticketNumber1-ticketNumber2;
+				System.out.println(returnValue);
 			}
 			if (this.dir == SWT.DOWN) {
 				returnValue = returnValue * -1;
