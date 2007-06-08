@@ -27,8 +27,8 @@ public class BugTreeViewer extends TreeViewer {
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		buildColumnsHeaders();
-		this.setLabelProvider(new BugTreeLabelProviderNew(parent));
-		this.setContentProvider(new BugTreeContentProviderNew());
+		this.setLabelProvider(new BugTreeLabelProvider(parent));
+		this.setContentProvider(new BugTreeContentProvider());
 		// this.addFilter(new BugViewerFilter());
 		// this.setComparator(new BugTreeComperator());
 

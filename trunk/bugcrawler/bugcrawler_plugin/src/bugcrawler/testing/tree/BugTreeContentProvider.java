@@ -9,7 +9,7 @@ import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.Project;
 
-public class BugTreeContentProviderNew implements ITreeContentProvider {
+public class BugTreeContentProvider implements ITreeContentProvider {
 
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof Project) {

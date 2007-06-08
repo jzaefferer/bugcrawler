@@ -17,12 +17,12 @@ import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
 
-public class BugTreeLabelProviderNew extends LabelProvider implements ITableLabelProvider,
+public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider,
 		ITableColorProvider {
 
 	private Composite parent;
 
-	public BugTreeLabelProviderNew(Composite parent) {
+	public BugTreeLabelProvider(Composite parent) {
 		this.parent = parent;
 	}
 
