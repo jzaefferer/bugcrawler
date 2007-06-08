@@ -2,96 +2,134 @@ package bugcrawler.runtime.data;
 
 import java.util.Date;
 
-
 public class Bug {
 
-    private boolean solved = false; 
-    private BugContainer bugContainer;
-    private String name;
-    private String creator;
-    private Date creationDate;
-    private String lastModifier;
-    private Date lastModificationDate;
-    
-    public Bug(String name, 
-	       String creator, 
-	       Date creationDate,
-	       String lastModifier,
-	       Date lastModificationDate,
-	       Priority priority,
-	       Project project){
-	this.name=name;
-	this.creator=creator;
-	this.creationDate=creationDate;
-	this.lastModifier=lastModifier;
-	this.lastModificationDate=lastModificationDate;
-	this.bugContainer=project.getBugContainer(priority);
-	project.addBugToProject(this);
-    }
+	private boolean solved = false;
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
+	private BugContainer bugContainer;
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+	private String ticket;
 
-    public String getCreator() {
-        return creator;
-    }
+	private String summary;
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
+	private String component;
 
-    public Date getLastModificationDate() {
-        return lastModificationDate;
-    }
+	private String version;
 
-    public void setLastModificationDate(Date lastModificationDate) {
-        this.lastModificationDate = lastModificationDate;
-    }
+	private String milestone;
 
-    public String getLastModifier() {
-        return lastModifier;
-    }
+	private String type;
 
-    public void setLastModifier(String lastModifier) {
-        this.lastModifier = lastModifier;
-    }
+	private String severity;
 
-    public String getName() {
-        return name;
-    }
+	private String owner;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private Date created;
 
-    public boolean isSolved() {
-        return solved;
-    }
+	public Bug(String ticket, String summary, String component, String version, String milestone,
+			String type, String severity, String owner, Date created, Priority priority, Project project) {
+		this.ticket = ticket;
+		this.summary = summary;
+		this.component = component;
+		this.version = version;
+		this.milestone = milestone;
+		this.type = type;
+		this.severity = severity;
+		this.owner = owner;
+		this.created = created;
+		this.bugContainer = project.getBugContainer(priority);
+		project.addBugToProject(this);
+	}
 
-    public void setSolved(boolean solved) {
-        this.solved = solved;
-    }
-    
-    public String[] getValues(){
-	return new String[]{    
-            name,
-            creator,
-            creationDate.toString(),
-            lastModifier,
-            lastModificationDate.toString()
-	};
-    }
+	public boolean isSolved() {
+		return solved;
+	}
 
-    public BugContainer getBugContainer(){
-    	return bugContainer;
-    }
-    
-    public Priority getPriority(){
-    	return bugContainer.getPriority();
-    }
+	public void setSolved(boolean solved) {
+		this.solved = solved;
+	}
+
+	public BugContainer getBugContainer() {
+		return bugContainer;
+	}
+
+	public void setBugContainer(BugContainer bugContainer) {
+		this.bugContainer = bugContainer;
+	}
+
+	public String getComponent() {
+		return component;
+	}
+
+	public void setComponent(String component) {
+		this.component = component;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public String getMilestone() {
+		return milestone;
+	}
+
+	public void setMilestone(String milestone) {
+		this.milestone = milestone;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public String getSeverity() {
+		return severity;
+	}
+
+	public void setSeverity(String severity) {
+		this.severity = severity;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+
+	public String getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(String ticket) {
+		this.ticket = ticket;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public Priority getPriority() {
+		return bugContainer.getPriority();
+	}
 }

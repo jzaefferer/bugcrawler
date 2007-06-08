@@ -2,5 +2,5 @@ package bugcrawler.runtime.data;
 
 
 public enum ColumnTitles {
-    Projekt_Priorität_Bugs, x, Ersteller, Erstelldatum, LetzterBerarbeiter, Bearbeitungsdatum
+    Ticket, Summary, Component, Version, Milestone, Type, Severity, Owner, Created
 }

@@ -11,9 +11,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Bug;
+import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
 
@@ -27,13 +26,13 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	}
 
 	public Image getColumnImage(Object element, int columnIndex) {
-		if ((element instanceof Bug) && (columnIndex == 1)) {
+		/*if ((element instanceof Bug) && (columnIndex == 1)) {
 			if (((Bug) element).isSolved()) {
 				return Activator.getImagestore().get("solved.png");
 			} else {
 				return Activator.getImagestore().get("notsolved.png");
 			}
-		}
+		}*/
 		return null;
 	}
 
@@ -46,17 +45,23 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 			Bug bug = (Bug) element;
 			switch (columnIndex) {
 			case 0:
-				return bug.getName();
+				return bug.getTicket();
 			case 1:
-				return null;
+				return bug.getSummary();
 			case 2:
-				return bug.getCreator();
+				return bug.getComponent();
 			case 3:
-				return convertDate(bug.getCreationDate());
+				return bug.getVersion();
 			case 4:
-				return bug.getLastModifier();
+				return bug.getMilestone();
 			case 5:
-				return convertDate(bug.getLastModificationDate());
+				return bug.getType();
+			case 6:
+				return bug.getSeverity();
+			case 7:
+				return bug.getOwner();
+			case 8:
+				return convertDate(bug.getCreated());
 			default:
 				return null;
 			}
@@ -65,7 +70,7 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	}
 
 	public String convertDate(Date date) {
-		return new SimpleDateFormat().format(date);
+		return new SimpleDateFormat("MM/dd/yyyy").format(date);
 	}
 
 	public Color getBackground(Object element, int columnIndex) {

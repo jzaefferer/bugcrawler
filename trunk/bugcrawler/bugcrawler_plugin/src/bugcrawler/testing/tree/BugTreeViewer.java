@@ -22,8 +22,8 @@ public class BugTreeViewer extends TreeViewer {
 	public BugTreeViewer(final Composite parent) {
 		super(parent);
 		tree = this.getTree();
-		tree.setLayout(new WeightedTableLayout(new int[] { 50, -1, 25, -1, 25, -1 }, new int[] { -1, 18, -1,
-				85, -1, 105 }));
+		tree.setLayout(new WeightedTableLayout(new int[] {  25, 75, -1, -1, -1, -1 , -1, -1, -1 },
+											   new int[] {  -1, -1, 80, 80, 80 , 80, 80, 80, 70}));
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		buildColumnsHeaders();
@@ -32,18 +32,20 @@ public class BugTreeViewer extends TreeViewer {
 		// this.addFilter(new BugViewerFilter());
 		// this.setComparator(new BugTreeComperator());
 
-		Project proj = new Project("testproj", "tobi", new Date());
-		new Bug("Ah damn little Bug", "Tobi", new Date(), "Jörn", new Date(),
-				Priority.Highest, proj);
-		new Bug("Ah damn little Bug2", "Jörn", new Date(), "Tobi", new Date(),
-				Priority.Highest, proj);
+		Project proj = new Project("Bugcrawler", "Tobias", new Date());
+		new Bug("#1", "A little bug while showing the wizzard", "Wizzard", "0.1 aplha", "0.1",
+				"defect","normal","Tobias",new Date(),Priority.High,proj);
 		
-		Project proj2 = new Project("testproj2", "jörn", new Date());
-		new Bug("Ah damn little Bug in Proj2", "Tobi", new Date(), "Jörn", new Date(),
-				Priority.Medium, proj2);
-		new Bug("Ah damn little Bug2 in Proj2", "Jörn", new Date(), "Tobi", new Date(),
-				Priority.Low, proj2);
-		// System.out.println(((BugNew)proj.getBugContainer(Priority.High).getBugs()[1]).getName());
+		new Bug("#2", "The tree has to show only one Project :SSS", "Tree", "0.1 aplha", "0.1",
+				"task","normal","Jörn",new Date(),Priority.Lowest,proj);
+		
+		Project proj2 = new Project("Intension", "Tobias", new Date());
+		new Bug("#3", "The Datamodel of the Browser is not working correctly", "Browser", "none", "none",
+				"defect","major","Tobias",new Date(),Priority.High,proj2);
+		
+		new Bug("#6", "The chat making troubles in Server-Client-Communication", "Chat", "none", "none",
+				"defect","critical","Tobias" ,new Date(),Priority.High,proj2);
+
 
 		this.setInput(Arrays.asList(new Object[] { proj, proj2 }));
 		this.expandToLevel(-1);
