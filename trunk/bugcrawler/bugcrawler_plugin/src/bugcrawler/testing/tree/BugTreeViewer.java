@@ -94,7 +94,9 @@ public class BugTreeViewer extends TreeViewer {
 	}
 	
 	public void removeBugTreeFilter(){
-		this.removeFilter(bugTreeViewerFilter);
+		if(bugTreeViewerFilter!=null){
+			this.removeFilter(bugTreeViewerFilter);
+		}
 	}
 
 }
