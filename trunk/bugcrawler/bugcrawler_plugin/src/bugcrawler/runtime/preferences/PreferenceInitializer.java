@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.data.ColumnTitles;
 
 /**
  * Class used to initialize default preference values.
@@ -22,6 +23,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
         store.setDefault(PreferenceConstants.PASSWORD,"");
         store.setDefault(PreferenceConstants.HOSTNAME,"localhost");
         store.setDefault(PreferenceConstants.PORT,4000);
+        store.setDefault(PreferenceConstants.FILTER,"test");
+        store.setDefault(PreferenceConstants.FILTEROPTIONS,ColumnTitles.values()[0].toString());
 	}
 	
 

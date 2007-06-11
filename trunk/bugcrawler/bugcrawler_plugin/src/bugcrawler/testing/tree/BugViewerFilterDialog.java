@@ -12,13 +12,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.preferences.PreferenceConstants;
 
-public class BugViewerFilterDialog extends Dialog{
+public class BugViewerFilterDialog extends Dialog {
 
 	private GridData gridData;
 	
@@ -26,10 +25,12 @@ public class BugViewerFilterDialog extends Dialog{
 	
 	private RadioGroupFieldEditor filterOptions;
 
+	
 	public BugViewerFilterDialog(Shell parentShell) {
 		super(parentShell);
 	}
 
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
 		GridLayout dialogLayout = new GridLayout(1, false);
@@ -62,6 +63,20 @@ public class BugViewerFilterDialog extends Dialog{
 		filter.setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		filter.load();
 	}
+	
+	@Override
+	protected void okPressed() {
+		filter.store();
+		filterOptions.store();
+		super.okPressed();
+	}
+	
+	@Override
+	protected void cancelPressed() {
+		filter.loadDefault();
+		filterOptions.loadDefault();
+		super.cancelPressed();
+	}
 
 	private void createFilterOptionRadioBoxes(Composite dialogContentContainer) {
 		String[][] valuesAndNames = new String[ColumnTitles.values().length][2];
@@ -72,25 +87,19 @@ public class BugViewerFilterDialog extends Dialog{
 		}
 		filterOptions = new RadioGroupFieldEditor(PreferenceConstants.FILTEROPTIONS,
 				"FilterOptions", 1, valuesAndNames, dialogContentContainer, true);
+		System.out.println("");
 		filterOptions.setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		filterOptions.load();
 	}
 
-	public void performOK(){
-		filter.store();
-		filterOptions.store();
-	}
 	
-	public void performCancel(){
-		filter.loadDefault();
-		filterOptions.loadDefault();
-	}
-	
+	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
+	@Override
 	protected Point getInitialSize() {
 		return new Point(200, 350);
 	}

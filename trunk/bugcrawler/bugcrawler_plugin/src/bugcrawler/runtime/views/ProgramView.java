@@ -94,11 +94,6 @@ public class ProgramView extends ViewPart {
 			public void run(){
 				BugViewerFilterDialog dialog = new BugViewerFilterDialog(parent.getShell());
 				dialog.open();
-				if (dialog.getReturnCode()==0){
-					dialog.performOK();
-				}else{
-					dialog.performCancel();
-				}
 			}
 		};
 		filter.setText("Bugfilter...");
