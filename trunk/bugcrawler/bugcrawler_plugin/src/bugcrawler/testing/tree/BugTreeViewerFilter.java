@@ -27,26 +27,47 @@ public class BugTreeViewerFilter extends ViewerFilter {
 		}else if(element instanceof BugContainer){
 			return true;
 		}else if(element instanceof Bug){
-			if(filterOption.equals(ColumnTitles.Summary.toString())){
-				
+			if(filterOption.equals(ColumnTitles.Ticket.toString())){
+				if(((Bug)element).getTicket().contains(filter)){
+					return true;
+				}
+			}else if(filterOption.equals(ColumnTitles.Summary.toString())){
+				if(((Bug)element).getSummary().contains(filter)){
+					return true;
+				}
 			}else if(filterOption.equals(ColumnTitles.Component.toString())){
-				
+				if(((Bug)element).getComponent().contains(filter)){
+					return true;
+				}
 			}else if(filterOption.equals(ColumnTitles.Version.toString())){
-				
+				if(((Bug)element).getVersion().contains(filter)){
+					return true;
+				}				
 			}else if(filterOption.equals(ColumnTitles.Milestone.toString())){
-				
+				if(((Bug)element).getMilestone().contains(filter)){
+					return true;
+				}				
 			}else if(filterOption.equals(ColumnTitles.Type.toString())){
-				
+				if(((Bug)element).getType().contains((filter))){
+					return true;
+				}						
 			}else if(filterOption.equals(ColumnTitles.Severity.toString())){
-				
+				if(((Bug)element).getSeverity().contains(filter)){
+					return true;
+				}		
 			}else if(filterOption.equals(ColumnTitles.Owner.toString())){
+				if(((Bug)element).getOwner().contains(filter)){
+					return true;
+				}
 				
+			// is noch hirnrissig wegen Mon Dec 11 16:06:57 CET 2006
+			}else if(filterOption.equals(ColumnTitles.Created.toString())){
+				if(((Bug)element).getCreated().toString().contains(filter)){
+					System.out.println(((Bug)element).getCreated());
+					return true;
+				}
 			}
-			if(((Bug)element).getOwner().equals("Tobias")){
-				return true;				
-			}else{
-				return false;
-			}
+			return false;
 		}else{
 			return false;
 		}
