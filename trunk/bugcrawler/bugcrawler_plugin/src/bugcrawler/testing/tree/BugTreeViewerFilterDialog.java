@@ -17,21 +17,23 @@ import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.preferences.PreferenceConstants;
 
-public class BugViewerFilterDialog extends Dialog {
+public class BugTreeViewerFilterDialog extends Dialog {
 
 	private GridData gridData;
-	
+
 	private StringFieldEditor filter;
-	
+
 	private RadioGroupFieldEditor filterOptions;
 
+	private BugTreeViewer bugTreeViewer;
 	
-	public BugViewerFilterDialog(Shell parentShell) {
+	public BugTreeViewerFilterDialog(Shell parentShell) {
 		super(parentShell);
 	}
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
+
 		Composite container = (Composite) super.createDialogArea(parent);
 		GridLayout dialogLayout = new GridLayout(1, false);
 		container.setLayout(dialogLayout);
@@ -63,18 +65,20 @@ public class BugViewerFilterDialog extends Dialog {
 		filter.setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		filter.load();
 	}
-	
+
 	@Override
 	protected void okPressed() {
 		filter.store();
 		filterOptions.store();
+		bugTreeViewer.addBugTreeFilter();
 		super.okPressed();
 	}
-	
+
 	@Override
 	protected void cancelPressed() {
 		filter.loadDefault();
 		filterOptions.loadDefault();
+		bugTreeViewer.removeBugTreeFilter();
 		super.cancelPressed();
 	}
 
@@ -85,14 +89,17 @@ public class BugViewerFilterDialog extends Dialog {
 			valuesAndNames[i][0] = radioName;
 			valuesAndNames[i][1] = radioName;
 		}
-		filterOptions = new RadioGroupFieldEditor(PreferenceConstants.FILTEROPTIONS,
-				"FilterOptions", 1, valuesAndNames, dialogContentContainer, true);
+		filterOptions = new RadioGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
+				valuesAndNames, dialogContentContainer, true);
 		System.out.println("");
 		filterOptions.setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		filterOptions.load();
 	}
 
-	
+	public void setBugTreeViewer(BugTreeViewer bugTreeViewer) {
+		this.bugTreeViewer = bugTreeViewer;
+	}
+
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);

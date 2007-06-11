@@ -20,6 +20,8 @@ public class BugTreeViewer extends TreeViewer {
 
 	private final TreeViewer viewer = this;
 
+	private BugTreeViewerFilter bugTreeViewerFilter;
+	
 	public BugTreeViewer(final Composite parent) {
 		super(parent);
 		tree = this.getTree();
@@ -30,7 +32,6 @@ public class BugTreeViewer extends TreeViewer {
 		buildColumnsHeaders();
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
-		this.addFilter(new BugViewerFilter());
 		this.setInput(Arrays.asList(BugTestData.getTestData()));
 		this.expandToLevel(-1);
 
@@ -82,6 +83,18 @@ public class BugTreeViewer extends TreeViewer {
 				viewer.setSorter(new BugTreeComperator(sortIdentifier, dir));
 			}
 		});
+	}
+	
+	public void addBugTreeFilter(){
+		if(bugTreeViewerFilter!= null){
+			this.removeFilter(bugTreeViewerFilter);
+		}
+		bugTreeViewerFilter = new BugTreeViewerFilter();
+		this.addFilter(bugTreeViewerFilter);
+	}
+	
+	public void removeBugTreeFilter(){
+		this.removeFilter(bugTreeViewerFilter);
 	}
 
 }

@@ -1,7 +1,5 @@
 package bugcrawler.runtime.views;
 
-import java.awt.Dialog;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -16,7 +14,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.testing.tree.BugTreeViewer;
-import bugcrawler.testing.tree.BugViewerFilterDialog;
+import bugcrawler.testing.tree.BugTreeViewerFilterDialog;
 import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
@@ -92,8 +90,9 @@ public class ProgramView extends ViewPart {
 		
 		filter = new Action(){
 			public void run(){
-				BugViewerFilterDialog dialog = new BugViewerFilterDialog(parent.getShell());
-				dialog.open();
+				BugTreeViewerFilterDialog bugFilterDialog = new BugTreeViewerFilterDialog(parent.getShell());
+				bugFilterDialog.setBugTreeViewer(bugTreeViewer);
+				bugFilterDialog.open();
 			}
 		};
 		filter.setText("Bugfilter...");
