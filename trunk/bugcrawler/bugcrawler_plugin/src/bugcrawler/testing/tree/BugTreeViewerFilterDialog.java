@@ -2,6 +2,7 @@ package bugcrawler.testing.tree;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.swt.SWT;
@@ -62,7 +63,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		groupContent.setLayoutData(gridData);
 		filter = new StringFieldEditor(PreferenceConstants.FILTER, "Filter", groupContent);
 		filterGroup.setLayoutData(gridData);
-		filter.setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		filter.setPreferenceStore(getPreferenceStore());
 		filter.load();
 	}
 
@@ -91,9 +92,12 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		}
 		filterOptions = new RadioGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
 				valuesAndNames, dialogContentContainer, true);
-		System.out.println("");
-		filterOptions.setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		filterOptions.setPreferenceStore(getPreferenceStore());
 		filterOptions.load();
+	}
+	
+	private IPreferenceStore getPreferenceStore(){
+		return Activator.getDefault().getPreferenceStore();
 	}
 
 	public void setBugTreeViewer(BugTreeViewer bugTreeViewer) {
