@@ -57,10 +57,24 @@ public class BugTreeViewer extends TreeViewer {
 				}
 				ColumnTitles sortIdentifier = null;
 				
-				if (column.getText().equals(ColumnTitles.Created.toString())) {
-					sortIdentifier = ColumnTitles.Created;
-				}else if(column.getText().equals(ColumnTitles.Ticket.toString())){
+				if (column.getText().equals(ColumnTitles.Ticket.toString())) {
 					sortIdentifier = ColumnTitles.Ticket;
+				}else if(column.getText().equals(ColumnTitles.Summary.toString())){
+					sortIdentifier = ColumnTitles.Summary;
+				}else if(column.getText().equals(ColumnTitles.Component.toString())){
+					sortIdentifier = ColumnTitles.Component;
+				}else if(column.getText().equals(ColumnTitles.Version.toString())){
+					sortIdentifier = ColumnTitles.Version;
+				}else if(column.getText().equals(ColumnTitles.Milestone.toString())){
+					sortIdentifier = ColumnTitles.Milestone;
+				}else if(column.getText().equals(ColumnTitles.Type.toString())){
+					sortIdentifier = ColumnTitles.Type;
+				}else if(column.getText().equals(ColumnTitles.Severity.toString())){
+					sortIdentifier = ColumnTitles.Severity;
+				}else if(column.getText().equals(ColumnTitles.Owner.toString())){
+					sortIdentifier = ColumnTitles.Owner;
+				}else if(column.getText().equals(ColumnTitles.Created.toString())){
+					sortIdentifier = ColumnTitles.Created;
 				}
 				
 				tree.setSortDirection(dir);

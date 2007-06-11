@@ -14,7 +14,7 @@ public class BugTestData {
 		
 		cal.set(2006, 11, 12);
 		new Bug("#1", "Das Wizard wird nicht angezeigt", "Wizard", "0.1 aplha", "0.1",
-				"defect","normal","Tobias",cal.getTime(),Priority.High,proj);
+				"defect","normal","Jörn",cal.getTime(),Priority.High,proj);
 
 		cal.set(2006, 11, 11);
 		new Bug("#6", "PreferencesMenü soll für Projektauswahlen erweitert werden.", "Preferences", "0.1 aplha", "0.1",

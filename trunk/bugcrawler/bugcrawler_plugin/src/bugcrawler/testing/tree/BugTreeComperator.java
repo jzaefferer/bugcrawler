@@ -23,15 +23,24 @@ public class BugTreeComperator extends ViewerSorter {
 		if (e1 instanceof Bug) {
 			int returnValue = 0;
 			
-			if (columnToSort == ColumnTitles.Created) {
+			if(columnToSort == ColumnTitles.Ticket){
+				returnValue = getTicketNumber(e1)-getTicketNumber(e2);
+			}else if(columnToSort == ColumnTitles.Summary){
+				returnValue = ((Bug) e2).getSummary().compareTo(((Bug)e1).getSummary());
+			}else if(columnToSort == ColumnTitles.Component){
+				returnValue = ((Bug) e2).getComponent().compareTo(((Bug)e1).getComponent());
+			}else if(columnToSort == ColumnTitles.Version){
+				returnValue = ((Bug) e2).getVersion().compareTo(((Bug)e1).getVersion());
+			}else if(columnToSort == ColumnTitles.Milestone){
+				returnValue = ((Bug) e2).getMilestone().compareTo(((Bug)e1).getMilestone());
+			}else if(columnToSort == ColumnTitles.Type){
+				returnValue = ((Bug) e2).getType().compareTo(((Bug)e1).getType());
+			}else if(columnToSort == ColumnTitles.Severity){
+				returnValue = ((Bug) e2).getSeverity().compareTo(((Bug)e1).getSeverity());
+			}else if(columnToSort == ColumnTitles.Owner){
+				returnValue = ((Bug) e2).getOwner().compareTo(((Bug)e1).getOwner());
+			}else if (columnToSort == ColumnTitles.Created) {
 				returnValue = ((Bug) e2).getCreated().compareTo(((Bug) e1).getCreated());
-			}else if(columnToSort == ColumnTitles.Ticket){
-				String ticketNumberAsString1 = ((Bug) e1).getTicket().substring(1);
-				int ticketNumber1 = Integer.parseInt(ticketNumberAsString1);
-				String ticketNumberAsString2 = ((Bug) e2).getTicket().substring(1);
-				int ticketNumber2 = Integer.parseInt(ticketNumberAsString2);				
-				returnValue = ticketNumber1-ticketNumber2;
-				System.out.println(returnValue);
 			}
 			if (this.dir == SWT.DOWN) {
 				returnValue = returnValue * -1;
@@ -39,5 +48,9 @@ public class BugTreeComperator extends ViewerSorter {
 			return returnValue;
 		}
 		return 0;
+	}
+	private int getTicketNumber(Object o){
+		String ticketNumberAsString = ((Bug) o).getTicket().substring(1);
+		return Integer.parseInt(ticketNumberAsString);
 	}
 }
