@@ -44,7 +44,7 @@ public class PreferencePageExt
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("Bugcrawler Preferences");
 	}
-	
+
     @Override
     protected Control createContents(Composite parent) {
         Composite page = new Composite(parent, SWT.LEFT);

@@ -17,6 +17,7 @@ import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 public class BugTreeViewer extends TreeViewer {
 
 	private final Tree tree;
+
 	private final TreeViewer viewer = this;
 
 	public BugTreeViewer(final Composite parent) {
@@ -29,7 +30,7 @@ public class BugTreeViewer extends TreeViewer {
 		buildColumnsHeaders();
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
-		// this.addFilter(new BugViewerFilter());
+		this.addFilter(new BugViewerFilter());
 		this.setInput(Arrays.asList(BugTestData.getTestData()));
 		this.expandToLevel(-1);
 
@@ -39,11 +40,11 @@ public class BugTreeViewer extends TreeViewer {
 		for (ColumnTitles titles : ColumnTitles.values()) {
 			TreeColumn column = new TreeColumn(tree, SWT.LEFT);
 			column.setText(titles.toString());
-			addListener(column);
+			addListenerForSortingColumns(column);
 		}
 	}
 
-	public void addListener(final TreeColumn column) {
+	public void addListenerForSortingColumns(final TreeColumn column) {
 		column.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
 				TreeColumn sortColumn = tree.getSortColumn();
@@ -56,27 +57,27 @@ public class BugTreeViewer extends TreeViewer {
 					dir = SWT.UP;
 				}
 				ColumnTitles sortIdentifier = null;
-				
+
 				if (column.getText().equals(ColumnTitles.Ticket.toString())) {
 					sortIdentifier = ColumnTitles.Ticket;
-				}else if(column.getText().equals(ColumnTitles.Summary.toString())){
+				} else if (column.getText().equals(ColumnTitles.Summary.toString())) {
 					sortIdentifier = ColumnTitles.Summary;
-				}else if(column.getText().equals(ColumnTitles.Component.toString())){
+				} else if (column.getText().equals(ColumnTitles.Component.toString())) {
 					sortIdentifier = ColumnTitles.Component;
-				}else if(column.getText().equals(ColumnTitles.Version.toString())){
+				} else if (column.getText().equals(ColumnTitles.Version.toString())) {
 					sortIdentifier = ColumnTitles.Version;
-				}else if(column.getText().equals(ColumnTitles.Milestone.toString())){
+				} else if (column.getText().equals(ColumnTitles.Milestone.toString())) {
 					sortIdentifier = ColumnTitles.Milestone;
-				}else if(column.getText().equals(ColumnTitles.Type.toString())){
+				} else if (column.getText().equals(ColumnTitles.Type.toString())) {
 					sortIdentifier = ColumnTitles.Type;
-				}else if(column.getText().equals(ColumnTitles.Severity.toString())){
+				} else if (column.getText().equals(ColumnTitles.Severity.toString())) {
 					sortIdentifier = ColumnTitles.Severity;
-				}else if(column.getText().equals(ColumnTitles.Owner.toString())){
+				} else if (column.getText().equals(ColumnTitles.Owner.toString())) {
 					sortIdentifier = ColumnTitles.Owner;
-				}else if(column.getText().equals(ColumnTitles.Created.toString())){
+				} else if (column.getText().equals(ColumnTitles.Created.toString())) {
 					sortIdentifier = ColumnTitles.Created;
 				}
-				
+
 				tree.setSortDirection(dir);
 				viewer.setSorter(new BugTreeComperator(sortIdentifier, dir));
 			}

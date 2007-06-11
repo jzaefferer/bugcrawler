@@ -1,5 +1,7 @@
 package bugcrawler.runtime.views;
 
+import java.awt.Dialog;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -14,6 +16,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.testing.tree.BugTreeViewer;
+import bugcrawler.testing.tree.BugViewerFilterDialog;
 import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
@@ -24,6 +27,8 @@ public class ProgramView extends ViewPart {
 
 	private Action projects;
 
+	private Action filter;
+	
 	private Composite parent;
 	
 	public ProgramView() {
@@ -53,6 +58,7 @@ public class ProgramView extends ViewPart {
 
 	private void contributeToActionBars() {
 		IActionBars bars = getViewSite().getActionBars();
+		bars.getMenuManager().add(filter);
 		bars.getMenuManager().add(preferences);
 		bars.getToolBarManager().add(projects);
 	}
@@ -70,6 +76,8 @@ public class ProgramView extends ViewPart {
 		// preferences.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 		// getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
 		preferences.setImageDescriptor(ImageStore.getImageDescriptor("images/preferences.png"));
+		
+		
 		projects = new Action() {
 			public void run() {
 				ProjectWizard projectWizard = new ProjectWizard();
@@ -81,6 +89,21 @@ public class ProgramView extends ViewPart {
 		projects.setToolTipText("Eine Auswahl zu Projekten, zu denen es Bugs gibt.");
 		projects.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 				ISharedImages.IMG_OBJS_INFO_TSK));
+		
+		filter = new Action(){
+			public void run(){
+				BugViewerFilterDialog dialog = new BugViewerFilterDialog(parent.getShell());
+				dialog.open();
+				if (dialog.getReturnCode()==0){
+					dialog.performOK();
+				}else{
+					dialog.performCancel();
+				}
+			}
+		};
+		filter.setText("Bugfilter...");
+		filter.setToolTipText("Filtern relevanter Bugs");
+		filter.setImageDescriptor(ImageStore.getImageDescriptor("images/filter.png"));
 
 	}
 
