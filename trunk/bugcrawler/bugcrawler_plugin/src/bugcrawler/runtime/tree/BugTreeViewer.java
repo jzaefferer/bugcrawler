@@ -2,6 +2,8 @@ package bugcrawler.runtime.tree;
 
 import java.util.Arrays;
 
+import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -33,6 +35,41 @@ public class BugTreeViewer extends TreeViewer {
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
 		this.setInput(Arrays.asList(BugTestData.getTestData()));
+		
+		TextCellEditor[] tce = {
+				null,
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree),
+				new TextCellEditor(tree)
+			};
+		this.setCellEditors(tce);
+		this.setColumnProperties(new String[]{
+			ColumnTitles.Ticket.toString(),
+			ColumnTitles.Summary.toString(),
+			ColumnTitles.Component.toString(),
+			ColumnTitles.Version.toString(),
+			ColumnTitles.Milestone.toString(),
+			ColumnTitles.Type.toString(),
+			ColumnTitles.Severity.toString(),
+			ColumnTitles.Owner.toString(),
+			ColumnTitles.Created.toString()
+		});
+		this.setCellModifier(new ICellModifier(){
+			public boolean canModify(Object element, String property) {
+				return true;
+			}
+			public Object getValue(Object element, String property) {
+				return "";
+			}
+			public void modify(Object element, String property, Object value) {
+				
+			}
+		});
 		this.expandToLevel(-1);
 
 	}
