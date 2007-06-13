@@ -1,4 +1,4 @@
-package bugcrawler.testing.tree;
+package bugcrawler.runtime.tree;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.Viewer;

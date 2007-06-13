@@ -13,8 +13,8 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.projectwizard.ProjectWizard;
-import bugcrawler.testing.tree.BugTreeViewer;
-import bugcrawler.testing.tree.BugTreeViewerFilterDialog;
+import bugcrawler.runtime.tree.BugTreeViewer;
+import bugcrawler.runtime.tree.BugTreeViewerFilterDialog;
 import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {

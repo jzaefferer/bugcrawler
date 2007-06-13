@@ -1,4 +1,4 @@
-package bugcrawler.testing.tree;
+package bugcrawler.runtime.tree;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
