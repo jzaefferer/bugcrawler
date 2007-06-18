@@ -71,8 +71,6 @@ public class ProgramView extends ViewPart {
 		};
 		preferences.setText("Bugcrawler Konfigurieren...");
 		preferences.setToolTipText("Einstellungen zum Konfigurieren des Bugcrawlers...");
-		// preferences.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-		// getImageDescriptor(ISharedImages.IMG_TOOL_NEW_WIZARD));
 		preferences.setImageDescriptor(ImageStore.getImageDescriptor("images/preferences.png"));
 		
 		
@@ -84,9 +82,9 @@ public class ProgramView extends ViewPart {
 			}
 		};
 		projects.setText("Projekte...");
-		projects.setToolTipText("Eine Auswahl zu Projekten, zu denen es Bugs gibt.");
+		projects.setToolTipText("Projekten zum Einsehen von Bugs wählen.");
 		projects.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-				ISharedImages.IMG_OBJS_INFO_TSK));
+				ISharedImages.IMG_TOOL_NEW_WIZARD));
 		
 		filter = new Action(){
 			public void run(){
