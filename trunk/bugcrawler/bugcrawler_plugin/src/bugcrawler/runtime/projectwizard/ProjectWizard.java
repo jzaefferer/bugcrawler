@@ -17,7 +17,6 @@ public class ProjectWizard extends Wizard {
 	}
 
 	public void addPages() {
-		super.addPages();
 		addPage(new ProjectWizardPage());
 	}
 }
