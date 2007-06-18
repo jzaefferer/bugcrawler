@@ -19,7 +19,7 @@ public class BugTreeViewerFilter extends ViewerFilter {
 	
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		String filterOption = getPreferenceStore().getString(PreferenceConstants.FILTEROPTIONS);		
+		String filterOption = getPreferenceStore().getString(PreferenceConstants.FILTEROPTIONS);
 		String filter = getPreferenceStore().getString(PreferenceConstants.FILTER);
 		
 		if(element instanceof Project){ 

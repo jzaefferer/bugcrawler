@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
+import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugTestData;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
@@ -61,9 +62,22 @@ public class BugTreeViewer extends TreeViewer {
 		});
 		this.setCellModifier(new ICellModifier(){
 			public boolean canModify(Object element, String property) {
-				return true;
+				if(!(element instanceof Bug)){
+					return false;
+				}else{
+					return true;
+				}
 			}
 			public Object getValue(Object element, String property) {
+				if (element instanceof Bug){
+					if(property.equals(ColumnTitles.Summary.toString())){
+						return ((Bug)element).getSummary();
+					}else if(property.equals(ColumnTitles.Summary.toString())){
+						return ((Bug)element).getSummary();
+					}else{
+						return "";
+					}
+				}
 				return "";
 			}
 			public void modify(Object element, String property, Object value) {

@@ -40,7 +40,7 @@ public class Bug {
 		this.bugContainer = project.getBugContainer(priority);
 		project.addBugToProject(this);
 	}
-
+	
 	public boolean isSolved() {
 		return solved;
 	}
