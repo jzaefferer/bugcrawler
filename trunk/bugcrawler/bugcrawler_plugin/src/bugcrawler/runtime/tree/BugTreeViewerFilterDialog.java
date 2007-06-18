@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.preferences.PreferenceConstants;
+import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
 public class BugTreeViewerFilterDialog extends Dialog {
 
@@ -24,10 +25,10 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 	private StringFieldEditor filter;
 
-	private RadioGroupFieldEditor filterOptions;
+	private CheckBoxGroupFieldEditor filterOptions;
 
 	private BugTreeViewer bugTreeViewer;
-	
+
 	public BugTreeViewerFilterDialog(Shell parentShell) {
 		super(parentShell);
 	}
@@ -90,13 +91,13 @@ public class BugTreeViewerFilterDialog extends Dialog {
 			valuesAndNames[i][0] = radioName;
 			valuesAndNames[i][1] = radioName;
 		}
-		filterOptions = new RadioGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
+		filterOptions = new CheckBoxGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
 				valuesAndNames, dialogContentContainer, true);
 		filterOptions.setPreferenceStore(getPreferenceStore());
 		filterOptions.load();
 	}
-	
-	private IPreferenceStore getPreferenceStore(){
+
+	private IPreferenceStore getPreferenceStore() {
 		return Activator.getDefault().getPreferenceStore();
 	}
 
