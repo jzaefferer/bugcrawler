@@ -128,12 +128,12 @@ public class PreferencePageExt
 	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
+		// do nothing		
 	}
 
 	@Override
 	protected void createFieldEditors() {
-		// TODO Auto-generated method stub
-		
+		// do nothing		
 	}
 	
 }

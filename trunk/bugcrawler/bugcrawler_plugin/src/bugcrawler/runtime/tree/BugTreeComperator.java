@@ -9,11 +9,11 @@ import bugcrawler.runtime.data.ColumnTitles;
 
 public class BugTreeComperator extends ViewerSorter {
 
-	private ColumnTitles columnToSort;
+	private String columnToSort;
 
 	private int dir;
 
-	public BugTreeComperator(ColumnTitles columnToSort, int dir) {
+	public BugTreeComperator(String columnToSort, int dir) {
 		super();
 		this.columnToSort = columnToSort;
 		this.dir = dir;
@@ -23,23 +23,23 @@ public class BugTreeComperator extends ViewerSorter {
 		if (e1 instanceof Bug) {
 			int returnValue = 0;
 			
-			if(columnToSort == ColumnTitles.Ticket){
+			if(columnToSort == ColumnTitles.Ticket.toString()){
 				returnValue = getTicketNumber(e1)-getTicketNumber(e2);
-			}else if(columnToSort == ColumnTitles.Summary){
+			}else if(columnToSort == ColumnTitles.Summary.toString()){
 				returnValue = ((Bug) e2).getSummary().compareTo(((Bug)e1).getSummary());
-			}else if(columnToSort == ColumnTitles.Component){
+			}else if(columnToSort == ColumnTitles.Component.toString()){
 				returnValue = ((Bug) e2).getComponent().compareTo(((Bug)e1).getComponent());
-			}else if(columnToSort == ColumnTitles.Version){
+			}else if(columnToSort == ColumnTitles.Version.toString()){
 				returnValue = ((Bug) e2).getVersion().compareTo(((Bug)e1).getVersion());
-			}else if(columnToSort == ColumnTitles.Milestone){
+			}else if(columnToSort == ColumnTitles.Milestone.toString()){
 				returnValue = ((Bug) e2).getMilestone().compareTo(((Bug)e1).getMilestone());
-			}else if(columnToSort == ColumnTitles.Type){
+			}else if(columnToSort == ColumnTitles.Type.toString()){
 				returnValue = ((Bug) e2).getType().compareTo(((Bug)e1).getType());
-			}else if(columnToSort == ColumnTitles.Severity){
+			}else if(columnToSort == ColumnTitles.Severity.toString()){
 				returnValue = ((Bug) e2).getSeverity().compareTo(((Bug)e1).getSeverity());
-			}else if(columnToSort == ColumnTitles.Owner){
+			}else if(columnToSort == ColumnTitles.Owner.toString()){
 				returnValue = ((Bug) e2).getOwner().compareTo(((Bug)e1).getOwner());
-			}else if (columnToSort == ColumnTitles.Created) {
+			}else if (columnToSort == ColumnTitles.Created.toString()) {
 				returnValue = ((Bug) e2).getCreated().compareTo(((Bug) e1).getCreated());
 			}
 			if (this.dir == SWT.DOWN) {
@@ -49,6 +49,7 @@ public class BugTreeComperator extends ViewerSorter {
 		}
 		return 0;
 	}
+	
 	private int getTicketNumber(Object o){
 		String ticketNumberAsString = ((Bug) o).getTicket().substring(1);
 		return Integer.parseInt(ticketNumberAsString);

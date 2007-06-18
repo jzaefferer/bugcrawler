@@ -53,5 +53,6 @@ public class BugTreeContentProvider implements ITreeContentProvider {
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		//do nothing
 	}
 }

@@ -11,6 +11,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Priority;
@@ -26,13 +27,13 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	}
 
 	public Image getColumnImage(Object element, int columnIndex) {
-		/*if ((element instanceof Bug) && (columnIndex == 1)) {
+		if ((element instanceof Bug) && (columnIndex == 1)) {
 			if (((Bug) element).isSolved()) {
 				return Activator.getImagestore().get("solved.png");
 			} else {
 				return Activator.getImagestore().get("notsolved.png");
 			}
-		}*/
+		}
 		return null;
 	}
 
