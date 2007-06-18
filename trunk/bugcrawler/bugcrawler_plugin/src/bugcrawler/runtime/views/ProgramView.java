@@ -76,7 +76,7 @@ public class ProgramView extends ViewPart {
 		
 		projects = new Action() {
 			public void run() {
-				ProjectWizard projectWizard = new ProjectWizard();
+				ProjectWizard projectWizard = new ProjectWizard(bugTreeViewer);
 				WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
 				dialog.open();
 			}

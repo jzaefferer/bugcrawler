@@ -1,7 +1,5 @@
 package bugcrawler.runtime.tree;
 
-import java.util.Arrays;
-
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
@@ -11,7 +9,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
-import bugcrawler.runtime.data.BugTestData;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 
@@ -33,7 +30,7 @@ public class BugTreeViewer extends TreeViewer {
 		buildColumnsHeaders();
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
-		this.setInput(Arrays.asList(BugTestData.getTestData()));
+		//this.setInput(Arrays.asList(BugTestData.getTestData()));
 		addPropertiesAndEditors();
 		this.setCellModifier(new BugTreeCellModifier());
 		this.expandToLevel(-1);

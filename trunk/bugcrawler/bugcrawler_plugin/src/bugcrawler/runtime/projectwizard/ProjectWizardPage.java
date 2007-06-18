@@ -1,5 +1,7 @@
 package bugcrawler.runtime.projectwizard;
 
+import java.util.ArrayList;
+
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -11,8 +13,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 
+import bugcrawler.runtime.data.BugTestData;
+import bugcrawler.runtime.data.Project;
+
 public class ProjectWizardPage extends WizardPage implements Listener {
 
+	private List list;
+	
 	protected ProjectWizardPage() {
 		super("Selection Page");
 		setTitle("Project Selection");
@@ -37,8 +44,13 @@ public class ProjectWizardPage extends WizardPage implements Listener {
 		gridData = new GridData();
 		gridData.horizontalAlignment = GridData.END;
 		button.setLayoutData(gridData);
+		button.addListener(SWT.Selection, new Listener(){
+			public void handleEvent(Event event) {
+				refreshList();
+			}
+		});
 		
-		List list = new List (composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		list = new List (composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		gridData = new GridData(GridData.FILL_BOTH);
 		gridData.horizontalSpan = 2;		
 		list.setLayoutData(gridData);
@@ -46,6 +58,28 @@ public class ProjectWizardPage extends WizardPage implements Listener {
 		setControl(composite);
 	}
 
+	private void refreshList(){
+		list.removeAll();
+		Object[] testdata = BugTestData.getTestData();
+		for(Object proj:testdata){
+			list.add(((Project)proj).getName());
+		}
+	}
+	
+	public Object[] getSelected(){
+		ArrayList<Object> fufufu = new ArrayList<Object>();
+		Object[] testdata = BugTestData.getTestData();
+		String[] items = list.getSelection();
+		for(String item:items){
+			for(Object data:testdata){
+				if(item.equals(((Project)data).getName())){
+					fufufu.add(data);
+				}
+			}
+		}
+		return fufufu.toArray();
+	}
+	
 	public void handleEvent(Event event) {
 		// TODO Auto-generated method stub
 	}
