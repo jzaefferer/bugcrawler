@@ -11,6 +11,8 @@ public class ProjectWizardPage extends WizardPage implements IWizardPage {
 
 	protected ProjectWizardPage() {
 		super("MyFirstWizardPage");
+		setTitle("test");
+		setDescription("fufufufu");
 	}
 
 	public void createControl(Composite parent) {
