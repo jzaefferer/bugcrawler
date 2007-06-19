@@ -85,11 +85,10 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	}
 
 	private void createFilterOptionRadioBoxes(Composite dialogContentContainer) {
-		String[][] valuesAndNames = new String[ColumnTitles.values().length][2];
+		String[] valuesAndNames = new String[ColumnTitles.values().length];
 		for (int i = 0; i < ColumnTitles.values().length; i++) {
 			String radioName = ColumnTitles.values()[i].toString();
-			valuesAndNames[i][0] = radioName;
-			valuesAndNames[i][1] = radioName;
+			valuesAndNames[i] = radioName;
 		}
 		filterOptions = new CheckBoxGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
 				valuesAndNames, dialogContentContainer, true);
