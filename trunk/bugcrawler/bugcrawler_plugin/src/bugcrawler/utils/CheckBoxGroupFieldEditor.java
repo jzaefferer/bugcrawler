@@ -172,7 +172,6 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * (non-Javadoc) Method declared on FieldEditor.
 	 */
 	protected void doLoadDefault() {
-		System.out.println("Load Defaults");
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			updateValue(getPreferenceStore().getDefaultBoolean(getPreferenceName() + ";" + labels[i]), i);
 		}
@@ -182,14 +181,8 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * (non-Javadoc) Method declared on FieldEditor.
 	 */
 	protected void doStore() {
-		System.out.println("Saving\n-------------");
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			boolean checkState = ((Boolean) checkBoxButtons[i].getData()).booleanValue();
-			System.out.println(checkState);
-			/*if (checkState == false) {
-				getPreferenceStore().setToDefault(getPreferenceName() + ";" + labels[i]);
-				continue;
-			}*/
 			getPreferenceStore().setValue(getPreferenceName() + ";" + labels[i], checkState);
 		}
 	}
@@ -291,7 +284,6 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 */
 	private void updateValue(boolean selectedValue, int i) {
 		setPresentsDefaultValue(false);
-		System.out.println(selectedValue);
 		if (checkBoxButtons == null) {
 			return;
 		}
