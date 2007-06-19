@@ -16,99 +16,102 @@ import org.eclipse.swt.widgets.Group;
 
 public class CheckBoxGroupFieldEditor extends FieldEditor {
 
-    /**
-     * List of check button entries of the form [label].
-     */
+	/**
+	 * List of check button entries of the form [label].
+	 */
 	private String[] labels;
 
-    /**
-     * Number of columns into which to arrange the radio buttons.
-     */
+	/**
+	 * Number of columns into which to arrange the radio buttons.
+	 */
 	private int numColumns;
 
-    /**
-     * Indent used for the first column of the radion button matrix.
-     */
+	/**
+	 * Indent used for the first column of the radion button matrix.
+	 */
 	private int indent = HORIZONTAL_GAP;
-	
-    /**
-     * Whether to use a Group control.
-     */
+
+	/**
+	 * Whether to use a Group control.
+	 */
 	private boolean useGroup;
 
-    /**
-     * The box of check buttons, or <code>null</code> if none
-     * (before creation and after disposal).
-     */
+	/**
+	 * The box of check buttons, or <code>null</code> if none (before creation
+	 * and after disposal).
+	 */
 	private Composite checkBox;
 
-    /**
-     * The check buttons, or <code>null</code> if none
-     * (before creation and after disposal).
-     */
+	/**
+	 * The check buttons, or <code>null</code> if none (before creation and
+	 * after disposal).
+	 */
 	private Button[] checkBoxButtons;
 
-	
-    /**
-     * Creates a new radio group field editor 
-     */
+	/**
+	 * Creates a new radio group field editor
+	 */
 	protected CheckBoxGroupFieldEditor() {
 	}
 
-    /**
-     * Creates a checkbox group field editor.  
-     * This constructor does not use a <code>Group</code> to contain the check buttons.
-     * It is equivalent to using the following constructor with <code>false</code>
-     * for the <code>useGroup</code> argument.
-     * <p>
-     * Example usage:
-     * <pre>
-     *		CheckBoxGroupFieldEditor editor= new CheckBoxGroupFieldEditor(
-     *			"GeneralPage.DoubleClick", resName, 1,
-     *			new String[] {
-     *				"Open Browser",
-     *				"Expand Tree"
-     *			},
-     *          parent);	
-     * </pre>
-     * </p>
-     * 
-     * @param name the name of the preference this field editor works on
-     * @param labelText the label text of the field editor
-     * @param numColumns the number of columns for the check button presentation
-     * @param label list of check button entries;
-     *  true or fals is returned if the check button is selected
-     * @param parent the parent of the field editor's control
-     */
+	/**
+	 * Creates a checkbox group field editor. This constructor does not use a
+	 * <code>Group</code> to contain the check buttons. It is equivalent to
+	 * using the following constructor with <code>false</code> for the
+	 * <code>useGroup</code> argument.
+	 * <p>
+	 * Example usage:
+	 * 
+	 * <pre>
+	 * CheckBoxGroupFieldEditor editor = new CheckBoxGroupFieldEditor(&quot;GeneralPage.DoubleClick&quot;, resName, 1,
+	 * 		new String[] { &quot;Open Browser&quot;, &quot;Expand Tree&quot; }, parent);
+	 * </pre>
+	 * 
+	 * </p>
+	 * 
+	 * @param name
+	 *            the name of the preference this field editor works on
+	 * @param labelText
+	 *            the label text of the field editor
+	 * @param numColumns
+	 *            the number of columns for the check button presentation
+	 * @param label
+	 *            list of check button entries; true or fals is returned if the
+	 *            check button is selected
+	 * @param parent
+	 *            the parent of the field editor's control
+	 */
 	public CheckBoxGroupFieldEditor(String name, String labelText, int numColumns, String[] labels,
 			Composite parent) {
 		this(name, labelText, numColumns, labels, parent, false);
 	}
 
-    /**
-     * Creates a checkbox group field editor.
-     * <p>
-     * Example usage:
-     * <pre>
-     *		CheckBoxGroupFieldEditor editor= new CheckBoxGroupFieldEditor(
-     *			"GeneralPage.DoubleClick", resName, 1,
-     *			new String[]{
-     *				"Open Browser",
-     *				"Expand Tree"
-     *			},
-     *          parent,
-     *          true);	
-     * </pre>
-     * </p>
-     * 
-     * @param name the name of the preference this field editor works on
-     * @param labelText the label text of the field editor
-     * @param numColumns the number of columns for the check button presentation
-     * @param label list of check button entries;
-     *  true or fals is returned if the check button is selected
-     * @param parent the parent of the field editor's control
-     * @param useGroup whether to use a Group control to contain the radio buttons
-     */
+	/**
+	 * Creates a checkbox group field editor.
+	 * <p>
+	 * Example usage:
+	 * 
+	 * <pre>
+	 * CheckBoxGroupFieldEditor editor = new CheckBoxGroupFieldEditor(&quot;GeneralPage.DoubleClick&quot;, resName, 1,
+	 * 		new String[] { &quot;Open Browser&quot;, &quot;Expand Tree&quot; }, parent, true);
+	 * </pre>
+	 * 
+	 * </p>
+	 * 
+	 * @param name
+	 *            the name of the preference this field editor works on
+	 * @param labelText
+	 *            the label text of the field editor
+	 * @param numColumns
+	 *            the number of columns for the check button presentation
+	 * @param label
+	 *            list of check button entries; true or fals is returned if the
+	 *            check button is selected
+	 * @param parent
+	 *            the parent of the field editor's control
+	 * @param useGroup
+	 *            whether to use a Group control to contain the radio buttons
+	 */
 	public CheckBoxGroupFieldEditor(String name, String labelText, int numColumns, String[] labels,
 			Composite parent, boolean useGroup) {
 		init(name, labelText);
@@ -149,33 +152,32 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 			control.setLayoutData(gd);
 		}
 	}
-	
-    /* (non-Javadoc)
-     * Method declared on FieldEditor.
-     */
+
+	/*
+	 * (non-Javadoc) Method declared on FieldEditor.
+	 */
 	protected void doLoad() {
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			updateValue(getPreferenceStore().getBoolean((getPreferenceName() + ";" + labels[i])), i);
 		}
 	}
 
-    /* (non-Javadoc)
-     * Method declared on FieldEditor.
-     */
+	/*
+	 * (non-Javadoc) Method declared on FieldEditor.
+	 */
 	protected void doLoadDefault() {
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			updateValue(getPreferenceStore().getDefaultBoolean(getPreferenceName() + ";" + labels[i]), i);
 		}
 	}
 
-    /* (non-Javadoc)
-     * Method declared on FieldEditor.
-     */
+	/*
+	 * (non-Javadoc) Method declared on FieldEditor.
+	 */
 	protected void doStore() {
 		for (int i = 0; i < checkBoxButtons.length; i++) {
-
 			boolean checkState = ((Boolean) checkBoxButtons[i].getData()).booleanValue();
-			if(checkState == false){
+			if (checkState == false) {
 				getPreferenceStore().setToDefault(getPreferenceName() + ";" + labels[i]);
 				continue;
 			}
@@ -183,18 +185,20 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 		}
 	}
 
-    /* (non-Javadoc)
-     * Method declared on FieldEditor.
-     */
+	/*
+	 * (non-Javadoc) Method declared on FieldEditor.
+	 */
 	public int getNumberOfControls() {
 		return 1;
 	}
-	
-    /**
-     * Returns this field editor's check group control.
-     * @param parent The parent to create the checkBox in
-     * @return the check group control
-     */
+
+	/**
+	 * Returns this field editor's check group control.
+	 * 
+	 * @param parent
+	 *            The parent to create the checkBox in
+	 * @return the check group control
+	 */
 	public Composite getCheckBoxControl(Composite parent) {
 		if (checkBox == null) {
 			Font font = parent.getFont();
@@ -236,7 +240,7 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 						setPresentsDefaultValue(false);
 						if (checkState.booleanValue() == true) {
 							fireValueChanged(VALUE, checkState, new Boolean(false));
-							event.widget.setData(new Boolean(false));	
+							event.widget.setData(new Boolean(false));
 						} else {
 							fireValueChanged(VALUE, checkState, new Boolean(true));
 							event.widget.setData(new Boolean(true));
@@ -256,11 +260,12 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 		return checkBox;
 	}
 
-    /**
-     * Sets the indent used for the first column of the check button matrix.
-     *
-     * @param indent the indent (in pixels)
-     */
+	/**
+	 * Sets the indent used for the first column of the check button matrix.
+	 * 
+	 * @param indent
+	 *            the indent (in pixels)
+	 */
 	public void setIndent(int indent) {
 		if (indent < 0) {
 			this.indent = 0;
@@ -268,24 +273,25 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 			this.indent = indent;
 		}
 	}
-	
-    /**
-     * Set the check buttons to checked or notchecked.
-     *
-     * @param selectedValue the selected value
-     */
+
+	/**
+	 * Set the check buttons to checked or notchecked.
+	 * 
+	 * @param selectedValue
+	 *            the selected value
+	 */
 	private void updateValue(boolean selectedValue, int i) {
 		if (checkBoxButtons == null) {
 			return;
-		}		
+		}
 		Button check = checkBoxButtons[i];
 		check.setData(new Boolean(selectedValue));
 		check.setSelection(selectedValue);
 	}
 
-    /*
-     * @see FieldEditor.setEnabled(boolean,Composite).
-     */
+	/*
+	 * @see FieldEditor.setEnabled(boolean,Composite).
+	 */
 	public void setEnabled(boolean enabled, Composite parent) {
 		if (!useGroup) {
 			super.setEnabled(enabled, parent);
@@ -293,5 +299,19 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			checkBoxButtons[i].setEnabled(enabled);
 		}
+	}
+
+	/**
+	 * Get the StoringLocations of the boolean that belongs to each check buttons
+	 * 
+	 * @return storingLocations
+	 * 				the Locations in the PreferenceStore where the values has been stored.
+	 */
+	public String[] getPreferenceStoringLocations() {
+		String[] storingLocations = new String[checkBoxButtons.length];
+		for (int i = 0; i < checkBoxButtons.length; i++) {
+			storingLocations[i] = getPreferenceName() + ";" + labels[i];
+		}
+		return storingLocations;
 	}
 }
