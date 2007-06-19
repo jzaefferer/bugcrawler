@@ -70,9 +70,10 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the preference this field editor works on. The given labelText array will be used to store
-	 *            if the check buttons are checked in the following way:
-	 *            		name;labelText -> true or false
+	 *            the name of the preference this field editor works on. The
+	 *            given labelText array will be used to store if the check
+	 *            buttons are checked in the following way: name;labelText ->
+	 *            true or false
 	 * @param labelText
 	 *            the label text of the field editor
 	 * @param numColumns
@@ -101,9 +102,10 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the preference this field editor works on. The given labelText array will be used to store
-	 *            if the check buttons are checked in the following way:
-	 *            		name;labelText -> true or false
+	 *            the name of the preference this field editor works on. The
+	 *            given labelText array will be used to store if the check
+	 *            buttons are checked in the following way: name;labelText ->
+	 *            true or false
 	 * @param labelText
 	 *            the label text of the field editor
 	 * @param numColumns
@@ -170,6 +172,7 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * (non-Javadoc) Method declared on FieldEditor.
 	 */
 	protected void doLoadDefault() {
+		System.out.println("Load Defaults");
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			updateValue(getPreferenceStore().getDefaultBoolean(getPreferenceName() + ";" + labels[i]), i);
 		}
@@ -179,12 +182,14 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * (non-Javadoc) Method declared on FieldEditor.
 	 */
 	protected void doStore() {
+		System.out.println("Saving\n-------------");
 		for (int i = 0; i < checkBoxButtons.length; i++) {
 			boolean checkState = ((Boolean) checkBoxButtons[i].getData()).booleanValue();
-			if (checkState == false) {
+			System.out.println(checkState);
+			/*if (checkState == false) {
 				getPreferenceStore().setToDefault(getPreferenceName() + ";" + labels[i]);
 				continue;
-			}
+			}*/
 			getPreferenceStore().setValue(getPreferenceName() + ";" + labels[i], checkState);
 		}
 	}
@@ -241,7 +246,7 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 				check.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent event) {
 						Boolean checkState = ((Boolean) event.widget.getData()).booleanValue();
-						setPresentsDefaultValue(false);
+						
 						if (checkState.booleanValue() == true) {
 							fireValueChanged(VALUE, checkState, new Boolean(false));
 							event.widget.setData(new Boolean(false));
@@ -285,6 +290,8 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 *            the selected value
 	 */
 	private void updateValue(boolean selectedValue, int i) {
+		setPresentsDefaultValue(false);
+		System.out.println(selectedValue);
 		if (checkBoxButtons == null) {
 			return;
 		}
@@ -306,10 +313,11 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	}
 
 	/**
-	 * Get the StoringLocations of the boolean that belongs to each check buttons
+	 * Get the StoringLocations of the boolean that belongs to each check
+	 * buttons
 	 * 
-	 * @return storingLocations
-	 * 				the Locations in the PreferenceStore where the values has been stored.
+	 * @return storingLocations the Locations in the PreferenceStore where the
+	 *         values has been stored.
 	 */
 	public String[] getPreferenceStoringLocations() {
 		String[] storingLocations = new String[checkBoxButtons.length];
@@ -318,4 +326,5 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 		}
 		return storingLocations;
 	}
+
 }

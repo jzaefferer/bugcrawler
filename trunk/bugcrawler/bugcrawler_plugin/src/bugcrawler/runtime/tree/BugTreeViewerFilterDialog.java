@@ -8,9 +8,12 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.Activator;
@@ -51,9 +54,38 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 		createFilterTextEditor(dialogContentContainer);
 		createFilterOptionRadioBoxes(dialogContentContainer);
+		
+		
+		Button defaults = new Button(dialogContentContainer,SWT.PUSH);
+		defaults.setText("Restore Defaults");
+		defaults.addListener(SWT.Selection,new Listener(){
+			public void handleEvent(Event event) {
+				filterOptions.loadDefault();
+				filter.loadDefault();
+			}
+		});
+		
+		gridData = new GridData();
+		gridData.horizontalAlignment=GridData.END;
+		defaults.setLayoutData(gridData);
+		
 		return container;
 	}
+	
+	@Override
+	protected void okPressed() {
+		filter.store();
+		filterOptions.store();
+		bugTreeViewer.addBugTreeFilter(this);
+		super.okPressed();
+	}
 
+	@Override
+	protected void cancelPressed() {
+		bugTreeViewer.removeBugTreeFilter();
+		super.cancelPressed();
+	}
+	
 	private void createFilterTextEditor(Composite dialogContentContainer) {
 		Group filterGroup = new Group(dialogContentContainer, SWT.NONE);
 		GridLayout filterGroupLayout = new GridLayout(1, false);
@@ -66,22 +98,6 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		filterGroup.setLayoutData(gridData);
 		filter.setPreferenceStore(getPreferenceStore());
 		filter.load();
-	}
-
-	@Override
-	protected void okPressed() {
-		filter.store();
-		filterOptions.store();
-		bugTreeViewer.addBugTreeFilter(this);
-		super.okPressed();
-	}
-
-	@Override
-	protected void cancelPressed() {
-		filter.loadDefault();
-		filterOptions.loadDefault();
-		bugTreeViewer.removeBugTreeFilter();
-		super.cancelPressed();
 	}
 
 	private void createFilterOptionRadioBoxes(Composite dialogContentContainer) {
@@ -117,6 +133,6 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 	@Override
 	protected Point getInitialSize() {
-		return new Point(200, 350);
+		return new Point(200, 365);
 	}
 }
