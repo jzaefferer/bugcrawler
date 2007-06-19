@@ -3,7 +3,6 @@ package bugcrawler.runtime.tree;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
@@ -29,6 +28,8 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 	private BugTreeViewer bugTreeViewer;
 
+	private String[] filterOptionsStoringLocations;
+	
 	public BugTreeViewerFilterDialog(Shell parentShell) {
 		super(parentShell);
 	}
@@ -50,7 +51,6 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 		createFilterTextEditor(dialogContentContainer);
 		createFilterOptionRadioBoxes(dialogContentContainer);
-
 		return container;
 	}
 
@@ -72,7 +72,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	protected void okPressed() {
 		filter.store();
 		filterOptions.store();
-		bugTreeViewer.addBugTreeFilter();
+		bugTreeViewer.addBugTreeFilter(this);
 		super.okPressed();
 	}
 
@@ -93,6 +93,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		filterOptions = new CheckBoxGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
 				valuesAndNames, dialogContentContainer, true);
 		filterOptions.setPreferenceStore(getPreferenceStore());
+		filterOptionsStoringLocations = filterOptions.getPreferenceStoringLocations();
 		filterOptions.load();
 	}
 
@@ -102,6 +103,10 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 	public void setBugTreeViewer(BugTreeViewer bugTreeViewer) {
 		this.bugTreeViewer = bugTreeViewer;
+	}
+	
+	public String[] getfilterOptionsStoringLocations(){
+		return filterOptionsStoringLocations;
 	}
 
 	@Override

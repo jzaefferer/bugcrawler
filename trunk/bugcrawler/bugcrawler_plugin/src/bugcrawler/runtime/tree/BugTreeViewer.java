@@ -77,11 +77,11 @@ public class BugTreeViewer extends TreeViewer {
 		});
 	}
 	
-	public void addBugTreeFilter(){
+	public void addBugTreeFilter(BugTreeViewerFilterDialog dialog){
 		if(bugTreeViewerFilter!= null){
 			this.removeFilter(bugTreeViewerFilter);
 		}
-		bugTreeViewerFilter = new BugTreeViewerFilter();
+		bugTreeViewerFilter = new BugTreeViewerFilter(dialog);
 		this.addFilter(bugTreeViewerFilter);
 	}
 	

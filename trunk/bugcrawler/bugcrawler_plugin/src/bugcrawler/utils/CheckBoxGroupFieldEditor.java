@@ -70,7 +70,9 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the preference this field editor works on
+	 *            the name of the preference this field editor works on. The given labelText array will be used to store
+	 *            if the check buttons are checked in the following way:
+	 *            		name;labelText -> true or false
 	 * @param labelText
 	 *            the label text of the field editor
 	 * @param numColumns
@@ -99,7 +101,9 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 	 * </p>
 	 * 
 	 * @param name
-	 *            the name of the preference this field editor works on
+	 *            the name of the preference this field editor works on. The given labelText array will be used to store
+	 *            if the check buttons are checked in the following way:
+	 *            		name;labelText -> true or false
 	 * @param labelText
 	 *            the label text of the field editor
 	 * @param numColumns
