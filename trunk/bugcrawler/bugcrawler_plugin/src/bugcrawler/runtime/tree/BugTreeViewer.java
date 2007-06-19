@@ -34,14 +34,17 @@ public class BugTreeViewer extends TreeViewer {
 		addPropertiesAndEditors();
 		this.setCellModifier(new BugTreeCellModifier());
 		this.expandToLevel(-1);
-
 	}
 
 	private void buildColumnsHeaders() {
-		for (ColumnTitles titles : ColumnTitles.values()) {
+		for (int i=0;i<ColumnTitles.values().length;i++){
+			ColumnTitles titles = ColumnTitles.values()[i];
 			TreeColumn column = new TreeColumn(tree, SWT.LEFT);
 			column.setText(titles.toString());
 			addListenerForSortingColumns(column);
+			if(i>0){
+				column.setMoveable(true);
+			}
 		}
 	}
 	
