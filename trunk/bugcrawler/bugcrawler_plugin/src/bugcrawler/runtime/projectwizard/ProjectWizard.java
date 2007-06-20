@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.widgets.Event;
+import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -14,7 +14,9 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	
 	private BugTreeViewer bugTreeViewer;
 	
-	private ProjectWizardPage page;
+	private ProjectWizardProjectPage projectpage;
+	
+	private ProjectWizardFilterPage filterpage;
 	
 	public ProjectWizard(BugTreeViewer bugTreeViewer) {
 		super();
@@ -25,20 +27,27 @@ public class ProjectWizard extends Wizard implements INewWizard{
 
 	@Override
 	public boolean performFinish() {
-		bugTreeViewer.setInput(Arrays.asList(page.getSelected()));
+		bugTreeViewer.setInput(Arrays.asList(projectpage.getSelected()));
 		bugTreeViewer.expandToLevel(-1);
 		return true;
 	}
+	
+	public BugTreeViewer getBugTreeViewer(){
+		return bugTreeViewer;
+	}
 
 	public void addPages() {
-		page = new ProjectWizardPage();
-		addPage(page);
-	}
-
-	public void handleEvent(Event event) {
+		projectpage = new ProjectWizardProjectPage();
+		addPage(projectpage);
 		
+		filterpage = new ProjectWizardFilterPage();
+		addPage(filterpage);		
 	}
-
+	
+	public WizardPage getFirstPage(){
+		return projectpage;
+	}
+	
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 	}
 }

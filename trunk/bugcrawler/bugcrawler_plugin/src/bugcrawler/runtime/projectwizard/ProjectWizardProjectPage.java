@@ -16,11 +16,15 @@ import org.eclipse.swt.widgets.Listener;
 import bugcrawler.runtime.data.BugTestData;
 import bugcrawler.runtime.data.Project;
 
-public class ProjectWizardPage extends WizardPage implements Listener {
+public class ProjectWizardProjectPage extends WizardPage implements Listener{
 
 	private List list;
 	
-	protected ProjectWizardPage() {
+	private Button refreshList;
+	
+	private boolean pageComplete = false;
+	
+	protected ProjectWizardProjectPage(){
 		super("Selection Page");
 		setTitle("Project Selection");
 		setDescription("Please select your Project to see the Buglistings");
@@ -39,25 +43,52 @@ public class ProjectWizardPage extends WizardPage implements Listener {
 		gridData.verticalAlignment=GridData.END;
 		label.setLayoutData(gridData);
 		
-		Button button = new Button(composite,SWT.PUSH);
-		button.setText("Refresh List");
+		refreshList = new Button(composite,SWT.PUSH);
+		refreshList.setText("Refresh List");
 		gridData = new GridData();
 		gridData.horizontalAlignment = GridData.END;
-		button.setLayoutData(gridData);
-		button.addListener(SWT.Selection, new Listener(){
-			public void handleEvent(Event event) {
-				refreshList();
-			}
-		});
+		refreshList.setLayoutData(gridData);
+		refreshList.addListener(SWT.Selection, this);
 		
 		list = new List (composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		gridData = new GridData(GridData.FILL_BOTH);
 		gridData.horizontalSpan = 2;		
 		list.setLayoutData(gridData);
-		
+		list.addListener(SWT.Selection, this);
 		setControl(composite);
 	}
+	
+	public Object[] getSelected(){
+		ArrayList<Object> projectsList = new ArrayList<Object>();
+		Object[] projects = BugTestData.getTestData();
+		String[] projectsSelected = list.getSelection();
+		for(String item:projectsSelected){
+			for(Object project:projects){
+				if(item.equals(((Project)project).getName())){
+					projectsList.add(project);
+				}
+			}
+		}
+		return projectsList.toArray();
+	}
+	
+	
+	public boolean canFlipToNextPage(){
+		return isPageComplete();
+	}
 
+	public void handleEvent(Event event) {
+		if(event.widget == refreshList){
+			refreshList();
+			pageComplete=false;
+		}
+		if(event.widget==list && ((List)event.widget).getSelection().length>0){
+			pageComplete=true;
+		}
+		setPageComplete(isPageComplete());
+		getWizard().getContainer().updateButtons();
+	}
+	
 	private void refreshList(){
 		list.removeAll();
 		Object[] testdata = BugTestData.getTestData();
@@ -66,21 +97,8 @@ public class ProjectWizardPage extends WizardPage implements Listener {
 		}
 	}
 	
-	public Object[] getSelected(){
-		ArrayList<Object> fufufu = new ArrayList<Object>();
-		Object[] testdata = BugTestData.getTestData();
-		String[] items = list.getSelection();
-		for(String item:items){
-			for(Object data:testdata){
-				if(item.equals(((Project)data).getName())){
-					fufufu.add(data);
-				}
-			}
-		}
-		return fufufu.toArray();
+	public boolean isPageComplete(){
+		return pageComplete;
 	}
 	
-	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-	}
 }
