@@ -70,7 +70,7 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		return null;
 	}
 
-	public String convertDate(Date date) {
+	private String convertDate(Date date) {
 		return new SimpleDateFormat("MM/dd/yyyy").format(date);
 	}
 

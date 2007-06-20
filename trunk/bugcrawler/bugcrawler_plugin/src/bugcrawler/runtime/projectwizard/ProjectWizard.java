@@ -16,7 +16,7 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	
 	private ProjectWizardProjectPage projectpage;
 	
-	private ProjectWizardFilterPage filterpage;
+	//private ProjectWizardFilterPage filterpage;
 	
 	public ProjectWizard(BugTreeViewer bugTreeViewer) {
 		super();
@@ -37,11 +37,11 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	}
 
 	public void addPages() {
-		projectpage = new ProjectWizardProjectPage();
+		projectpage = new ProjectWizardProjectPage(bugTreeViewer);
 		addPage(projectpage);
 		
-		filterpage = new ProjectWizardFilterPage();
-		addPage(filterpage);
+		/*filterpage = new ProjectWizardFilterPage();
+		addPage(filterpage);*/
 	}
 	
 	public WizardPage getFirstPage(){

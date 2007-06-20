@@ -18,7 +18,7 @@ public class ProjectTableLabelProvider extends LabelProvider implements ITableLa
 	public String getColumnText(Object element, int columnIndex) {
 		Project project = (Project)element;
 		switch(columnIndex){
-			case 0:return null;
+			case 0:return "checked";
 			case 1:return project.getName();
 			case 2:return project.getOwner();
 			case 3:return convertDate(project.getCreated());
@@ -27,7 +27,7 @@ public class ProjectTableLabelProvider extends LabelProvider implements ITableLa
 		
 	}
 	
-	public String convertDate(Date date) {
+	private String convertDate(Date date) {
 		return new SimpleDateFormat("MM/dd/yyyy").format(date);
 	}
 

@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class BugTestData {
+	
+	public static Object[] objects;
+	
 	public static Object[] getTestData(){
 		
 		Calendar cal = Calendar.getInstance();
@@ -36,7 +39,10 @@ public class BugTestData {
 		new Bug("#6", "The chat making troubles in Server-Client-Communication", "Chat", "none", "none",
 				"defect","critical","Tobias" ,new Date(),Priority.High,proj2);
 		
-		return new Object[] { proj, proj2 };
+		if(objects == null){
+			objects = new Object[] { proj, proj2 };
+		}
+		return objects;
 	}
 
 }

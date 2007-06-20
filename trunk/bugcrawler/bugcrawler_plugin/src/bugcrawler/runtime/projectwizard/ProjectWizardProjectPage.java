@@ -1,5 +1,8 @@
 package bugcrawler.runtime.projectwizard;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.WizardPage;
@@ -9,6 +12,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+import bugcrawler.runtime.bugtree.BugTreeViewer;
+import bugcrawler.runtime.data.BugTestData;
 import bugcrawler.runtime.projectwizard.projecttable.ProjectTableViewer;
 
 public class ProjectWizardProjectPage extends WizardPage implements ISelectionChangedListener{
@@ -17,8 +22,11 @@ public class ProjectWizardProjectPage extends WizardPage implements ISelectionCh
 	
 	private boolean pageComplete = false;
 	
-	protected ProjectWizardProjectPage(){
+	private BugTreeViewer bugTreeViewer;
+	
+	protected ProjectWizardProjectPage(BugTreeViewer bugTreeViewer){
 		super("Selection Page");
+		this.bugTreeViewer=bugTreeViewer;
 		setTitle("Project Selection");
 		setDescription("Please select your Project to see the Buglistings");
 	}
@@ -35,11 +43,18 @@ public class ProjectWizardProjectPage extends WizardPage implements ISelectionCh
 		
 		projectTableViewer = new ProjectTableViewer(composite);
 		gridData = new GridData(GridData.FILL_BOTH);
-		gridData.horizontalSpan = 2;	
+		gridData.horizontalSpan = 2;
 		projectTableViewer.setLayoutData(gridData);
 		projectTableViewer.addSelectionChangedListener(this);
-		
+		fillProjectTableViewer();
+
 		setControl(composite);
+	}
+	
+	private void fillProjectTableViewer(){
+		Object input = bugTreeViewer.getInput();
+		projectTableViewer.setInput(Arrays.asList(BugTestData.getTestData()));
+		projectTableViewer.setCheckedElements(((List) input).toArray());
 	}
 	
 	public Object[] getSelected(){

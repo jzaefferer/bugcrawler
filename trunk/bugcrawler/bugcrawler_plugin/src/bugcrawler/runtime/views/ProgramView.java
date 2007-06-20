@@ -3,6 +3,7 @@ package bugcrawler.runtime.views;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IActionBars;
@@ -14,7 +15,6 @@ import org.eclipse.ui.part.ViewPart;
 import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.bugtree.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
-import bugcrawler.runtime.projectwizard.ProjectWizardDialog;
 import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
@@ -78,8 +78,8 @@ public class ProgramView extends ViewPart {
 			public void run() {
 				try{
 				ProjectWizard projectWizard = new ProjectWizard(bugTreeViewer);
-				ProjectWizardDialog dialog = new ProjectWizardDialog(parent.getShell(), projectWizard);
-				//WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
+				//ProjectWizardDialog dialog = new ProjectWizardDialog(parent.getShell(), projectWizard);
+				WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
 				dialog.open();
 				}catch(Exception e){
 					e.printStackTrace();
