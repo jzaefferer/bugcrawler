@@ -54,7 +54,9 @@ public class ProjectWizardProjectPage extends WizardPage implements ISelectionCh
 	private void fillProjectTableViewer(){
 		Object input = bugTreeViewer.getInput();
 		projectTableViewer.setInput(Arrays.asList(BugTestData.getTestData()));
-		projectTableViewer.setCheckedElements(((List) input).toArray());
+		if(input!=null){
+			projectTableViewer.setCheckedElements(((List) input).toArray());
+		}
 	}
 	
 	public Object[] getSelected(){
