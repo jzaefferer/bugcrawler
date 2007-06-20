@@ -1,11 +1,11 @@
-package bugcrawler.runtime.tree;
+package bugcrawler.runtime.bugtree;
 
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 
 import bugcrawler.runtime.data.Bug;
-import bugcrawler.runtime.data.ColumnTitles;
+import bugcrawler.runtime.data.TreeColumnTitles;
 
 public class BugTreeComperator extends ViewerSorter {
 
@@ -23,23 +23,23 @@ public class BugTreeComperator extends ViewerSorter {
 		if (e1 instanceof Bug) {
 			int returnValue = 0;
 			
-			if(columnToSort == ColumnTitles.Ticket.toString()){
+			if(columnToSort == TreeColumnTitles.Ticket.toString()){
 				returnValue = getTicketNumber(e1)-getTicketNumber(e2);
-			}else if(columnToSort == ColumnTitles.Summary.toString()){
+			}else if(columnToSort == TreeColumnTitles.Summary.toString()){
 				returnValue = ((Bug) e2).getSummary().compareTo(((Bug)e1).getSummary());
-			}else if(columnToSort == ColumnTitles.Component.toString()){
+			}else if(columnToSort == TreeColumnTitles.Component.toString()){
 				returnValue = ((Bug) e2).getComponent().compareTo(((Bug)e1).getComponent());
-			}else if(columnToSort == ColumnTitles.Version.toString()){
+			}else if(columnToSort == TreeColumnTitles.Version.toString()){
 				returnValue = ((Bug) e2).getVersion().compareTo(((Bug)e1).getVersion());
-			}else if(columnToSort == ColumnTitles.Milestone.toString()){
+			}else if(columnToSort == TreeColumnTitles.Milestone.toString()){
 				returnValue = ((Bug) e2).getMilestone().compareTo(((Bug)e1).getMilestone());
-			}else if(columnToSort == ColumnTitles.Type.toString()){
+			}else if(columnToSort == TreeColumnTitles.Type.toString()){
 				returnValue = ((Bug) e2).getType().compareTo(((Bug)e1).getType());
-			}else if(columnToSort == ColumnTitles.Severity.toString()){
+			}else if(columnToSort == TreeColumnTitles.Severity.toString()){
 				returnValue = ((Bug) e2).getSeverity().compareTo(((Bug)e1).getSeverity());
-			}else if(columnToSort == ColumnTitles.Owner.toString()){
+			}else if(columnToSort == TreeColumnTitles.Owner.toString()){
 				returnValue = ((Bug) e2).getOwner().compareTo(((Bug)e1).getOwner());
-			}else if (columnToSort == ColumnTitles.Created.toString()) {
+			}else if (columnToSort == TreeColumnTitles.Created.toString()) {
 				returnValue = ((Bug) e2).getCreated().compareTo(((Bug) e1).getCreated());
 			}
 			if (this.dir == SWT.DOWN) {

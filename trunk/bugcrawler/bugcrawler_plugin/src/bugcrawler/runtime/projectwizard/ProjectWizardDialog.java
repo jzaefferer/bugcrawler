@@ -8,7 +8,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Shell;
 
-import bugcrawler.runtime.tree.BugTreeViewer;
+import bugcrawler.runtime.bugtree.BugTreeViewer;
 
 public class ProjectWizardDialog extends WizardDialog {
 

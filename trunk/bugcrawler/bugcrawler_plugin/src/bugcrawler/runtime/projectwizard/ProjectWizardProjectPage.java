@@ -6,7 +6,6 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -19,8 +18,6 @@ import bugcrawler.runtime.data.Project;
 public class ProjectWizardProjectPage extends WizardPage implements Listener{
 
 	private List list;
-	
-	private Button refreshList;
 	
 	private boolean pageComplete = false;
 	
@@ -43,18 +40,12 @@ public class ProjectWizardProjectPage extends WizardPage implements Listener{
 		gridData.verticalAlignment=GridData.END;
 		label.setLayoutData(gridData);
 		
-		refreshList = new Button(composite,SWT.PUSH);
-		refreshList.setText("Refresh List");
-		gridData = new GridData();
-		gridData.horizontalAlignment = GridData.END;
-		refreshList.setLayoutData(gridData);
-		refreshList.addListener(SWT.Selection, this);
-		
 		list = new List (composite, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		gridData = new GridData(GridData.FILL_BOTH);
 		gridData.horizontalSpan = 2;		
 		list.setLayoutData(gridData);
 		list.addListener(SWT.Selection, this);
+		refreshList();
 		setControl(composite);
 	}
 	
@@ -78,10 +69,6 @@ public class ProjectWizardProjectPage extends WizardPage implements Listener{
 	}
 
 	public void handleEvent(Event event) {
-		if(event.widget == refreshList){
-			refreshList();
-			pageComplete=false;
-		}
 		if(event.widget==list && ((List)event.widget).getSelection().length>0){
 			pageComplete=true;
 		}

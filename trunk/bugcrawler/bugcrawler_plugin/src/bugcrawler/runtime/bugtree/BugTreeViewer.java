@@ -1,4 +1,4 @@
-package bugcrawler.runtime.tree;
+package bugcrawler.runtime.bugtree;
 
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
 import bugcrawler.runtime.data.Bug;
-import bugcrawler.runtime.data.ColumnTitles;
+import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
@@ -41,8 +41,8 @@ public class BugTreeViewer extends TreeViewer {
 	}
 
 	private void buildColumnsHeaders() {
-		for (int i=0;i<ColumnTitles.values().length;i++){
-			ColumnTitles titles = ColumnTitles.values()[i];
+		for (int i=0;i<TreeColumnTitles.values().length;i++){
+			TreeColumnTitles titles = TreeColumnTitles.values()[i];
 			TreeColumn column = new TreeColumn(tree, SWT.LEFT);
 			column.setText(titles.toString());
 			addListenerForSortingColumns(column);

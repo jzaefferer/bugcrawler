@@ -1,4 +1,4 @@
-package bugcrawler.runtime.tree;
+package bugcrawler.runtime.bugtree;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

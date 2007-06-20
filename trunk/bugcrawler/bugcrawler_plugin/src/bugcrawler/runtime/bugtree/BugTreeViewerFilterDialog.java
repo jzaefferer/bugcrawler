@@ -1,4 +1,4 @@
-package bugcrawler.runtime.tree;
+package bugcrawler.runtime.bugtree;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.data.ColumnTitles;
+import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.preferences.PreferenceConstants;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
@@ -101,9 +101,9 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	}
 
 	private void createFilterOptionRadioBoxes(Composite dialogContentContainer) {
-		String[] valuesAndNames = new String[ColumnTitles.values().length];
-		for (int i = 0; i < ColumnTitles.values().length; i++) {
-			String radioName = ColumnTitles.values()[i].toString();
+		String[] valuesAndNames = new String[TreeColumnTitles.values().length];
+		for (int i = 0; i < TreeColumnTitles.values().length; i++) {
+			String radioName = TreeColumnTitles.values()[i].toString();
 			valuesAndNames[i] = radioName;
 		}
 		filterOptions = new CheckBoxGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,

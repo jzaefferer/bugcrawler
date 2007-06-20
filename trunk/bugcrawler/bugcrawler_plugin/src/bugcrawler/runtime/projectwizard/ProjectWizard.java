@@ -8,7 +8,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import bugcrawler.runtime.tree.BugTreeViewer;
+import bugcrawler.runtime.bugtree.BugTreeViewer;
 
 public class ProjectWizard extends Wizard implements INewWizard{
 	

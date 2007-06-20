@@ -1,9 +1,9 @@
-package bugcrawler.runtime.tree;
+package bugcrawler.runtime.bugtree;
 
 import org.eclipse.jface.viewers.ICellModifier;
 
 import bugcrawler.runtime.data.Bug;
-import bugcrawler.runtime.data.ColumnTitles;
+import bugcrawler.runtime.data.TreeColumnTitles;
 
 public class BugTreeCellModifier implements ICellModifier{
 	
@@ -18,9 +18,9 @@ public class BugTreeCellModifier implements ICellModifier{
 	//TODO Filling editors with the right stuff when editing.
 	public Object getValue(Object element, String property) {
 		if (element instanceof Bug){
-			if(property.equals(ColumnTitles.Summary.toString())){
+			if(property.equals(TreeColumnTitles.Summary.toString())){
 				return ((Bug)element).getSummary();
-			}else if(property.equals(ColumnTitles.Summary.toString())){
+			}else if(property.equals(TreeColumnTitles.Summary.toString())){
 				return ((Bug)element).getSummary();
 			}else{
 				return "";
