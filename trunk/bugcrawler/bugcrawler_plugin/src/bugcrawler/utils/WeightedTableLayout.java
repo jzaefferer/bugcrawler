@@ -1,4 +1,4 @@
-package bugcrawler.runtime.layoutmanagers;
+package bugcrawler.utils;
 
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;

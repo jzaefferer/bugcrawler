@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
-import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
+import bugcrawler.utils.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
 
@@ -27,7 +27,7 @@ public class BugTreeViewer extends TreeViewer {
 		super(parent,SWT.FULL_SELECTION);
 		tree = this.getTree();
 		tree.setLayout(new WeightedTableLayout(new int[] { 25, 75, -1, -1, -1, -1, -1, -1, -1 }, new int[] {
-				-1, -1, 80, 80, 80, 80, 80, 80, 70 }));
+				-1, -1, 70, 60, 60, 60, 60, 60, 70 }));
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		buildColumnsHeaders();

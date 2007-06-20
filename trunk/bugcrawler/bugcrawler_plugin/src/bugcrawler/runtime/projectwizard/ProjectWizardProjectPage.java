@@ -46,12 +46,12 @@ public class ProjectWizardProjectPage extends WizardPage implements ISelectionCh
 		gridData.horizontalSpan = 2;
 		projectTableViewer.setLayoutData(gridData);
 		projectTableViewer.addSelectionChangedListener(this);
-		fillProjectTableViewer();
+		fillAndCheckProjectTableViewer();
 
 		setControl(composite);
 	}
 	
-	private void fillProjectTableViewer(){
+	private void fillAndCheckProjectTableViewer(){
 		Object input = bugTreeViewer.getInput();
 		projectTableViewer.setInput(Arrays.asList(BugTestData.getTestData()));
 		if(input!=null){

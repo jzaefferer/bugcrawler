@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
 import bugcrawler.runtime.data.TableColumnTitles;
-import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
+import bugcrawler.utils.WeightedTableLayout;
 
 public class ProjectTableViewer extends CheckboxTableViewer {
 
