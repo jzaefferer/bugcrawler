@@ -41,7 +41,7 @@ public class ProjectWizard extends Wizard implements INewWizard{
 		addPage(projectpage);
 		
 		filterpage = new ProjectWizardFilterPage();
-		addPage(filterpage);		
+		addPage(filterpage);
 	}
 	
 	public WizardPage getFirstPage(){

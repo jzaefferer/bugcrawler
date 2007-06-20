@@ -1,6 +1,8 @@
 package bugcrawler.runtime.tree;
 
-import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -9,6 +11,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
+import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.ColumnTitles;
 import bugcrawler.runtime.layoutmanagers.WeightedTableLayout;
 
@@ -21,7 +24,7 @@ public class BugTreeViewer extends TreeViewer {
 	private BugTreeViewerFilter bugTreeViewerFilter;
 	
 	public BugTreeViewer(final Composite parent) {
-		super(parent);
+		super(parent,SWT.FULL_SELECTION);
 		tree = this.getTree();
 		tree.setLayout(new WeightedTableLayout(new int[] { 25, 75, -1, -1, -1, -1, -1, -1, -1 }, new int[] {
 				-1, -1, 80, 80, 80, 80, 80, 80, 70 }));
@@ -30,10 +33,11 @@ public class BugTreeViewer extends TreeViewer {
 		buildColumnsHeaders();
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
+		//this.setCellModifier(new BugTreeCellModifier());
+		//addPropertiesAndEditors();		
+		addDoubleClickListener();
 		//this.setInput(Arrays.asList(BugTestData.getTestData()));
-		addPropertiesAndEditors();
-		this.setCellModifier(new BugTreeCellModifier());
-		this.expandToLevel(-1);
+		//this.expandToLevel(-1);
 	}
 
 	private void buildColumnsHeaders() {
@@ -48,19 +52,30 @@ public class BugTreeViewer extends TreeViewer {
 		}
 	}
 	
-	private void addPropertiesAndEditors(){
-		String[] properties = new String[ColumnTitles.values().length];
-		TextCellEditor[] tce = new TextCellEditor[ColumnTitles.values().length];
-		for(int i=0;i<properties.length;i++){
-			properties[i]= (ColumnTitles.values())[i].toString();
-			if(i!=0){
-				tce[i] = new TextCellEditor(tree);
-			}
-		}
-		this.setColumnProperties(properties);
-		this.setCellEditors(tce);
-	}
+//	private void addPropertiesAndEditors(){
+//		String[] properties = new String[ColumnTitles.values().length];
+//		TextCellEditor[] tce = new TextCellEditor[ColumnTitles.values().length];
+//		for(int i=0;i<properties.length;i++){
+//			properties[i]= (ColumnTitles.values())[i].toString();
+//			if(i!=0){
+//				tce[i] = new TextCellEditor(tree);
+//			}
+//		}
+//		this.setColumnProperties(properties);
+//		this.setCellEditors(tce);
+//	}
 
+	private void addDoubleClickListener(){
+		this.addDoubleClickListener(new IDoubleClickListener(){
+			public void doubleClick(DoubleClickEvent event) {
+				Object selectedNode = ((IStructuredSelection)event.getSelection()).getFirstElement();
+				if(selectedNode instanceof Bug){
+					System.out.println("jep das isn bug");	
+				}
+			}
+		});
+	}
+	
 	public void addListenerForSortingColumns(final TreeColumn column) {
 		column.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
