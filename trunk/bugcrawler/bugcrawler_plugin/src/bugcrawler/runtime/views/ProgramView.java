@@ -76,10 +76,14 @@ public class ProgramView extends ViewPart {
 		
 		projects = new Action() {
 			public void run() {
+				try{
 				ProjectWizard projectWizard = new ProjectWizard(bugTreeViewer);
 				ProjectWizardDialog dialog = new ProjectWizardDialog(parent.getShell(), projectWizard);
 				//WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
 				dialog.open();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 			}
 		};
 		projects.setText("Projekte...");

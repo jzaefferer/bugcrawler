@@ -42,9 +42,9 @@ public class BugTreeViewer extends TreeViewer {
 
 	private void buildColumnsHeaders() {
 		for (int i=0;i<TreeColumnTitles.values().length;i++){
-			TreeColumnTitles titles = TreeColumnTitles.values()[i];
+			TreeColumnTitles title = TreeColumnTitles.values()[i];
 			TreeColumn column = new TreeColumn(tree, SWT.LEFT);
-			column.setText(titles.toString());
+			column.setText(title.toString());
 			addListenerForSortingColumns(column);
 			if(i>0){
 				column.setMoveable(true);

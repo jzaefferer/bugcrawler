@@ -7,9 +7,9 @@ public class Project {
 
 	private String name;
 
-	private String creator;
+	private String owner;
 
-	private Date creationDate;
+	private Date created;
 
 	private ArrayList<BugContainer> bugsContainers = new ArrayList<BugContainer>();
 
@@ -36,26 +36,26 @@ public class Project {
 		return bugsContainers.toArray();
 	}
 
-	public Project(String name, String creator, Date creationDate) {
+	public Project(String name, String owner, Date created) {
 		this.name = name;
-		this.creator = creator;
-		this.creationDate = creationDate;
+		this.owner = owner;
+		this.created = created;
 	}
 
-	public Date getCreationDate() {
-		return creationDate;
+	public Date getCreated() {
+		return created;
 	}
 
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
-	public String getCreator() {
-		return creator;
+	public String getOwner() {
+		return owner;
 	}
 
-	public void setCreator(String creator) {
-		this.creator = creator;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
 	public String getName() {
