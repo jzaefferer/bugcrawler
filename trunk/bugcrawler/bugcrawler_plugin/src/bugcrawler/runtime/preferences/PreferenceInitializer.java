@@ -4,6 +4,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.PreferenceConstants;
 
 /**
  * Class used to initialize default preference values.

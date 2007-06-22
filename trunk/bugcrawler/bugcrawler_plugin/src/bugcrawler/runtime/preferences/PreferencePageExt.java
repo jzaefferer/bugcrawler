@@ -11,6 +11,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.PreferenceConstants;
 import bugcrawler.utils.SpinnerFieldEditor;
 
 /**

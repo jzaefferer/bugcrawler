@@ -64,7 +64,7 @@ public class ProgramView extends ViewPart {
 	private void createActions() {
 		preferences = new Action() {
 			public void run() {
-				String[] filter = new String[] { "bugcrawler.runtime.preferences" };
+				String[] filter = new String[] { "bugcrawler_plugin.preferences" };
 				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, null, filter, null);
 				dialog.open();
 			}

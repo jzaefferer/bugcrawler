@@ -9,7 +9,7 @@
             name="Bugcrawler"/>
    </extension>
    <extension
-         id="bugcrawler.runtime.preferences"
+         id="bugcrawler_plugin.preferences"
          point="org.eclipse.core.runtime.preferences">
       <initializer class="bugcrawler.runtime.preferences.PreferenceInitializer"/>
    </extension>
@@ -52,7 +52,7 @@
             class="bugcrawler.runtime.editor.BugEditor"
             default="false"
             icon="images/alt_window_16.gif"
-            id="bugcrawler.runtime.editor"
+            id="bugcrawler_plugin.editor"
             name="Bugeditor"/>
    </extension>
 </plugin>

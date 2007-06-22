@@ -74,7 +74,7 @@ public class BugTreeViewer extends TreeViewer {
 				if (selectedNode instanceof Bug) {
 					try {
 						Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
-								.openEditor(new UIBug(), "bugcrawler.runtime.editor");
+								.openEditor(new UIBug(), "bugcrawler_plugin.editor");
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

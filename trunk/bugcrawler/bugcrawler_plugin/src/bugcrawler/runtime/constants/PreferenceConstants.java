@@ -1,4 +1,4 @@
-package bugcrawler.runtime.preferences;
+package bugcrawler.runtime.constants;
 
 /**
  * Constant definitions for plug-in preferences
@@ -11,6 +11,7 @@ public class PreferenceConstants {
     public static final String PORT = "port";
     public static final String FILTER = "filter";
     public static final String FILTEROPTIONS = "filterOptions";
+    
     
 	
 }

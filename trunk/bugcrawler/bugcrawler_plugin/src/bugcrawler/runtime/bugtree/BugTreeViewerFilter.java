@@ -5,11 +5,11 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.PreferenceConstants;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.data.Project;
-import bugcrawler.runtime.preferences.PreferenceConstants;
 
 public class BugTreeViewerFilter extends ViewerFilter {
 	

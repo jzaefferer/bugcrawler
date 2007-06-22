@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.PreferenceConstants;
 import bugcrawler.runtime.data.TreeColumnTitles;
-import bugcrawler.runtime.preferences.PreferenceConstants;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
 public class BugTreeViewerFilterDialog extends Dialog {
