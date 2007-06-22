@@ -11,7 +11,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.IWorkbench;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.constants.PreferenceConstants;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.utils.SpinnerFieldEditor;
 
 /**
@@ -59,7 +59,7 @@ public class PreferencePageExt
         userinfo.setLayoutData(griddata);
 
         griddata = new GridData(GridData.FILL_HORIZONTAL);
-        usereditor = new StringFieldEditor(PreferenceConstants.USERNAME, "Username:", page);
+        usereditor = new StringFieldEditor(Constants.USERNAME, "Username:", page);
         usereditor.setPage(this);
         usereditor.setPreferenceStore(getPreferenceStore());
         usereditor.load();
@@ -72,7 +72,7 @@ public class PreferencePageExt
         passwordinfo.setLayoutData(griddata);
 
         griddata = new GridData(GridData.FILL_HORIZONTAL);
-        passwordeditor = new StringFieldEditor(PreferenceConstants.PASSWORD, "Passwort:", page);
+        passwordeditor = new StringFieldEditor(Constants.PASSWORD, "Passwort:", page);
         passwordeditor.setPage(this);
         passwordeditor.setPreferenceStore(getPreferenceStore());
         passwordeditor.load();        
@@ -85,7 +85,7 @@ public class PreferencePageExt
         hostinfo.setLayoutData(griddata);
 
         griddata = new GridData(GridData.FILL_HORIZONTAL);
-        hosteditor = new StringFieldEditor(PreferenceConstants.HOSTNAME, "Host:", page);
+        hosteditor = new StringFieldEditor(Constants.HOSTNAME, "Host:", page);
         hosteditor.setPage(this);
         hosteditor.setPreferenceStore(getPreferenceStore());
         hosteditor.load();
@@ -98,7 +98,7 @@ public class PreferencePageExt
         portinfo.setLayoutData(griddata);
 
         griddata = new GridData(GridData.FILL_HORIZONTAL);
-        porteditor = new SpinnerFieldEditor(PreferenceConstants.PORT, "Port:", page);
+        porteditor = new SpinnerFieldEditor(Constants.PORT, "Port:", page);
         porteditor.getSpinner().setMaximum(10000);
         porteditor.getSpinner().setMinimum(1500);
         porteditor.setPage(this);

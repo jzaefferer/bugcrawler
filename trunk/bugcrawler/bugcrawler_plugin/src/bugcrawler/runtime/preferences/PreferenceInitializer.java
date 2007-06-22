@@ -4,7 +4,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.constants.PreferenceConstants;
+import bugcrawler.runtime.constants.Constants;
 
 /**
  * Class used to initialize default preference values.
@@ -18,11 +18,11 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		store.setDefault(PreferenceConstants.USERNAME, "Unknown");
-		store.setDefault(PreferenceConstants.PASSWORD, "");
-		store.setDefault(PreferenceConstants.HOSTNAME, "localhost");
-		store.setDefault(PreferenceConstants.PORT, 4000);
-		store.setDefault(PreferenceConstants.FILTER, "");
+		store.setDefault(Constants.USERNAME, "Unknown");
+		store.setDefault(Constants.PASSWORD, "");
+		store.setDefault(Constants.HOSTNAME, "localhost");
+		store.setDefault(Constants.PORT, 4000);
+		store.setDefault(Constants.FILTER, "");
 		//store.setDefault(PreferenceConstants.FILTEROPTIONS + ";Ticket", true);
 	}
 

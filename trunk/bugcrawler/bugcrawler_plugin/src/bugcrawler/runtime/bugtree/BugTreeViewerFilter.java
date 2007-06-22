@@ -5,7 +5,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.constants.PreferenceConstants;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.TreeColumnTitles;
@@ -27,7 +27,7 @@ public class BugTreeViewerFilter extends ViewerFilter {
 	
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		String filter = getPreferenceStore().getString(PreferenceConstants.FILTER);
+		String filter = getPreferenceStore().getString(Constants.FILTER);
 		
 		if(element instanceof Project){ 
 			return true;

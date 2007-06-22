@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.Activator;
-import bugcrawler.runtime.constants.PreferenceConstants;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
@@ -94,7 +94,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		Composite groupContent = new Composite(filterGroup, SWT.NONE);
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		groupContent.setLayoutData(gridData);
-		filter = new StringFieldEditor(PreferenceConstants.FILTER, "Filter", groupContent);
+		filter = new StringFieldEditor(Constants.FILTER, "Filter", groupContent);
 		filterGroup.setLayoutData(gridData);
 		filter.setPreferenceStore(getPreferenceStore());
 		filter.load();
@@ -106,7 +106,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 			String radioName = TreeColumnTitles.values()[i].toString();
 			valuesAndNames[i] = radioName;
 		}
-		filterOptions = new CheckBoxGroupFieldEditor(PreferenceConstants.FILTEROPTIONS, "FilterOptions", 1,
+		filterOptions = new CheckBoxGroupFieldEditor(Constants.FILTEROPTIONS, "FilterOptions", 1,
 				valuesAndNames, dialogContentContainer, true);
 		filterOptions.setPreferenceStore(getPreferenceStore());
 		filterOptionsStoringLocations = filterOptions.getPreferenceStoringLocations();

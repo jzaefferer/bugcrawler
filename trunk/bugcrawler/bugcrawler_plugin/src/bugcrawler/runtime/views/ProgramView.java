@@ -14,6 +14,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.bugtree.BugTreeViewerFilterDialog;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.utils.ImageStore;
 
@@ -64,7 +65,7 @@ public class ProgramView extends ViewPart {
 	private void createActions() {
 		preferences = new Action() {
 			public void run() {
-				String[] filter = new String[] { "bugcrawler_plugin.preferences" };
+				String[] filter = new String[] { Constants.PREFERENCES_EXTENSION };
 				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, null, filter, null);
 				dialog.open();
 			}

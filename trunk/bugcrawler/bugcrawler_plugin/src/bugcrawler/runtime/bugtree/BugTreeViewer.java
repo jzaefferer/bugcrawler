@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.editor.UIBug;
@@ -74,7 +75,7 @@ public class BugTreeViewer extends TreeViewer {
 				if (selectedNode instanceof Bug) {
 					try {
 						Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
-								.openEditor(new UIBug(), "bugcrawler_plugin.editor");
+								.openEditor(new UIBug(), Constants.EDITOR_EXTENSION);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
