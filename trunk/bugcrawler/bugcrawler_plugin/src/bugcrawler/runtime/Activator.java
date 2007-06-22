@@ -41,5 +41,4 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageStore getImagestore(){
 	    return imageStore;
 	}
-
 }

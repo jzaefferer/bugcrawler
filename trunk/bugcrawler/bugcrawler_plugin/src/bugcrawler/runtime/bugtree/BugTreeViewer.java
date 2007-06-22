@@ -11,8 +11,10 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
+import bugcrawler.runtime.editor.UIBug;
 import bugcrawler.utils.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
@@ -22,9 +24,9 @@ public class BugTreeViewer extends TreeViewer {
 	private final TreeViewer viewer = this;
 
 	private BugTreeViewerFilter bugTreeViewerFilter;
-	
+
 	public BugTreeViewer(final Composite parent) {
-		super(parent,SWT.FULL_SELECTION);
+		super(parent, SWT.FULL_SELECTION);
 		tree = this.getTree();
 		tree.setLayout(new WeightedTableLayout(new int[] { 25, 75, -1, -1, -1, -1, -1, -1, -1 }, new int[] {
 				-1, -1, 70, 60, 60, 60, 60, 60, 70 }));
@@ -33,49 +35,54 @@ public class BugTreeViewer extends TreeViewer {
 		buildColumnsHeaders();
 		this.setLabelProvider(new BugTreeLabelProvider(parent));
 		this.setContentProvider(new BugTreeContentProvider());
-		//this.setCellModifier(new BugTreeCellModifier());
-		//addPropertiesAndEditors();		
+		// this.setCellModifier(new BugTreeCellModifier());
+		// addPropertiesAndEditors();
 		addDoubleClickListener();
-		//this.setInput(Arrays.asList(BugTestData.getTestData()));
-		//this.expandToLevel(-1);
+		// this.setInput(Arrays.asList(BugTestData.getTestData()));
+		// this.expandToLevel(-1);
 	}
 
+	// private void addPropertiesAndEditors(){
+	// String[] properties = new String[ColumnTitles.values().length];
+	// TextCellEditor[] tce = new TextCellEditor[ColumnTitles.values().length];
+	// for(int i=0;i<properties.length;i++){
+	// properties[i]= (ColumnTitles.values())[i].toString();
+	// if(i!=0){
+	// tce[i] = new TextCellEditor(tree);
+	// }
+	// }
+	// this.setColumnProperties(properties);
+	// this.setCellEditors(tce);
+	// }
+
 	private void buildColumnsHeaders() {
-		for (int i=0;i<TreeColumnTitles.values().length;i++){
+		for (int i = 0; i < TreeColumnTitles.values().length; i++) {
 			TreeColumnTitles title = TreeColumnTitles.values()[i];
 			TreeColumn column = new TreeColumn(tree, SWT.LEFT);
 			column.setText(title.toString());
 			addListenerForSortingColumns(column);
-			if(i>0){
+			if (i > 0) {
 				column.setMoveable(true);
 			}
 		}
 	}
-	
-//	private void addPropertiesAndEditors(){
-//		String[] properties = new String[ColumnTitles.values().length];
-//		TextCellEditor[] tce = new TextCellEditor[ColumnTitles.values().length];
-//		for(int i=0;i<properties.length;i++){
-//			properties[i]= (ColumnTitles.values())[i].toString();
-//			if(i!=0){
-//				tce[i] = new TextCellEditor(tree);
-//			}
-//		}
-//		this.setColumnProperties(properties);
-//		this.setCellEditors(tce);
-//	}
 
-	private void addDoubleClickListener(){
-		this.addDoubleClickListener(new IDoubleClickListener(){
+	private void addDoubleClickListener() {
+		this.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				Object selectedNode = ((IStructuredSelection)event.getSelection()).getFirstElement();
-				if(selectedNode instanceof Bug){
-					System.out.println("jep das isn bug");	
+				Object selectedNode = ((IStructuredSelection) event.getSelection()).getFirstElement();
+				if (selectedNode instanceof Bug) {
+					try {
+						Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
+								.openEditor(new UIBug(), "bugcrawler.runtime.editor");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
 	}
-	
+
 	public void addListenerForSortingColumns(final TreeColumn column) {
 		column.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -94,17 +101,17 @@ public class BugTreeViewer extends TreeViewer {
 			}
 		});
 	}
-	
-	public void addBugTreeFilter(BugTreeViewerFilterDialog dialog){
-		if(bugTreeViewerFilter!= null){
+
+	public void addBugTreeFilter(BugTreeViewerFilterDialog dialog) {
+		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
 		}
 		bugTreeViewerFilter = new BugTreeViewerFilter(dialog);
 		this.addFilter(bugTreeViewerFilter);
 	}
-	
-	public void removeBugTreeFilter(){
-		if(bugTreeViewerFilter!=null){
+
+	public void removeBugTreeFilter() {
+		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
 		}
 	}

@@ -46,4 +46,13 @@
                visible="true"/>
       </perspectiveExtension>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="bugcrawler.runtime.editor.BugEditor"
+            default="false"
+            icon="images/alt_window_16.gif"
+            id="bugcrawler.runtime.editor"
+            name="Bugeditor"/>
+   </extension>
 </plugin>
