@@ -1,7 +1,13 @@
 package bugcrawler.runtime.editor;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
@@ -16,6 +22,7 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
+import bugcrawler.utils.WeightedTableLayout;
 
 public class BugFormPage extends FormPage {
 
@@ -41,8 +48,7 @@ public class BugFormPage extends FormPage {
 		createLayout(form);
 		td = new TableWrapData();
 		td.align = TableWrapData.LEFT;
-		toolkit.createText(form.getBody(), "Creator");
-		toolkit.createText(form.getBody(), bug.getOwner());
+		td.grabHorizontal=true;
 		createSection();
 
 	}
@@ -58,7 +64,21 @@ public class BugFormPage extends FormPage {
 		Section section = toolkit.createSection(form.getBody(), Section.DESCRIPTION | Section.TITLE_BAR
 				| Section.TWISTIE | Section.EXPANDED);
 		section.setText("Expandable Composite title");
-		Label client = toolkit.createLabel(section, bug.getOwner(), SWT.WRAP);
+		section.setDescription("Hier alles zum Bug bla blubb");
+		//Label client = toolkit.createLabel(section, bug.getOwner(), SWT.WRAP);
+		Composite client = toolkit.createComposite(section, SWT.WRAP);
+		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+		GridLayout gl = new GridLayout();
+		client.setLayout(gl);
+		Table table = toolkit.createTable(client, SWT.NONE);
+		table.setLayout(new WeightedTableLayout(new int[]{-1,1},new int[]{150,-1}));
+		table.setLayoutData(gd);
+		new TableColumn(table,SWT.NONE);
+		new TableColumn(table,SWT.NONE);
+		new TableItem(table,SWT.NONE).setText(new String[]{"Ticket:",bug.getTicket()});
+		new TableItem(table,SWT.NONE).setText(new String[]{"Component:",bug.getComponent()});
+		new TableItem(table,SWT.NONE).setText(new String[]{"Version:",bug.getVersion()});
+		new TableItem(table,SWT.NONE).setText(new String[]{"Milestone:",bug.getMilestone()});
 		section.setClient(client);
 		section.setActiveToggleColor(toolkit.getHyperlinkGroup().getActiveForeground());
 		section.setToggleColor(toolkit.getColors().getColor(FormColors.SEPARATOR));
