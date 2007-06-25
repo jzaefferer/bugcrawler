@@ -20,6 +20,8 @@ import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
 
+	public static String ID = "bugcrawler.plugin.views.ProgramView";
+	
 	private BugTreeViewer bugTreeViewer;
 
 	private Action preferences;

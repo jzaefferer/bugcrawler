@@ -30,7 +30,13 @@
             icon="icons/sample.gif"
             id="bugcrawler.plugin.views.ProgramView"
             name="Bugcrawler"/>
+      <stickyView
+            closeable="true"
+            id="bugcrawler.plugin.views.ProgramView"
+            location="TOP"
+            moveable="true"/>
    </extension>
+   <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension targetID="bugcrawler.perspective">
@@ -45,7 +51,7 @@
                standalone="true"
                visible="true"/>
       </perspectiveExtension>
-   </extension>
+   </extension>-->
    <extension
          point="org.eclipse.ui.editors">
       <editor

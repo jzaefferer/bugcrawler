@@ -25,10 +25,8 @@ public class BugFormPage extends FormPage {
 		FormToolkit toolkit = managedForm.getToolkit();
 		form.setText(bug.getSummary());
 		form.setBackgroundImage(Activator.getImagestore().get("form_banner.gif"));
-
 		GridLayout layout = new GridLayout();
 		form.getBody().setLayout(layout);
-
 		toolkit.createText(form.getBody(), "Creator");
 		toolkit.createText(form.getBody(), bug.getOwner());
 	}

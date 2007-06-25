@@ -28,7 +28,6 @@ public class BugEditor extends FormEditor {
 		try {
 			this.setInput(UIBug);
 			Bug bug = ((UIBug)UIBug).getBug();
-			System.out.println(this+ bug.getTicket()+ bug.getTicket());
 			addPage(new BugFormPage(this, bug.getTicket(), bug.getTicket()));
 			setActivePage(bug.getTicket());
 		} catch (Exception e) {

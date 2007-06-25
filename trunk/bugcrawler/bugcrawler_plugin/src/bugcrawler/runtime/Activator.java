@@ -5,6 +5,7 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import bugcrawler.runtime.views.ProgramView;
 import bugcrawler.utils.ImageStore;
 
 /**
@@ -25,6 +26,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		imageStore = new ImageStore("images");
+		Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ProgramView.ID);
 	}
 
 	public void stop(BundleContext context) throws Exception {
