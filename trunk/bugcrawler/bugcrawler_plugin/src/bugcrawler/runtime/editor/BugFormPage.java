@@ -29,6 +29,7 @@ public class BugFormPage extends FormPage {
 		GridLayout layout = new GridLayout();
 		form.getBody().setLayout(layout);
 
+		toolkit.createText(form.getBody(), "Creator");
 		toolkit.createText(form.getBody(), bug.getOwner());
 	}
 	

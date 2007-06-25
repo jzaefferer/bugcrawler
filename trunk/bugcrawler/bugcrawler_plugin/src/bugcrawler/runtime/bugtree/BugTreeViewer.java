@@ -78,7 +78,7 @@ public class BugTreeViewer extends TreeViewer {
 				Object selectedNode = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedNode instanceof Bug) {
 					try {
-						if (editor == null) {
+						if (Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()== null) {
 							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
 									.openEditor(new UIBug((Bug) selectedNode), Constants.EDITOR_EXTENSION);
 							((BugEditor)editor).setBugTreeViewer(bugTreeViewer);

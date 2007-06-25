@@ -39,7 +39,7 @@
                id="bugcrawler.plugin.views.ProgramView"
                moveable="true"
                ratio="0.5"
-               relationship="top"
+               relationship="left"
                relative="org.eclipse.ui.views.TaskList"
                showTitle="true"
                standalone="true"

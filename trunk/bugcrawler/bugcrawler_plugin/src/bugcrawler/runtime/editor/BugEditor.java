@@ -16,7 +16,6 @@ public class BugEditor extends FormEditor {
 	private BugTreeViewer bugTreeViewer;
 
 	protected FormToolkit createToolkit(Display display) {
-		// Create a toolkit that shares colors between editors.
 		return new FormToolkit(Activator.getDefault().getFormColors(display));
 	}
 
@@ -29,6 +28,7 @@ public class BugEditor extends FormEditor {
 		try {
 			this.setInput(UIBug);
 			Bug bug = ((UIBug)UIBug).getBug();
+			System.out.println(this+ bug.getTicket()+ bug.getTicket());
 			addPage(new BugFormPage(this, bug.getTicket(), bug.getTicket()));
 			setActivePage(bug.getTicket());
 		} catch (Exception e) {
@@ -61,5 +61,7 @@ public class BugEditor extends FormEditor {
 	public void setBugTreeViewer(BugTreeViewer bugTreeViewer) {
 		this.bugTreeViewer = bugTreeViewer;
 	}
+	
+	
 
 }
