@@ -15,7 +15,7 @@ public class ProjectTableViewer extends CheckboxTableViewer {
 	
 	@SuppressWarnings("deprecation")
 	public ProjectTableViewer(Composite parent) {
-		super(parent, SWT.MULTI | SWT.HIDE_SELECTION );
+		super(parent, SWT.MULTI | SWT.FULL_SELECTION); // SWT.HIDE_SELECTION
 		table = this.getTable();
 		table.setLayout(new WeightedTableLayout(new int[] {-1,2,1,1}, new int[] {20,-1,-1,-1}));
 		table.setHeaderVisible(true);
