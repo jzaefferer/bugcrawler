@@ -8,6 +8,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.bugtree.BugTreeViewer;
+import bugcrawler.runtime.data.Bug;
 
 public class BugEditor extends FormEditor {
 
@@ -24,10 +25,12 @@ public class BugEditor extends FormEditor {
 		addPagesToEditor(this.getEditorInput());
 	}
 
-	public void addPagesToEditor(IEditorInput bug) {
+	public void addPagesToEditor(IEditorInput UIBug) {
 		try {
-			this.setInput(bug);
-			addPage(new BugFormPage(this, "1", ((UIBug)bug).getBug().getTicket()));
+			this.setInput(UIBug);
+			Bug bug = ((UIBug)UIBug).getBug();
+			addPage(new BugFormPage(this, bug.getTicket(), bug.getTicket()));
+			setActivePage(bug.getTicket());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

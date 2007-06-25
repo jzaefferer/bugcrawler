@@ -79,12 +79,10 @@ public class BugTreeViewer extends TreeViewer {
 				if (selectedNode instanceof Bug) {
 					try {
 						if (editor == null) {
-							System.out.println("test");
 							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
 									.openEditor(new UIBug((Bug) selectedNode), Constants.EDITOR_EXTENSION);
 							((BugEditor)editor).setBugTreeViewer(bugTreeViewer);
 						} else {
-							System.out.println("test2");
 							((BugEditor)editor).addPagesToEditor(new UIBug((Bug) selectedNode));
 						}
 
