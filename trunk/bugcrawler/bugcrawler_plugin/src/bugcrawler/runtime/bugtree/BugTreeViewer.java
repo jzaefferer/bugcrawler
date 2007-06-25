@@ -10,11 +10,13 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
+import org.eclipse.ui.IEditorPart;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
+import bugcrawler.runtime.editor.BugEditor;
 import bugcrawler.runtime.editor.UIBug;
 import bugcrawler.utils.WeightedTableLayout;
 
@@ -22,9 +24,11 @@ public class BugTreeViewer extends TreeViewer {
 
 	private final Tree tree;
 
-	private final TreeViewer viewer = this;
+	private final BugTreeViewer bugTreeViewer = this;
 
 	private BugTreeViewerFilter bugTreeViewerFilter;
+
+	private IEditorPart editor;
 
 	public BugTreeViewer(final Composite parent) {
 		super(parent, SWT.FULL_SELECTION);
@@ -74,8 +78,16 @@ public class BugTreeViewer extends TreeViewer {
 				Object selectedNode = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedNode instanceof Bug) {
 					try {
-						Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
-								.openEditor(new UIBug(), Constants.EDITOR_EXTENSION);
+						if (editor == null) {
+							System.out.println("test");
+							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
+									.openEditor(new UIBug((Bug) selectedNode), Constants.EDITOR_EXTENSION);
+							((BugEditor)editor).setBugTreeViewer(bugTreeViewer);
+						} else {
+							System.out.println("test2");
+							((BugEditor)editor).addPagesToEditor(new UIBug((Bug) selectedNode));
+						}
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -98,7 +110,7 @@ public class BugTreeViewer extends TreeViewer {
 				}
 				String sortIdentifier = column.getText();
 				tree.setSortDirection(dir);
-				viewer.setSorter(new BugTreeComperator(sortIdentifier, dir));
+				bugTreeViewer.setSorter(new BugTreeComperator(sortIdentifier, dir));
 			}
 		});
 	}
@@ -115,6 +127,14 @@ public class BugTreeViewer extends TreeViewer {
 		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
 		}
+	}
+
+	public IEditorPart getEditor() {
+		return editor;
+	}
+
+	public void setEditor(IEditorPart editor) {
+		this.editor = editor;
 	}
 
 }

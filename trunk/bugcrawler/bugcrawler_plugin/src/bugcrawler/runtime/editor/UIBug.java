@@ -4,7 +4,15 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
-public class UIBug implements IEditorInput{
+import bugcrawler.runtime.data.Bug;
+
+public class UIBug implements IEditorInput {
+
+	private Bug bug;
+
+	public UIBug(Bug bug) {
+		this.bug = bug;
+	}
 
 	public boolean exists() {
 		return false;
@@ -15,7 +23,7 @@ public class UIBug implements IEditorInput{
 	}
 
 	public String getName() {
-		return "POPOPO";
+		return bug.getSummary();
 	}
 
 	public IPersistableElement getPersistable() {
@@ -23,7 +31,7 @@ public class UIBug implements IEditorInput{
 	}
 
 	public String getToolTipText() {
-		return "-.- wieviele Errors noch";
+		return bug.getSummary();
 	}
 
 	public Object getAdapter(Class adapter) {

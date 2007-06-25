@@ -1,5 +1,7 @@
 package bugcrawler.runtime;
 
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -15,6 +17,7 @@ public class Activator extends AbstractUIPlugin {
 	
 	private static ImageStore imageStore;
 	
+	private FormColors formColors;
 	public Activator() {
 		plugin = this;
 	}
@@ -41,4 +44,13 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageStore getImagestore(){
 	    return imageStore;
 	}
+	
+	public FormColors getFormColors(Display display) {
+		if (formColors == null) {
+			formColors = new FormColors(display);
+			formColors.markShared();
+		}
+		return formColors;
+	}
+	
 }
