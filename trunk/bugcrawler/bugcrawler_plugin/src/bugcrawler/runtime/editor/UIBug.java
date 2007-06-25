@@ -37,5 +37,9 @@ public class UIBug implements IEditorInput {
 	public Object getAdapter(Class adapter) {
 		return null;
 	}
+	
+	public Bug getBug(){
+		return bug;
+	}
 
 }

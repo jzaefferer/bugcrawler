@@ -27,7 +27,7 @@ public class BugEditor extends FormEditor {
 	public void addPagesToEditor(IEditorInput bug) {
 		try {
 			this.setInput(bug);
-			addPage(new BugFormPage(this, "1", "Test"));
+			addPage(new BugFormPage(this, "1", ((UIBug)bug).getBug().getTicket()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
