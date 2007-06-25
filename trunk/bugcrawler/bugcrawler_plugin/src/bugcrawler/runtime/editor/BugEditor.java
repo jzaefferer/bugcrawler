@@ -31,7 +31,7 @@ public class BugEditor extends FormEditor {
 			addPage(new BugFormPage(this, bug.getTicket(), bug.getTicket()));
 			setActivePage(bug.getTicket());
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException(e); 
 		}
 	}
 
