@@ -97,7 +97,7 @@ public class BugFormPage extends FormPage {
 				| Section.TWISTIE | Section.EXPANDED);
 		section.setText("Bug Description");
 		section.setDescription("Hier alles zum Bug bla blubb");
-		Label client = toolkit.createLabel(section, bug.getDescription(),SWT.NONE);
+		Label client = toolkit.createLabel(section, bug.getDescription(),SWT.WRAP);
 		section.setClient(client);
 		section.setActiveToggleColor(toolkit.getHyperlinkGroup().getActiveForeground());
 		section.setToggleColor(toolkit.getColors().getColor(FormColors.SEPARATOR));
