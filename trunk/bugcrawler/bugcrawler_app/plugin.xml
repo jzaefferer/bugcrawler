@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="bugcrawler.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Bugcrawler"
+            class="bugcrawler.Perspective"
+            id="bugcrawler.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="bugcrawler.application"
+            name="Bugcrawler">
+         <property
+               name="windowImages"
+               value="icons/alt_window_16.gif"/>
+         <property
+               name="aboutText"
+               value="Dummes stupides Drecksprogramm"/>
+      </product>
+   </extension>
+
+</plugin>
