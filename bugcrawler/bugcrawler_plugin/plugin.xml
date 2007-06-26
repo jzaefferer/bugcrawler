@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="bugcrawler.runtime.preferences.PreferencePageExt"
+            id="bugcrawler_plugin.preferences.PreferencePageExt"
+            name="Bugcrawler"/>
+   </extension>
+   <extension
+         id="bugcrawler_plugin.preferences"
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="bugcrawler.runtime.preferences.PreferenceInitializer"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro">
+      <intro
+            class="bugcrawler.runtime.intro.Intro"
+            id="bugcrawler_plugin.intro"/>
+		<introProductBinding
+			introId="bugcrawler_plugin.intro"
+			productId="bugcrawler.product">
+		</introProductBinding>            
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="bugcrawler.runtime.views.ProgramView"
+            icon="icons/sample.gif"
+            id="bugcrawler.plugin.views.ProgramView"
+            name="Bugcrawler"/>
+      <stickyView
+            closeable="true"
+            id="bugcrawler.plugin.views.ProgramView"
+            location="TOP"
+            moveable="true"/>
+   </extension>
+   <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="bugcrawler.perspective">
+         <view
+               closeable="false"
+               id="bugcrawler.plugin.views.ProgramView"
+               moveable="true"
+               ratio="0.5"
+               relationship="left"
+               relative="org.eclipse.ui.views.TaskList"
+               showTitle="true"
+               standalone="true"
+               visible="true"/>
+      </perspectiveExtension>
+   </extension>-->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="bugcrawler.runtime.editor.BugEditor"
+            default="false"
+            icon="images/alt_window_16.gif"
+            id="bugcrawler_plugin.editor"
+            name="Bugeditor"/>
+   </extension>
+</plugin>
