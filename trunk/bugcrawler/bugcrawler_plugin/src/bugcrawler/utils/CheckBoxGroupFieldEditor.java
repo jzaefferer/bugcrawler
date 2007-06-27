@@ -14,6 +14,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 
+/**
+ * A field editor for checkbox type preferences.
+ * <p>
+ * This class may be used as is, or subclassed as required.
+ * </p>
+ * 
+ * @author TSO
+ */
 public class CheckBoxGroupFieldEditor extends FieldEditor {
 
 	/**
@@ -239,7 +247,7 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 				check.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent event) {
 						Boolean checkState = ((Boolean) event.widget.getData()).booleanValue();
-						
+
 						if (checkState.booleanValue() == true) {
 							fireValueChanged(VALUE, checkState, new Boolean(false));
 							event.widget.setData(new Boolean(false));

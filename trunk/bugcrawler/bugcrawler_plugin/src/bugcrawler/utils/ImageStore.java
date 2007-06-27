@@ -12,6 +12,11 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import bugcrawler.runtime.Activator;
 
+/**
+ * A ImageStore which easily handles images in plugin-packages
+ * 
+ * @author TSO
+ */
 public class ImageStore {
 
 	private ImageRegistry imageRegistry = new ImageRegistry();
