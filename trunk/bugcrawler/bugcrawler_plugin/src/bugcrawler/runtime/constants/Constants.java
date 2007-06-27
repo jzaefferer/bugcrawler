@@ -17,6 +17,8 @@ public class Constants {
     public static final String FILTER = "filter";
     public static final String FILTEROPTIONS = "filterOptions";
     
+    public static final String LOADEDONCE = "true";
+    
     
 	
 }
