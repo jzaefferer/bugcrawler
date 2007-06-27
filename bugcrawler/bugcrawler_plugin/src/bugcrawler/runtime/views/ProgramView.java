@@ -20,27 +20,50 @@ import bugcrawler.utils.ImageStore;
 
 public class ProgramView extends ViewPart {
 
+	/**
+	 * ID of this ViewPart for standart init
+	 */
 	public static String ID = "bugcrawler.plugin.views.ProgramView";
-	
+
+	/**
+	 * the TreeViewer listen bugs to projects in priorities
+	 */
 	private BugTreeViewer bugTreeViewer;
 
+	/**
+	 * Action which allow to configure the preferences of the bugcrawler
+	 */
 	private Action preferences;
 
+	/**
+	 * Action which opens a wizard to select a project shown in the tree
+	 */
 	private Action projects;
 
+	/**
+	 * Action which opens a filter to allow custom filtering
+	 */
 	private Action filter;
-	
+
+	/**
+	 * the parent Control of this ViewPart
+	 */
 	private Composite parent;
-	
+
+	/**
+	 * Default Constructor for initialize this ViewPart
+	 */
 	public ProgramView() {
 	}
 
 	/**
-	 * This is a callback that will allow us to create the viewer and initialize
-	 * it.
+	 * Creates the viewer and initialize it.
+	 * 
+	 * @param parent
+	 *            the parent's control
 	 */
 	public void createPartControl(Composite parent) {
-		this.parent=parent;
+		this.parent = parent;
 		bugTreeViewer = new BugTreeViewer(parent);
 		createPulldownMenu();
 		createActions();
@@ -48,6 +71,9 @@ public class ProgramView extends ViewPart {
 
 	}
 
+	/**
+	 * Creating a pulldownmenu and set the control to the treeviewer
+	 */
 	private void createPulldownMenu() {
 		MenuManager menuManager = new MenuManager("#PopupMenu");
 		menuManager.setRemoveAllWhenShown(true);
@@ -57,6 +83,9 @@ public class ProgramView extends ViewPart {
 
 	}
 
+	/**
+	 * Adding all actions to the bars
+	 */
 	private void contributeToActionBars() {
 		IActionBars bars = getViewSite().getActionBars();
 		bars.getMenuManager().add(filter);
@@ -64,6 +93,12 @@ public class ProgramView extends ViewPart {
 		bars.getToolBarManager().add(projects);
 	}
 
+	/**
+	 * Creates the following actions shown in the view: Preferences which allow
+	 * to configure the preferences of the bugcrawler Projects opens a wizard to
+	 * select a project shown in the tree Filter opens a dialog to allow to
+	 * apply a custom filter on the tree
+	 */
 	private void createActions() {
 		preferences = new Action() {
 			public void run() {
@@ -75,16 +110,16 @@ public class ProgramView extends ViewPart {
 		preferences.setText("Bugcrawler Konfigurieren...");
 		preferences.setToolTipText("Einstellungen zum Konfigurieren des Bugcrawlers...");
 		preferences.setImageDescriptor(ImageStore.getImageDescriptor("images/preferences.png"));
-		
-		
+
 		projects = new Action() {
 			public void run() {
-				try{
-				ProjectWizard projectWizard = new ProjectWizard(bugTreeViewer);
-				//ProjectWizardDialog dialog = new ProjectWizardDialog(parent.getShell(), projectWizard);
-				WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
-				dialog.open();
-				}catch(Exception e){
+				try {
+					ProjectWizard projectWizard = new ProjectWizard(bugTreeViewer);
+					// ProjectWizardDialog dialog = new
+					// ProjectWizardDialog(parent.getShell(), projectWizard);
+					WizardDialog dialog = new WizardDialog(parent.getShell(), projectWizard);
+					dialog.open();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -93,9 +128,9 @@ public class ProgramView extends ViewPart {
 		projects.setToolTipText("Projekten zum Einsehen von Bugs wählen.");
 		projects.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 				ISharedImages.IMG_TOOL_NEW_WIZARD));
-		
-		filter = new Action(){
-			public void run(){
+
+		filter = new Action() {
+			public void run() {
 				BugTreeViewerFilterDialog bugFilterDialog = new BugTreeViewerFilterDialog(parent.getShell());
 				bugFilterDialog.setBugTreeViewer(bugTreeViewer);
 				bugFilterDialog.open();
