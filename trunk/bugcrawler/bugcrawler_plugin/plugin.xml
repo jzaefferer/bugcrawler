@@ -16,6 +16,7 @@
          point="org.eclipse.ui.intro">
       <intro
             class="bugcrawler.runtime.intro.Intro"
+            icon="images/eclipse_icon.gif"
             id="bugcrawler_plugin.intro"/>
 		<introProductBinding
 			introId="bugcrawler_plugin.intro"
@@ -26,7 +27,7 @@
          point="org.eclipse.ui.views">
       <view
             class="bugcrawler.runtime.views.ProgramView"
-            icon="icons/sample.gif"
+            icon="images/eclipse_icon.gif"
             id="bugcrawler.plugin.views.ProgramView"
             name="Bugcrawler"/>
       <!--<stickyView
@@ -56,7 +57,7 @@
       <editor
             class="bugcrawler.runtime.editor.BugEditor"
             default="false"
-            icon="images/alt_window_16.gif"
+            icon="images/eclipse_icon.gif"
             id="bugcrawler_plugin.editor"
             name="Bugeditor"/>
    </extension>
