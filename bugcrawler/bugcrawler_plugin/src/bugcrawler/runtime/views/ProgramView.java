@@ -49,7 +49,7 @@ public class ProgramView extends ViewPart {
 	 * the parent Control of this ViewPart
 	 */
 	private Composite parent;
-
+	
 	/**
 	 * Default Constructor for initialize this ViewPart
 	 */
