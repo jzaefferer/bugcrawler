@@ -18,6 +18,11 @@ import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.utils.ImageStore;
 
+/**
+ * The Main View which displays the bugTreeViewer
+ * 
+ * @author TSO
+ */
 public class ProgramView extends ViewPart {
 
 	/**

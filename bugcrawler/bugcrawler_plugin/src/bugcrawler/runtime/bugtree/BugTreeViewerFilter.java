@@ -8,9 +8,8 @@ import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
-import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.data.Project;
-import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
+import bugcrawler.runtime.data.TreeColumnTitles;
 
 public class BugTreeViewerFilter extends ViewerFilter {
 	
@@ -18,8 +17,8 @@ public class BugTreeViewerFilter extends ViewerFilter {
 	
 	protected BugTreeViewerFilter(){}
 	
-	public BugTreeViewerFilter(BugTreeViewerFilterDialog dialog){
-		this.filterOptionsStoringLocations = dialog.getfilterOptionsStoringLocations();
+	public BugTreeViewerFilter(String[] filterOptionsStoringLocations){
+		this.filterOptionsStoringLocations = filterOptionsStoringLocations;
 	}
 	
 	private IPreferenceStore getPreferenceStore(){

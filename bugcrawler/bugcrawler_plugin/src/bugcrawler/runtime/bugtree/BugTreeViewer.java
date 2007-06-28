@@ -18,7 +18,6 @@ import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.editor.BugEditor;
 import bugcrawler.runtime.editor.UIBug;
-import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.utils.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
@@ -114,11 +113,11 @@ public class BugTreeViewer extends TreeViewer {
 		});
 	}
 
-	public void addBugTreeFilter(BugTreeViewerFilterDialog dialog) {
+	public void addBugTreeFilter(String[] filterOptionsStoringLocations) {
 		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
 		}
-		bugTreeViewerFilter = new BugTreeViewerFilter(dialog);
+		bugTreeViewerFilter = new BugTreeViewerFilter(filterOptionsStoringLocations);
 		this.addFilter(bugTreeViewerFilter);
 	}
 

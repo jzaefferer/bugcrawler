@@ -28,10 +28,10 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	private ProjectWizardProjectPage projectpage;
 	
 
-	/*
+	/**
 	 * the filterpage to set a filter for the choosen projects
 	 */
-	//private ProjectWizardFilterPage filterpage;
+	private ProjectWizardFilterPage filterpage;
 	
 	/**
 	 * Initializes the Wizard
@@ -71,8 +71,8 @@ public class ProjectWizard extends Wizard implements INewWizard{
 		projectpage = new ProjectWizardProjectPage(bugTreeViewer);
 		addPage(projectpage);
 		
-		/*filterpage = new ProjectWizardFilterPage();
-		addPage(filterpage);*/
+		filterpage = new ProjectWizardFilterPage();
+		addPage(filterpage);
 	}
 	
 	/**
