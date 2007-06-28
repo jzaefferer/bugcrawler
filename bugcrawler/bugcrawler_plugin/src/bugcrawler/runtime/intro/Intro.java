@@ -36,7 +36,7 @@ public class Intro extends IntroPart {
 	 * @see org.eclipse.ui.part.IntroPart#getTitleImage()
 	 */
 	public Image getTitleImage() {
-		return Activator.getImagestore().get("alt_window_16.gif");
+		return Activator.getImagestore().get("eclipse_icon.gif");
 	}
 
 	/* (non-Javadoc)
