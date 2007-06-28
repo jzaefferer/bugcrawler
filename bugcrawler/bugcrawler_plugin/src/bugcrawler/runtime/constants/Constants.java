@@ -7,7 +7,7 @@ public class Constants {
 	
 	// ID to find the extension-points
 	public static final String EDITOR_EXTENSION = "bugcrawler_plugin.editor";
-	public static final String PREFERENCES_EXTENSION = "bugcrawler_plugin.preferences";
+	public static final String PREFERENCES_PAGE_EXTENSION = "bugcrawler_plugin.preferences.PreferencePageExt";
 	
 	// preference strings used to store usersettings
     public static final String USERNAME = "userName";

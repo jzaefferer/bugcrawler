@@ -9,7 +9,6 @@
             name="Bugcrawler"/>
    </extension>
    <extension
-         id="bugcrawler_plugin.preferences"
          point="org.eclipse.core.runtime.preferences">
       <initializer class="bugcrawler.runtime.preferences.PreferenceInitializer"/>
    </extension>
@@ -30,13 +29,13 @@
             icon="icons/sample.gif"
             id="bugcrawler.plugin.views.ProgramView"
             name="Bugcrawler"/>
-      <stickyView
+      <!--<stickyView
             closeable="true"
             id="bugcrawler.plugin.views.ProgramView"
             location="TOP"
-            moveable="true"/>
+            moveable="true"/>-->
    </extension>
-   <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW
+   <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW -->
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension targetID="bugcrawler.perspective">
@@ -45,13 +44,13 @@
                id="bugcrawler.plugin.views.ProgramView"
                moveable="true"
                ratio="0.5"
-               relationship="left"
+               relationship="right"
                relative="org.eclipse.ui.views.TaskList"
                showTitle="true"
                standalone="true"
                visible="true"/>
       </perspectiveExtension>
-   </extension>-->
+   </extension><!-- -->
    <extension
          point="org.eclipse.ui.editors">
       <editor

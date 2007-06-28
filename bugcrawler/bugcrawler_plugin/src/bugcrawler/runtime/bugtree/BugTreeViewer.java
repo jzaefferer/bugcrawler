@@ -18,6 +18,7 @@ import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.editor.BugEditor;
 import bugcrawler.runtime.editor.UIBug;
+import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.utils.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {

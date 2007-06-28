@@ -1,4 +1,4 @@
-package bugcrawler.runtime.bugtree;
+package bugcrawler.runtime.filterdialog;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
