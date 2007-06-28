@@ -5,8 +5,6 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import bugcrawler.runtime.constants.Constants;
-import bugcrawler.runtime.views.ProgramView;
 import bugcrawler.utils.ImageStore;
 
 /**
@@ -28,10 +26,10 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		imageStore = new ImageStore("images");
 		
-		if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
+		/*if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
 			Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ProgramView.ID);
 			Activator.getDefault().getPreferenceStore().setValue(Constants.LOADEDONCE, true);
-		}
+		}*/
 	}
 
 	public void stop(BundleContext context) throws Exception {

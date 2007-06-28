@@ -10,6 +10,7 @@ import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.runtime.data.Project;
+import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 
 public class BugTreeViewerFilter extends ViewerFilter {
 	

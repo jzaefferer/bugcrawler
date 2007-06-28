@@ -23,7 +23,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Constants.HOSTNAME, "localhost");
 		store.setDefault(Constants.PORT, 4000);
 		store.setDefault(Constants.FILTER, "");
-		//store.setDefault(PreferenceConstants.FILTEROPTIONS + ";Ticket", true);
+		// store.setDefault(PreferenceConstants.FILTEROPTIONS + ";Ticket",
+		// true);
 	}
 
 }

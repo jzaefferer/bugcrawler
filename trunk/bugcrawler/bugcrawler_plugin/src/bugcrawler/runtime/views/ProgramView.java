@@ -13,8 +13,8 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
 import bugcrawler.runtime.bugtree.BugTreeViewer;
-import bugcrawler.runtime.bugtree.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.constants.Constants;
+import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.utils.ImageStore;
 
@@ -102,8 +102,8 @@ public class ProgramView extends ViewPart {
 	private void createActions() {
 		preferences = new Action() {
 			public void run() {
-				String[] filter = new String[] { Constants.PREFERENCES_EXTENSION };
-				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, null, filter, null);
+				String[] filter = new String[] { Constants.PREFERENCES_PAGE_EXTENSION };
+				PreferenceDialog dialog = PreferencesUtil.createPreferenceDialogOn(null, filter[0], filter, null);
 				dialog.open();
 			}
 		};
