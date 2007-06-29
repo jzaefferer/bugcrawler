@@ -33,14 +33,11 @@ public class ProjectWizardFilterPage extends WizardPage{
 	/**
 	 * create the Appearance of the FilterPage
 	 */
-	public void createControl(Composite parent) {
+	public void createControl(Composite parent) {		
+		GridData gridData = new GridData(GridData.FILL_BOTH);
 		Composite container = new Composite(parent, SWT.NONE);
-		
 		GridLayout dialogLayout = new GridLayout(1, false);
 		container.setLayout(dialogLayout);
-		GridData gridData = new GridData(GridData.FILL_BOTH);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
 		container.setLayoutData(gridData);
 		
 		Composite dialogContentContainer = new Composite(container, SWT.NULL);
