@@ -44,8 +44,6 @@ public class ResourceStore {
 	 * FontRegistry to store Fonts
 	 */
 	private FontRegistry fontRegistry = new FontRegistry();
-	
-	private static String DEFAULT_FONT = "DEFAULT_FONT";
 
 	/**
 	 * Creates an ResourceStore to get Links which are located in a
@@ -153,11 +151,11 @@ public class ResourceStore {
 
 
 	/**
-	 * 	
 	 * Get a Font out of the ResourceStore
 	 * 
 	 * @param fontNames
-	 * 			array with fontnames. If one fontname isn't found the next will be used.
+	 * 			array with fontnames. If the first fontname isn't found the next will be used.
+	 * 			If no fontname is found the callback 
 	 * @param size
 	 * 			the size of the font in points
 	 * @param style
@@ -166,7 +164,7 @@ public class ResourceStore {
 	 * 			the font 
 	 */
 	public Font getFont(String[] fontNames, int size, int style) {
-		if (style != SWT.BOLD || style != SWT.ITALIC || style != SWT.NORMAL) {
+		if (!(style == SWT.BOLD || style == SWT.ITALIC || style == SWT.NORMAL)) {
 			throw new RuntimeException(
 					"No valid style, please use SWT.BOLD,SWT.ITALIC or SWT.NORMAL - called style as int:"
 							+ style);
@@ -182,22 +180,12 @@ public class ResourceStore {
 			fontData[i] = new FontData(fontNames[i], size, style);
 			symbolicName.append(fontNames[i]);
 		}
-		Font font = fontRegistry.get(symbolicName.toString());
 		
-		// if the font by the symbolicName was not found register it!
-		if (font == null) {
-			fontRegistry.put(symbolicName.toString(), fontData);
-			font = fontRegistry.get(symbolicName.toString());
-			
-			// if the font by the symbolic name wasn't found because the given font-name doesn't exists,
-			// do a fallback to the defaultfont
-			if(font == null){
-				fontRegistry.put(DEFAULT_FONT, new FontData[]{new FontData()});
-				font = fontRegistry.get(DEFAULT_FONT);
-				//TODO Warning, dass Fallback auf Default-Font stattgefunden hat!
-			}
-		}
-		return font;
+		// Put the given Font to the registry
+		fontRegistry.put(symbolicName.toString(), fontData);
+		
+		// Get the given Font or if no Font of the fontNames exists load default
+		return fontRegistry.get(symbolicName.toString());
 	}
 
 	/**
