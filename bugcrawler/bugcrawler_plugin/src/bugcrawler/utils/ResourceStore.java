@@ -9,7 +9,10 @@ import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -23,26 +26,30 @@ import bugcrawler.runtime.Activator;
  */
 /**
  * @author TSO
- *
+ * 
  */
 public class ResourceStore {
 
-	
 	/**
-	 * ImageRegistry of the Plugin
+	 * ImageRegistry to store Images
 	 */
 	private ImageRegistry imageRegistry = new ImageRegistry();
-	
-	/**
-	 * ColorRegistry of the Plugin
-	 */
-	private ColorRegistry colorRegistry = new ColorRegistry();
-	
-	private FontRegistry fontRegistry = new FontRegistry();
-	
 
 	/**
-	 * Creates an ResourceStore to get Links which are located in a plugins-folder
+	 * ColorRegistry to store Colors
+	 */
+	private ColorRegistry colorRegistry = new ColorRegistry();
+
+	/**
+	 * FontRegistry to store Fonts
+	 */
+	private FontRegistry fontRegistry = new FontRegistry();
+	
+	private static String DEFAULT_FONT = "DEFAULT_FONT";
+
+	/**
+	 * Creates an ResourceStore to get Links which are located in a
+	 * plugins-folder
 	 * 
 	 * @param imageDirectory
 	 *            where to find the images.
@@ -73,9 +80,8 @@ public class ResourceStore {
 	 * Check if the given path ends with a file.separator
 	 * 
 	 * @param imageDirectory
-	 * 				the Directory where to find the images in the plugin
-	 * @return boolean
-	 * 			if the path ends with /
+	 *            the Directory where to find the images in the plugin
+	 * @return boolean if the path ends with /
 	 */
 	private boolean pathEndsWithSeperator(String imageDirectory) {
 		return imageDirectory.endsWith(System.getProperty("file.separator"));
@@ -114,36 +120,100 @@ public class ResourceStore {
 	 */
 	public Image getImage(String imageName) {
 		Image image = imageRegistry.get(imageName);
-		if(image == null){
-			throw new RuntimeException("Image not found in the registry - called name:"+imageName);
+		if (image == null) {
+			throw new RuntimeException("Image not found in the registry - called name:" + imageName);
 		}
 		return image;
 	}
-	
 
 	/**
 	 * Get a Color out of the ResourceStore
 	 * 
 	 * @param red
-	 * 			the red component of the new instance
+	 *            the red component of the new instance
 	 * @param green
-	 * 			the green component of the new instance
+	 *            the green component of the new instance
 	 * @param blue
-	 * 			the blue component of the new instance
-	 * @return Color
-	 * 			the new color registered in a ColorRegistry
+	 *            the blue component of the new instance
+	 * @return Color the new color registered in a ColorRegistry
 	 */
-	public Color getColor(int red, int green, int blue){
-		if(red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0){
-			throw new RuntimeException("Values of RGB are not valid - called values: RED-"+red+",GREEN-"+green+",BLUE-"+blue);
+	public Color getColor(int red, int green, int blue) {
+		if (red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0) {
+			throw new RuntimeException("Values of RGB are not valid - called values:RED-" + red + ",GREEN-"
+					+ green + ",BLUE-" + blue);
 		}
-		String symbolicName = red+";"+green+";"+blue;
+		String symbolicName = red + ";" + green + ";" + blue;
 		Color newColor = colorRegistry.get(symbolicName);
-		if(newColor == null){
-			colorRegistry.put(symbolicName,new RGB(red,green,blue));
+		if (newColor == null) {
+			colorRegistry.put(symbolicName, new RGB(red, green, blue));
 			newColor = colorRegistry.get(symbolicName);
 		}
 		return newColor;
 	}
-	
+
+
+	/**
+	 * 	
+	 * Get a Font out of the ResourceStore
+	 * 
+	 * @param fontNames
+	 * 			array with fontnames. If one fontname isn't found the next will be used.
+	 * @param size
+	 * 			the size of the font in points
+	 * @param style
+	 * 			the style of the font use SWT.BOLD, SWT.ITALIC or SWT.NORMAL
+	 * @return Font
+	 * 			the font 
+	 */
+	public Font getFont(String[] fontNames, int size, int style) {
+		if (style != SWT.BOLD || style != SWT.ITALIC || style != SWT.NORMAL) {
+			throw new RuntimeException(
+					"No valid style, please use SWT.BOLD,SWT.ITALIC or SWT.NORMAL - called style as int:"
+							+ style);
+		} else if (size <= 0) {
+			throw new RuntimeException("Size is smaller or equals 0 but has to be greater - called size:"
+					+ size);
+		} else if (testFontNames(fontNames)) {
+			throw new RuntimeException("One or more Fontnames are null - called fontnames:" + fontNames);
+		}
+		FontData[] fontData = new FontData[fontNames.length];
+		StringBuilder symbolicName = new StringBuilder();
+		for (int i = 0; i < fontNames.length; i++) {
+			fontData[i] = new FontData(fontNames[i], size, style);
+			symbolicName.append(fontNames[i]);
+		}
+		Font font = fontRegistry.get(symbolicName.toString());
+		
+		// if the font by the symbolicName was not found register it!
+		if (font == null) {
+			fontRegistry.put(symbolicName.toString(), fontData);
+			font = fontRegistry.get(symbolicName.toString());
+			
+			// if the font by the symbolic name wasn't found because the given font-name doesn't exists,
+			// do a fallback to the defaultfont
+			if(font == null){
+				fontRegistry.put(DEFAULT_FONT, new FontData[]{new FontData()});
+				font = fontRegistry.get(DEFAULT_FONT);
+				//TODO Warning, dass Fallback auf Default-Font stattgefunden hat!
+			}
+		}
+		return font;
+	}
+
+	/**
+	 * Test if one of the given fontNames is null
+	 * 
+	 * @param fontNames
+	 *            the fontNames given to getFont
+	 * @return boolean if one of the fontNames is null
+	 */
+	private boolean testFontNames(String[] fontNames) {
+		for (int i = 0; i < fontNames.length; i++) {
+			if (fontNames[i] == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }
