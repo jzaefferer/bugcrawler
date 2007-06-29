@@ -44,7 +44,7 @@ public class BugFormPage extends FormPage {
 		form = managedForm.getForm();
 		toolkit = managedForm.getToolkit();
 		form.setText(bug.getSummary());
-		form.setBackgroundImage(Activator.getImagestore().get("form_banner.gif"));
+		form.setBackgroundImage(Activator.getResourceStore().getImage("form_banner.gif"));
 		createLayout(form);
 		createBugOverviewSection();
 		createBugDescriptionSection();

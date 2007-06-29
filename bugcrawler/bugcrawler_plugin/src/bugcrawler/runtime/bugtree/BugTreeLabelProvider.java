@@ -16,11 +16,14 @@ import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
+import bugcrawler.utils.ResourceStore;
 
 public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider,
 		ITableColorProvider {
 
 	private Composite parent;
+	
+	private ResourceStore resourceStore = Activator.getResourceStore();
 
 	public BugTreeLabelProvider(Composite parent) {
 		this.parent = parent;
@@ -29,9 +32,9 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	public Image getColumnImage(Object element, int columnIndex) {
 		if ((element instanceof Bug) && (columnIndex == 1)) {
 			if (((Bug) element).isSolved()) {
-				return Activator.getImagestore().get("solved.png");
+				return resourceStore.getImage("solved.png");
 			} else {
-				return Activator.getImagestore().get("notsolved.png");
+				return resourceStore.getImage("notsolved.png");
 			}
 		}
 		return null;
@@ -76,7 +79,7 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 
 	public Color getBackground(Object element, int columnIndex) {
 		if (element instanceof Project) {
-			return new Color(parent.getDisplay(), 225, 225, 225);
+			return resourceStore.getColor(225, 225, 225);
 		}
 		Priority priority = null;
 		if (element instanceof Bug) {
@@ -97,19 +100,19 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		Color color = null;
 		switch (priority) {
 		case Highest:
-			color = new Color(display, 255, 220, 204);
+			color = resourceStore.getColor(255, 220, 204);
 			break;
 		case High:
-			color = new Color(display, 255, 238, 222);
+			color = resourceStore.getColor(255, 238, 222);
 			break;
 		case Medium:
-			color = new Color(display, 255, 250, 205);
+			color = resourceStore.getColor(255, 250, 205);
 			break;
 		case Low:
-			color = new Color(display, 246, 246, 246);
+			color = resourceStore.getColor(246, 246, 246);
 			break;
 		case Lowest:
-			color = new Color(display, 251, 251, 251);
+			color = resourceStore.getColor(251, 251, 251);
 			break;
 		}
 		return color;
