@@ -181,7 +181,7 @@ public class ResourceStore {
 			symbolicName.append(fontNames[i]);
 		}
 		
-		// Put the given Font to the registry
+		// Put the given Fonts to the registry
 		fontRegistry.put(symbolicName.toString(), fontData);
 		
 		// Get the given Font or if no Font of the fontNames exists load default
