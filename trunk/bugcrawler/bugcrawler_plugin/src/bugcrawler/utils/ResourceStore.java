@@ -54,12 +54,12 @@ public class ResourceStore {
 	}
 
 	/**
-	 * Set the ImagePath to get Links which are located in a plugin-folder
+	 * Set the ImagesPath to get Links which are located in a plugin-folder
 	 * 
 	 * @param imageDirectory
 	 *            where to find the images.
 	 */
-	public void setImagePath(String imageDirectory) {
+	public void setImagesPath(String imageDirectory) {
 		try {
 			imageDirectory = pathEndsWithSeperator(imageDirectory) == true ? imageDirectory.substring(0,
 					imageDirectory.length() - 1) : imageDirectory;
