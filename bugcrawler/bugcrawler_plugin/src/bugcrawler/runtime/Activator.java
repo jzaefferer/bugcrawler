@@ -25,7 +25,8 @@ public class Activator extends AbstractUIPlugin {
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		resourceStore = new ResourceStore("images");
+		resourceStore = new ResourceStore();
+		resourceStore.setImagePath("images");
 
 		//Log4jConfigurer.initLogging(locateFile("log4j.properties"));
 
