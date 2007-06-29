@@ -45,16 +45,22 @@ public class ResourceStore {
 	 */
 	private FontRegistry fontRegistry = new FontRegistry();
 
+	private boolean directoryHasBeenSet = false;
+
 	/**
-	 * Creates an ResourceStore to get Links which are located in a
-	 * plugins-folder
+	 * Initializes the ResourceStore to handle Images, Colors or Fonts
+	 */
+	public ResourceStore() {
+	}
+
+	/**
+	 * Set the ImagePath to get Links which are located in a plugin-folder
 	 * 
 	 * @param imageDirectory
 	 *            where to find the images.
 	 */
-	public ResourceStore(String imageDirectory) {
+	public void setImagePath(String imageDirectory) {
 		try {
-
 			imageDirectory = pathEndsWithSeperator(imageDirectory) == true ? imageDirectory.substring(0,
 					imageDirectory.length() - 1) : imageDirectory;
 
@@ -72,6 +78,7 @@ public class ResourceStore {
 		} catch (SecurityException sec) {
 			throw new RuntimeException("Access to the ImageDirectory \"" + imageDirectory + "\"denied", sec);
 		}
+		directoryHasBeenSet = true;
 	}
 
 	/**
@@ -101,8 +108,8 @@ public class ResourceStore {
 	 * relative path.
 	 * 
 	 * @param path
-	 *            the path
-	 * @return the image descriptor
+	 *            the path to an image including the imagename
+	 * @return the image descriptor of the image to the given path
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin("bugcrawler.plugin", path);
@@ -111,12 +118,25 @@ public class ResourceStore {
 	/**
 	 * Gets an Image out of the ResourceStore.
 	 * 
+	 * Example: <code>resourceStore.getImage("myPicture.png");</code>
+	 * 
+	 * Warning: It is required to set the ImagePath. The path is the with <code>
+	 * ResourceStore store = new ResourceStore();
+	 * store.setImagePath("<my_image_directory_in_the_root_of_the_plugin>");
+	 * </code>
+	 * 
+	 * 
 	 * @param imageName
 	 *            of the Image for <u>Example:</u> myImage.gif
 	 * 
 	 * @return the image
 	 */
 	public Image getImage(String imageName) {
+		if (!directoryHasBeenSet) {
+			throw new RuntimeException(
+					"Image Directory hasn't been set - set it with store.setImagePath(String).");
+		}
+
 		Image image = imageRegistry.get(imageName);
 		if (image == null) {
 			throw new RuntimeException("Image not found in the registry - called name:" + imageName);
@@ -126,6 +146,8 @@ public class ResourceStore {
 
 	/**
 	 * Get a Color out of the ResourceStore
+	 * 
+	 * Example: <code>new ResourceStore().getColor(210,204,110);</code>
 	 * 
 	 * @param red
 	 *            the red component of the new instance
@@ -149,19 +171,20 @@ public class ResourceStore {
 		return newColor;
 	}
 
-
 	/**
 	 * Get a Font out of the ResourceStore
 	 * 
+	 * Example:
+	 * <code>new ResourceStore().getFont(new String[]{"Times New Roman" , "Courier New"}, 20, SWT.NORMAL);</code>
+	 * 
 	 * @param fontNames
-	 * 			array with fontnames. If the first fontname isn't found the next will be used.
-	 * 			If no fontname is found the callback 
+	 *            array with fontnames. If the first fontname isn't found the
+	 *            next will be used. If no fontname is found the callback
 	 * @param size
-	 * 			the size of the font in points
+	 *            the size of the font in points
 	 * @param style
-	 * 			the style of the font use SWT.BOLD, SWT.ITALIC or SWT.NORMAL
-	 * @return Font
-	 * 			the font 
+	 *            the style of the font use SWT.BOLD, SWT.ITALIC or SWT.NORMAL
+	 * @return Font configured by the given values
 	 */
 	public Font getFont(String[] fontNames, int size, int style) {
 		if (!(style == SWT.BOLD || style == SWT.ITALIC || style == SWT.NORMAL)) {
@@ -180,10 +203,10 @@ public class ResourceStore {
 			fontData[i] = new FontData(fontNames[i], size, style);
 			symbolicName.append(fontNames[i]);
 		}
-		
+
 		// Put the given Fonts to the registry
 		fontRegistry.put(symbolicName.toString(), fontData);
-		
+
 		// Get the given Font or if no Font of the fontNames exists load default
 		return fontRegistry.get(symbolicName.toString());
 	}
