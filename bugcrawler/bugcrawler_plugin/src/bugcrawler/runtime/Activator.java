@@ -1,8 +1,5 @@
 package bugcrawler.runtime;
 
-import java.io.IOException;
-
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -30,7 +27,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		resourceStore = new ResourceStore("images");
 
-		Log4jConfigurer.initLogging(locateFile("log4j.properties"));
+		//Log4jConfigurer.initLogging(locateFile("log4j.properties"));
 
 		/*
 		 * if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
@@ -40,13 +37,13 @@ public class Activator extends AbstractUIPlugin {
 		 */
 	}
 
-	public String locateFile(String name) {
+	/*public String locateFile(String name) {
 		try {
 			return FileLocator.toFileURL(plugin.getBundle().getEntry(name)).getFile();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
+	}*/
 
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
