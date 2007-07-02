@@ -1,7 +1,7 @@
 package bugcrawler.runtime.constants;
 
 /**
- * Constant definitions for plug-in preferences
+ * Constant definitions for plug-in preferences and properties
  */
 public class Constants {
 	
