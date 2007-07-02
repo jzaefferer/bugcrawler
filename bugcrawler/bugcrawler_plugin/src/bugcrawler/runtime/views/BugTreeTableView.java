@@ -26,11 +26,6 @@ import bugcrawler.utils.ResourceStore;
 public class BugTreeTableView extends ViewPart {
 
 	/**
-	 * ID of this ViewPart for standart init
-	 */
-	public static String ID = "bugcrawler.plugin.views.ProgramView";
-
-	/**
 	 * the TreeViewer listen bugs to projects in priorities
 	 */
 	private BugTreeViewer bugTreeViewer;
