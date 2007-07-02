@@ -13,19 +13,41 @@ import bugcrawler.runtime.data.TreeColumnTitles;
 
 public class BugTreeViewerFilter extends ViewerFilter {
 	
+	/**
+	 * the preferenceStore references of the checkboxes
+	 * 
+	 * @see bugcrawler.utils.CheckBoxGroupFieldEditor
+	 */
 	private String[] filterOptionsStoringLocations;
 	
-	protected BugTreeViewerFilter(){}
+	/*
+	 * Make the Default-Constructor not accessible
+	 */
+	private BugTreeViewerFilter(){}
 	
+	/**
+	 * Initializes the BugTreeViewerFilter
+	 * 
+	 * @param filterOptionsStoringLocations
+	 * 					look which column should be sorted and which nit by reading the storingLocations of the
+	 * 					CheckBogGroupFieldEditor
+	 */
 	public BugTreeViewerFilter(String[] filterOptionsStoringLocations){
 		this.filterOptionsStoringLocations = filterOptionsStoringLocations;
 	}
 	
+	/**
+	 * Get the PluginsPerferenceStore
+	 * 
+	 * @return the PreferenceStore of this plugin
+	 */
 	private IPreferenceStore getPreferenceStore(){
 		return Activator.getDefault().getPreferenceStore();
 	}
 	
-	@Override
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 */
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		String filter = getPreferenceStore().getString(Constants.FILTER);
 		

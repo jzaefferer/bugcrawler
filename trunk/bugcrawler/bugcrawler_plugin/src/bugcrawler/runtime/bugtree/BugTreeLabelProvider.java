@@ -8,8 +8,6 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
@@ -18,17 +16,30 @@ import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
 import bugcrawler.utils.ResourceStore;
 
-public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider,
-		ITableColorProvider {
+/**
+ * Provides the appearance of the bugTreeViewer
+ * 
+ * @author TSO
+ */
+public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
 
-	private Composite parent;
-	
+	/**
+	 * The resourceStore to get Colors
+	 */
 	private ResourceStore resourceStore = Activator.getResourceStore();
 
-	public BugTreeLabelProvider(Composite parent) {
-		this.parent = parent;
+	/**
+	 * Initializes the BugTreeLabelProvider
+	 */
+	public BugTreeLabelProvider() {
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object,
+	 *      int)
+	 */
 	public Image getColumnImage(Object element, int columnIndex) {
 		if ((element instanceof Bug) && (columnIndex == 1)) {
 			if (((Bug) element).isSolved()) {
@@ -40,6 +51,12 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object,
+	 *      int)
+	 */
 	public String getColumnText(Object element, int columnIndex) {
 		if (element instanceof Project && columnIndex == 0) {
 			return ((Project) element).getName();
@@ -77,6 +94,12 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		return new SimpleDateFormat("MM/dd/yyyy").format(date);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.viewers.ITableColorProvider#getBackground(java.lang.Object,
+	 *      int)
+	 */
 	public Color getBackground(Object element, int columnIndex) {
 		if (element instanceof Project) {
 			return resourceStore.getColor(225, 225, 225);
@@ -87,16 +110,29 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		} else if (element instanceof BugContainer)
 			priority = ((BugContainer) element).getPriority();
 		if (priority != null) {
-			return chooseColor(priority, parent.getDisplay());
+			return chooseColor(priority);
 		}
 		return null;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.viewers.ITableColorProvider#getForeground(java.lang.Object,
+	 *      int)
+	 */
 	public Color getForeground(Object element, int columnIndex) {
 		return null;
 	}
 
-	public Color chooseColor(Priority priority, Display display) {
+	/**
+	 * Creates a color for each priority
+	 * 
+	 * @param priority
+	 *            to get the color for
+	 * @return the color to the priority
+	 */
+	public Color chooseColor(Priority priority) {
 		Color color = null;
 		switch (priority) {
 		case Highest:

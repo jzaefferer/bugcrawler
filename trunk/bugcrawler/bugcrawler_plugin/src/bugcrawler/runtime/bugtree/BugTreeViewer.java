@@ -22,14 +22,32 @@ import bugcrawler.utils.WeightedTableLayout;
 
 public class BugTreeViewer extends TreeViewer {
 
+	/**
+	 * The Tree of this TreeViewer
+	 */
 	private final Tree tree;
 
+	/**
+	 * Instance of its own
+	 */
 	private final BugTreeViewer bugTreeViewer = this;
 
+	/**
+	 * bugTreeViewerFilter to store the current filter to the bugTreeViewer
+	 */
 	private BugTreeViewerFilter bugTreeViewerFilter;
 
+	/**
+	 * Editor to view bugs
+	 */
 	private IEditorPart editor;
 
+	/**
+	 * Initializes the bugTreeViewer
+	 * 
+	 * @param parent
+	 *            the parent where to initializes the bugTreeViewer on
+	 */
 	public BugTreeViewer(final Composite parent) {
 		super(parent, SWT.FULL_SELECTION);
 		tree = this.getTree();
@@ -38,7 +56,7 @@ public class BugTreeViewer extends TreeViewer {
 		tree.setLinesVisible(true);
 		tree.setHeaderVisible(true);
 		buildColumnsHeaders();
-		this.setLabelProvider(new BugTreeLabelProvider(parent));
+		this.setLabelProvider(new BugTreeLabelProvider());
 		this.setContentProvider(new BugTreeContentProvider());
 		// this.setCellModifier(new BugTreeCellModifier());
 		// addPropertiesAndEditors();
@@ -60,6 +78,9 @@ public class BugTreeViewer extends TreeViewer {
 	// this.setCellEditors(tce);
 	// }
 
+	/**
+	 * Builds the columnHeaders for the bugTreeViewer
+	 */
 	private void buildColumnsHeaders() {
 		for (int i = 0; i < TreeColumnTitles.values().length; i++) {
 			TreeColumnTitles title = TreeColumnTitles.values()[i];
@@ -72,18 +93,25 @@ public class BugTreeViewer extends TreeViewer {
 		}
 	}
 
+	/**
+	 * adding a Listener to the bugTreeViewer and if a bug has been
+	 * doubleclicked the a new editor will be opened. If an editor is opened a
+	 * new page will be added shown the next clicked bug
+	 */
 	private void addDoubleClickListener() {
 		this.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				Object selectedNode = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedNode instanceof Bug) {
 					try {
-						if (Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()== null) {
-							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
-									.openEditor(new UIBug((Bug) selectedNode), Constants.EDITOR_EXTENSION);
-							((BugEditor)editor).setBugTreeViewer(bugTreeViewer);
+						if (Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
+								.getActiveEditor() == null) {
+							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow()
+									.getActivePage().openEditor(new UIBug((Bug) selectedNode),
+											Constants.EDITOR_EXTENSION);
+							((BugEditor) editor).setBugTreeViewer(bugTreeViewer);
 						} else {
-							((BugEditor)editor).addPagesToEditor(new UIBug((Bug) selectedNode));
+							((BugEditor) editor).addPagesToEditor(new UIBug((Bug) selectedNode));
 						}
 
 					} catch (Exception e) {
@@ -94,6 +122,13 @@ public class BugTreeViewer extends TreeViewer {
 		});
 	}
 
+	/**
+	 * Adding a Listener which tests if the selected column is the column to
+	 * sort. If it is so, the column will be sorted in a specific direction
+	 * 
+	 * @param column
+	 *            for adding the listener
+	 */
 	public void addListenerForSortingColumns(final TreeColumn column) {
 		column.addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event e) {
@@ -113,6 +148,13 @@ public class BugTreeViewer extends TreeViewer {
 		});
 	}
 
+	/**
+	 * Adds a new bugTreeViewerFilter to this viewer.
+	 * 
+	 * @param filterOptionsStoringLocations
+	 *            of the checkboxes of the CheckBoxGroupFieldEditor displayed in
+	 *            the Filterdialog or the wizard
+	 */
 	public void addBugTreeFilter(String[] filterOptionsStoringLocations) {
 		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
@@ -121,18 +163,12 @@ public class BugTreeViewer extends TreeViewer {
 		this.addFilter(bugTreeViewerFilter);
 	}
 
+	/**
+	 * Removes a existing bugTreeViewerFilter of this viewer.
+	 */
 	public void removeBugTreeFilter() {
 		if (bugTreeViewerFilter != null) {
 			this.removeFilter(bugTreeViewerFilter);
 		}
 	}
-
-	public IEditorPart getEditor() {
-		return editor;
-	}
-
-	public void setEditor(IEditorPart editor) {
-		this.editor = editor;
-	}
-
 }
