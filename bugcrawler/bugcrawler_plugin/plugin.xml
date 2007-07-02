@@ -26,7 +26,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="bugcrawler.runtime.views.BugTreeTable"
+            class="bugcrawler.runtime.views.BugTreeTableView"
             icon="images/eclipse_icon.gif"
             id="bugcrawler_plugin.views.BugTreeTableView"
             name="Bugcrawler"/>
