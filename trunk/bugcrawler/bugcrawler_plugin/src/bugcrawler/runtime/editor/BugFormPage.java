@@ -110,6 +110,7 @@ public class BugFormPage extends FormPage {
 		GridLayout gl = new GridLayout();
 		client.setLayout(gl);
 		Table table = toolkit.createTable(client, SWT.NONE);
+		table.setLinesVisible(false);
 		table.setLayout(new WeightedTableLayout(new int[] { -1, 1 }, new int[] { 150, -1 }));
 		table.setLayoutData(gd);
 		new TableColumn(table, SWT.NONE);
