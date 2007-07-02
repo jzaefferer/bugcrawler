@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
 
 import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.constants.Constants;
@@ -40,7 +41,7 @@ public class BugTreeViewer extends TreeViewer {
 	/**
 	 * Editor to view bugs
 	 */
-	private IEditorPart editor;
+	private BugEditor editor;
 
 	/**
 	 * Initializes the bugTreeViewer
@@ -104,22 +105,36 @@ public class BugTreeViewer extends TreeViewer {
 				Object selectedNode = ((IStructuredSelection) event.getSelection()).getFirstElement();
 				if (selectedNode instanceof Bug) {
 					try {
+						Bug bug = (Bug) selectedNode;
 						if (Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
 								.getActiveEditor() == null) {
-							editor = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow()
-									.getActivePage().openEditor(new UIBug((Bug) selectedNode),
-											Constants.EDITOR_EXTENSION);
-							((BugEditor) editor).setBugTreeViewer(bugTreeViewer);
+							editor = (BugEditor) getBugEditor(bug);
+							editor.setBugTreeViewer(bugTreeViewer);
 						} else {
-							((BugEditor) editor).addPagesToEditor(new UIBug((Bug) selectedNode));
+							if(editor.findPage(bug.toString()) == null){
+								editor.addPagesToEditor(new UIBug(bug));
+							}
 						}
-
+						editor.setActivePage(bug.toString());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		});
+	}
+
+	/**
+	 * Gets the Editor
+	 * 
+	 * @param bug
+	 *            the doubleclicked bug
+	 * @return IEditorPart the BugEditor
+	 * @throws PartInitException
+	 */
+	private IEditorPart getBugEditor(Bug bug) throws PartInitException {
+		return Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
+				new UIBug(bug), Constants.EDITOR_EXTENSION);
 	}
 
 	/**
