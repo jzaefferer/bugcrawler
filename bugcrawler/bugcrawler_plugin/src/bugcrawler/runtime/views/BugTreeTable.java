@@ -23,7 +23,7 @@ import bugcrawler.utils.ResourceStore;
  * 
  * @author TSO
  */
-public class ProgramView extends ViewPart {
+public class BugTreeTable extends ViewPart {
 
 	/**
 	 * ID of this ViewPart for standart init
@@ -58,7 +58,7 @@ public class ProgramView extends ViewPart {
 	/**
 	 * Default Constructor for initialize this ViewPart
 	 */
-	public ProgramView() {
+	public BugTreeTable() {
 	}
 
 	/**
