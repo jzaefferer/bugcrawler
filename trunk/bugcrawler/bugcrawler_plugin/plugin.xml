@@ -26,15 +26,20 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="bugcrawler.runtime.views.ProgramView"
+            class="bugcrawler.runtime.views.BugTreeTable"
             icon="images/eclipse_icon.gif"
-            id="bugcrawler.plugin.views.ProgramView"
+            id="bugcrawler_plugin.views.BugTreeTableView"
             name="Bugcrawler"/>
       <stickyView
             closeable="true"
-            id="bugcrawler.plugin.views.ProgramView"
+            id="bugcrawler_plugin.views.ProgramView"
             location="TOP"
             moveable="false"/>
+      <view
+            class="bugcrawler.runtime.diagram"
+            icon="images/eclipse_icon.gif"
+            id="bugcrawler_plugin.view1"
+            name="Bugcrawler Diagram"/>
    </extension>
    <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW
    <extension
