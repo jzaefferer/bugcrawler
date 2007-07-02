@@ -125,7 +125,6 @@ public class ResourceStore {
 	 * store.setImagePath("<my_image_directory_in_the_root_of_the_plugin>");
 	 * </code>
 	 * 
-	 * 
 	 * @param imageName
 	 *            of the Image for <u>Example:</u> myImage.gif
 	 * 
@@ -179,7 +178,8 @@ public class ResourceStore {
 	 * 
 	 * @param fontNames
 	 *            array with fontnames. If the first fontname isn't found the
-	 *            next will be used. If no fontname is found the callback
+	 *            next will be used. If no fontname is found there is fallback to
+	 *            default
 	 * @param size
 	 *            the size of the font in points
 	 * @param style
