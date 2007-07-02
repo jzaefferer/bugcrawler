@@ -11,6 +11,11 @@ import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Project;
 import bugcrawler.runtime.data.TreeColumnTitles;
 
+/**
+ * Filters bugs
+ * 
+ * @author NoCTUrN's pLaCe
+ */
 public class BugTreeViewerFilter extends ViewerFilter {
 	
 	/**
