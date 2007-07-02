@@ -14,25 +14,60 @@ import org.eclipse.swt.widgets.Shell;
 import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
+/**
+ * creates a FilterDialog
+ * 
+ * @author TSO
+ */
 public class BugTreeViewerFilterDialog extends Dialog {
 
+	/**
+	 * GridDate for positioning the components
+	 */
 	private GridData gridData;
 
+	/**
+	 * The Text for which the bugTreeFilter has to filter
+	 */
 	private StringFieldEditor filter;
 
+	/**
+	 * Checkboxes in which column the text should be found in
+	 */
 	private CheckBoxGroupFieldEditor filterOptions;
 
+	/**
+	 * The bugTreeViewer where to set the filter to
+	 */
 	private BugTreeViewer bugTreeViewer;
 
+	/**
+	 * The bugTreeFilterComponents
+	 */
 	private BugTreeViewerFilterComponents components;
 
+	/**
+	 * the preferenceStore references of the checkboxes
+	 * 
+	 * @see bugcrawler.utils.CheckBoxGroupFieldEditor
+	 */
 	private String[] filterOptionsStoringLocations;
 
+	/**
+	 * Creates the Dialog
+	 * 
+	 * @param parentShell
+	 *            the parent Shell of which the dialog is created
+	 */
 	public BugTreeViewerFilterDialog(Shell parentShell) {
 		super(parentShell);
 	}
 
-	@Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 */
 	protected Control createDialogArea(Composite parent) {
 
 		Composite container = (Composite) super.createDialogArea(parent);
@@ -56,7 +91,11 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		return container;
 	}
 
-	@Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
+	 */
 	protected void okPressed() {
 		filter.store();
 		filterOptions.store();
@@ -64,27 +103,52 @@ public class BugTreeViewerFilterDialog extends Dialog {
 		super.okPressed();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
+	 */
 	@Override
 	protected void cancelPressed() {
 		bugTreeViewer.removeBugTreeFilter();
 		super.cancelPressed();
 	}
 
+	/**
+	 * sets the BugTreeViewer to this dialog
+	 * 
+	 * @param bugTreeViewer
+	 *            where the filter has to be applied on
+	 */
 	public void setBugTreeViewer(BugTreeViewer bugTreeViewer) {
 		this.bugTreeViewer = bugTreeViewer;
 	}
 
+	/**
+	 * Get the FilterOptionsStoringLocation for each checkbox used in the
+	 * CheckBoxGroupFieldEditor
+	 * 
+	 * @return String[] with the FilterOptions
+	 */
 	public String[] getfilterOptionsStoringLocations() {
 		return filterOptionsStoringLocations;
 	}
 
-	@Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
+	 */
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 
-	@Override
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.dialogs.Dialog#getInitialSize()
+	 */
 	protected Point getInitialSize() {
 		return new Point(200, 365);
 	}
