@@ -29,17 +29,17 @@
             class="bugcrawler.runtime.views.BugTreeTableView"
             icon="images/eclipse_icon.gif"
             id="bugcrawler_plugin.views.BugTreeTableView"
-            name="Bugcrawler"/>
+            name="BugTreeTableView"/>
       <stickyView
             closeable="true"
-            id="bugcrawler_plugin.views.ProgramView"
+            id="bugcrawler_plugin.views.BugTreeTableView"
             location="TOP"
             moveable="false"/>
       <view
-            class="bugcrawler.runtime.diagram"
+            class="bugcrawler.runtime.views.BugDiagramView"
             icon="images/eclipse_icon.gif"
-            id="bugcrawler_plugin.view1"
-            name="Bugcrawler Diagram"/>
+            id="bugcrawler_plugin.views.BugDiagramView"
+            name="BugDiagramView"/>
    </extension>
    <!-- OLD PERSPECTIVE-EXTENSION NOT GOOD TO HANDLE. NEW LAYOUT -> STICKYVIEW
    <extension

@@ -3,5 +3,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="packages/gnujaxp.jar"/>
+	<classpathentry kind="lib" path="packages/itext-2.0.2.jar"/>
+	<classpathentry kind="lib" path="packages/jcommon-1.0.10.jar"/>
+	<classpathentry kind="lib" path="packages/jfreechart-1.0.6.jar"/>
+	<classpathentry kind="lib" path="packages/jfreechart-1.0.6-experimental.jar"/>
+	<classpathentry kind="lib" path="packages/jfreechart-1.0.6-swt.jar"/>
+	<classpathentry kind="lib" path="packages/junit.jar"/>
+	<classpathentry kind="lib" path="packages/servlet.jar"/>
+	<classpathentry kind="lib" path="packages/swtgraphics2d.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
