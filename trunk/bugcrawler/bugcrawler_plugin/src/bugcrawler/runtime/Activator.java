@@ -27,9 +27,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		resourceStore = new ResourceStore();
 		resourceStore.setImagesPath("images");
-
-		//Log4jConfigurer.initLogging(locateFile("log4j.properties"));
-
+		
 		/*
 		 * if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
 		 * Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ProgramView.ID);
@@ -38,13 +36,6 @@ public class Activator extends AbstractUIPlugin {
 		 */
 	}
 
-	/*public String locateFile(String name) {
-		try {
-			return FileLocator.toFileURL(plugin.getBundle().getEntry(name)).getFile();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}*/
 
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -71,5 +62,4 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return formColors;
 	}
-
 }
