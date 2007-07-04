@@ -5,8 +5,8 @@ import java.util.List;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Bug;
+import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Project;
 
 /**
