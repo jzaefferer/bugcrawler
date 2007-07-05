@@ -6,7 +6,7 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import bugcrawler.utils.ResourceStore;
+import bugcrawler.utils.ResourceStoreNew;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -16,7 +16,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private static ResourceStore resourceStore;
+	private static ResourceStoreNew resourceStore;
 
 	private FormColors formColors;
 
@@ -26,8 +26,9 @@ public class Activator extends AbstractUIPlugin {
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		resourceStore = new ResourceStore(getBundle());
+		resourceStore = new ResourceStoreNew(getBundle());
 		resourceStore.setImagesPath("images");
+		
 		
 		/*
 		 * if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
@@ -52,7 +53,7 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public static ResourceStore getResourceStore() {
+	public static ResourceStoreNew getResourceStore() {
 		return resourceStore;
 	}
 
