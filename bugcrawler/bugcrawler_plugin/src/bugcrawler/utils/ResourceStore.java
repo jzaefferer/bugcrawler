@@ -1,7 +1,5 @@
 package bugcrawler.utils;
 
-import static java.lang.System.getProperty;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +41,20 @@ public class ResourceStore {
 	private FontRegistry fontRegistry = new FontRegistry();
 
 	/**
+	 * Font-Constants that are normaly cross-platform compatible
+	 */
+	public static enum DefaultFont{
+		Arial,Helvetica,Times,Courier,Symbol
+	}
+	
+	/**
+	 * Color-Constants
+	 */
+	public static enum DefaultColor{
+		Black, White, Red, Green, Blue, Magenta, Cyan, Yellow, Orange, Brown, Gray
+	}
+	
+	/**
 	 * Plugin-Bundle
 	 */
 	private Bundle bundle;
@@ -61,8 +73,8 @@ public class ResourceStore {
 	/**
 	 * File-Separator of the System
 	 */
-	private static final String filesep = getProperty("file.separator");
-
+	private static final String filesep = System.getProperty("file.separator");
+	
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
@@ -106,7 +118,7 @@ public class ResourceStore {
 	 * @param directory
 	 *            where to list all files and directory
 	 */
-	public void getAllImages(File directory) {
+	private void getAllImages(File directory) {
 		File[] files = directory.listFiles();
 
 		for (File file : files) {
@@ -240,6 +252,33 @@ public class ResourceStore {
 		}
 		return newColor;
 	}
+	
+	/**
+	 * Get a DefaultColor out of the ResourceStore
+	 * 
+	 * Example: <code>new ResourceStore().getColor(DefaultColor.Red);</code>
+	 * 
+	 * @param DefaultColor
+	 * 			a defaultcolor shared by the ResourceStore
+	 * 
+	 * @return Color the new color registered in a ColorRegistry
+	 */
+	public Color getDefaultColor(ResourceStore.DefaultColor defaultColor){
+		switch(defaultColor){
+			case Black: return getColor(0, 0, 0);
+			case White: return getColor(255, 255, 255);
+			case Red: return getColor(255, 0, 0);
+			case Green: return getColor(0, 255, 0);
+			case Blue: return getColor(0, 0, 255);
+			case Magenta: return getColor(255, 0, 255);
+			case Cyan: return getColor(0, 255, 255);
+			case Yellow: return getColor(255, 255, 0);
+			case Orange: return getColor(255, 165, 0);
+			case Brown: return getColor(165, 42, 42);
+			case Gray: return getColor(128, 128, 128);
+			default: return getColor(0, 0, 0);
+		}
+	}
 
 	/**
 	 * Get a Font out of the ResourceStore
@@ -255,6 +294,7 @@ public class ResourceStore {
 	 *            the size of the font in points
 	 * @param style
 	 *            the style of the font use SWT.BOLD, SWT.ITALIC or SWT.NORMAL
+	 *            or a combination SWT.BOLD|SWT.ITALIC
 	 * @return Font configured by the given values
 	 */
 	public Font getFont(String[] fontNames, int size, int style) {
@@ -282,6 +322,25 @@ public class ResourceStore {
 
 		// Get the given Font or if no Font of the fontNames exists load default
 		return fontRegistry.get(symbolicName.toString());
+	}
+	
+	/**
+	 * Get a DefaultFont out of the ResourceStore
+	 * 
+	 * Example:
+	 * <code>new ResourceStore().getFont(DefaultFont.Arial, 20, SWT.NORMAL);</code>
+	 * 
+	 * @param DefaultFont
+	 * 			A defaultfont shared by the ResourceStore
+	 * @param size
+	 *            the size of the font in points
+	 * @param style
+	 *            the style of the font use SWT.BOLD, SWT.ITALIC or SWT.NORMAL
+	 *            or a combination SWT.BOLD|SWT.ITALIC
+	 * @return Font configured by the given values
+	 */	
+	public Font getDefaultFont(ResourceStore.DefaultFont defaultFont,int size,int style){
+		return getFont(new String[]{defaultFont.toString()},size,style);
 	}
 
 	/**
