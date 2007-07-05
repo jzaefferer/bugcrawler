@@ -1,5 +1,7 @@
 package bugcrawler.runtime.bugtree;
 
+import static bugcrawler.runtime.Activator.getResourceStore;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,12 +11,10 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Priority;
 import bugcrawler.runtime.data.Project;
-import bugcrawler.utils.ResourceStore;
 
 /**
  * Provides the appearance of the bugTreeViewer
@@ -22,17 +22,6 @@ import bugcrawler.utils.ResourceStore;
  * @author TSO
  */
 public class BugTreeLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
-
-	/**
-	 * The resourceStore to get Colors
-	 */
-	private ResourceStore resourceStore = Activator.getResourceStore();
-
-	/**
-	 * Initializes the BugTreeLabelProvider
-	 */
-	public BugTreeLabelProvider() {
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -43,9 +32,9 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	public Image getColumnImage(Object element, int columnIndex) {
 		if ((element instanceof Bug) && (columnIndex == 1)) {
 			if (((Bug) element).isSolved()) {
-				return resourceStore.getImage("solved.png");
+				return getResourceStore().getImage("solved.png");
 			} else {
-				return resourceStore.getImage("notsolved.png");
+				return getResourceStore().getImage("notsolved.png");
 			}
 		}
 		return null;
@@ -102,7 +91,7 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 	 */
 	public Color getBackground(Object element, int columnIndex) {
 		if (element instanceof Project) {
-			return resourceStore.getColor(225, 225, 225);
+			return getResourceStore().getColor(225, 225, 225);
 		}
 		Priority priority = null;
 		if (element instanceof Bug) {
@@ -136,19 +125,19 @@ public class BugTreeLabelProvider extends LabelProvider implements ITableLabelPr
 		Color color = null;
 		switch (priority) {
 		case Highest:
-			color = resourceStore.getColor(255, 220, 204);
+			color = getResourceStore().getColor(255, 220, 204);
 			break;
 		case High:
-			color = resourceStore.getColor(255, 238, 222);
+			color = getResourceStore().getColor(255, 238, 222);
 			break;
 		case Medium:
-			color = resourceStore.getColor(255, 250, 205);
+			color = getResourceStore().getColor(255, 250, 205);
 			break;
 		case Low:
-			color = resourceStore.getColor(246, 246, 246);
+			color = getResourceStore().getColor(246, 246, 246);
 			break;
 		case Lowest:
-			color = resourceStore.getColor(251, 251, 251);
+			color = getResourceStore().getColor(251, 251, 251);
 			break;
 		}
 		return color;

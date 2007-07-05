@@ -22,10 +22,9 @@ import bugcrawler.swinginswt.EmbeddedSwingComposite;
  */
 public class BugDiagramView extends ViewPart {
 
+	private EmbeddedSwingComposite embeddedComposite;
 	
-	public BugDiagramView() {
-		// TODO Auto-generated constructor stub
-	}
+	public BugDiagramView() {}
 
 	@Override
 	public void createPartControl(final Composite parent) {
@@ -50,9 +49,9 @@ public class BugDiagramView extends ViewPart {
 				}
 			}
 		});		
-		EmbeddedSwingComposite embeddedComposite = new EmbeddedSwingComposite(sectionContent, SWT.NONE) {
+		embeddedComposite = new EmbeddedSwingComposite(sectionContent, SWT.NONE) {
 			protected JComponent createSwingComponent() {
-				JFreeChart chart = BugChartComponent.getBugChart(new String[]{"Highest","High"},new Double[]{10.0,90.0});
+				JFreeChart chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
 				return new ChartPanel(chart);
 			}
 		};
@@ -60,7 +59,7 @@ public class BugDiagramView extends ViewPart {
 		embeddedComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		embeddedComposite.populate();
 	}
-
+	
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub

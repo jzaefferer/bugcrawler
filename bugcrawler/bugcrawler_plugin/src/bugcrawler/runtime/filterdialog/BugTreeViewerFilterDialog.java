@@ -2,7 +2,6 @@ package bugcrawler.runtime.filterdialog;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
@@ -12,7 +11,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 import bugcrawler.runtime.bugtree.BugTreeViewer;
-import bugcrawler.utils.CheckBoxGroupFieldEditor;
 
 /**
  * creates a FilterDialog
@@ -25,16 +23,6 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	 * GridDate for positioning the components
 	 */
 	private GridData gridData;
-
-	/**
-	 * The Text for which the bugTreeFilter has to filter
-	 */
-	private StringFieldEditor filter;
-
-	/**
-	 * Checkboxes in which column the text should be found in
-	 */
-	private CheckBoxGroupFieldEditor filterOptions;
 
 	/**
 	 * The bugTreeViewer where to set the filter to
@@ -84,8 +72,8 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 		components = BugTreeViewerFilterComponents.getComponents();
 
-		filter = components.createFilterTextEditor(dialogContentContainer);
-		filterOptions = components.createFilterOptionRadioBoxes(dialogContentContainer);
+		components.createFilterTextEditor(dialogContentContainer);
+		components.createFilterOptionRadioBoxes(dialogContentContainer);
 		components.createRestoreButton(dialogContentContainer);
 
 		return container;
@@ -97,8 +85,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 */
 	protected void okPressed() {
-		filter.store();
-		filterOptions.store();
+		components.store();
 		bugTreeViewer.addBugTreeFilter(components.getFilterOptionsStoringLocation());
 		super.okPressed();
 	}

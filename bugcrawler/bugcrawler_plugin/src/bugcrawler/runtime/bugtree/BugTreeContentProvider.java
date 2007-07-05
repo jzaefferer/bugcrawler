@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.Viewer;
 import bugcrawler.runtime.data.Bug;
 import bugcrawler.runtime.data.BugContainer;
 import bugcrawler.runtime.data.Project;
+import bugcrawler.runtime.views.BugDiagramComponent;
 
 /**
  * Provides the content of the bugTreeViewer
@@ -27,6 +28,8 @@ public class BugTreeContentProvider implements ITreeContentProvider {
 		} else if (parentElement instanceof BugContainer) {
 			return ((BugContainer) parentElement).getBugs();
 		} else if (parentElement instanceof Bug) {
+			BugContainer container = ((Bug)parentElement).getBugContainer();
+			BugDiagramComponent.addCount(container.getPriority());
 			return null;
 		}
 		throw new RuntimeException("No children-handling for the given parentElement.");
