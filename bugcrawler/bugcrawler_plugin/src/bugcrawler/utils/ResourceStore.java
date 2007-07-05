@@ -1,5 +1,7 @@
 package bugcrawler.utils;
 
+import static java.lang.System.getProperty;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -17,10 +19,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
-
-import bugcrawler.runtime.Activator;
-
-import static java.lang.System.getProperty;
 
 /**
  * A ResourceStore which easily handles images and colors in plugin-packages
@@ -81,7 +79,7 @@ public class ResourceStore {
 	public void setImagesPath(String imageDirectory) {
 		try {
 			this.imageDirectory = pathEndsWithSeperator(imageDirectory) == true ? imageDirectory.substring(0,
-					imageDirectory.length() - 1) : imageDirectory;
+					imageDirectory.length() - filesep.length()) : imageDirectory;
 
 			// get the bundleDirectoryURL in the jar
 			URL bundelDirectoryURL = bundle.getEntry(this.imageDirectory);
@@ -136,12 +134,12 @@ public class ResourceStore {
 	 * access them.
 	 */
 	private void registerImages(File image) {
-		imageRegistry.put(relativePath(image.getAbsolutePath()), ImageDescriptor.createFromURL(Activator.getDefault().getBundle()
-				.getEntry(relativePath(image.getAbsolutePath()))));
+		imageRegistry.put(relativePath(image.getAbsolutePath()), ImageDescriptor.createFromURL(bundle
+				.getEntry(relativePathWithImageDirectory(image.getAbsolutePath()))));
 	}
 
 	/**
-	 * Gets the relative imageposition of the imagefolder
+	 * Gets the relative imageposition with the imagefolder
 	 * 
 	 * @param absolutepath
 	 *            of the image
@@ -149,42 +147,43 @@ public class ResourceStore {
 	 */
 	private String relativePath(String absolutePath) {
 		String regexfilesep = filesep.equals("\\") ? filesep + "\\" : filesep;
-		return relativePathBehindImageDirectory(absolutePath).replaceAll(regexfilesep, "/");
+		return absolutePath.substring(absolutePath.indexOf(imageDirectory) + imgDirWithSepLength())
+				.replaceAll(regexfilesep, "/");
 	}
 
 	/**
-	 * Gets the relative path behind the given imagedirectory
+	 * length of imagedirectory with fileseparator
 	 * 
-	 * @param absolutePath
-	 * 
-	 * @return the relative path behind the imagedirectory
+	 * @return length
 	 */
-	private String relativePathBehindImageDirectory(String absolutePath) {
-		return absolutePath.substring(indexBehindImageDirectory(absolutePath));
+	private int imgDirWithSepLength() {
+		return imageDirectory.length() + filesep.length();
 	}
 
 	/**
-	 * Determine the index behind the given imagedirectory
+	 * Gets the relative imageposition with the imagefolder
 	 * 
-	 * @param absolutePath
+	 * @param absolutepath
 	 *            of the image
-	 * 
-	 * @return index behind the imageDirectory
+	 * @return relativepath of the image
 	 */
-	private int indexBehindImageDirectory(String absolutePath) {
-		return absolutePath.indexOf(imageDirectory) + imageDirectory.length() + filesep.length();
+	private String relativePathWithImageDirectory(String absolutePath) {
+		String regexfilesep = filesep.equals("\\") ? filesep + "\\" : filesep;
+		return absolutePath.substring(absolutePath.indexOf(imageDirectory)).replaceAll(regexfilesep, "/");
 	}
 
 	/**
 	 * Returns an image descriptor for the image file at the given plug-in
 	 * relative path.
 	 * 
+	 * @param pluginID
+	 *            ID of the plugin
 	 * @param path
 	 *            the path to an image including the imagename
 	 * @return the image descriptor of the image to the given path
 	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("bugcrawler.plugin", path);
+	public static ImageDescriptor getImageDescriptor(String pluginID, String path) {
+		return AbstractUIPlugin.imageDescriptorFromPlugin(pluginID, path);
 	}
 
 	/**
@@ -208,7 +207,7 @@ public class ResourceStore {
 					"Image Directory hasn't been set - set it with store.setImagePath(String).");
 		}
 		Image image = imageRegistry.get(imageName);
-		
+
 		if (image == null) {
 			throw new RuntimeException("Image not found in the registry - called name:" + imageName);
 		}
