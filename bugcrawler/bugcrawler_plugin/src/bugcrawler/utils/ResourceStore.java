@@ -27,7 +27,7 @@ import static java.lang.System.getProperty;
  * 
  * @author TSO
  */
-public class ResourceStoreNew {
+public class ResourceStore {
 
 	/**
 	 * ImageRegistry to store Images
@@ -68,7 +68,7 @@ public class ResourceStoreNew {
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
-	public ResourceStoreNew(Bundle bundle) {
+	public ResourceStore(Bundle bundle) {
 		this.bundle = bundle;
 	}
 
@@ -136,7 +136,6 @@ public class ResourceStoreNew {
 	 * access them.
 	 */
 	private void registerImages(File image) {
-		System.out.println(relativePath(image.getAbsolutePath()));
 		imageRegistry.put(relativePath(image.getAbsolutePath()), ImageDescriptor.createFromURL(Activator.getDefault().getBundle()
 				.getEntry(relativePath(image.getAbsolutePath()))));
 	}
