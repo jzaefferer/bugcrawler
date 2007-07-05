@@ -28,8 +28,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		resourceStore = new ResourceStore(getBundle());
 		resourceStore.setImagesPath("images");
-		
-		
 		/*
 		 * if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
 		 * Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ProgramView.ID);
