@@ -158,4 +158,12 @@ public class BugTreeViewerFilterComponents {
 	private IPreferenceStore getPreferenceStore() {
 		return Activator.getDefault().getPreferenceStore();
 	}
+
+	/**
+	 * Stores values of fieldeditors
+	 */
+	public void store() {
+		filter.store();
+		filterOptions.store();
+	}
 }

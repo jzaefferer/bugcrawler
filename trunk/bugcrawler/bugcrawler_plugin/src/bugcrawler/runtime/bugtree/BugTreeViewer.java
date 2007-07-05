@@ -106,12 +106,11 @@ public class BugTreeViewer extends TreeViewer {
 				if (selectedNode instanceof Bug) {
 					try {
 						Bug bug = (Bug) selectedNode;
-						if (Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage()
-								.getActiveEditor() == null) {
+						if (Activator.activePage().getActiveEditor() == null) {
 							editor = (BugEditor) getBugEditor(bug);
 							editor.setBugTreeViewer(bugTreeViewer);
 						} else {
-							if(editor.findPage(bug.toString()) == null){
+							if (editor.findPage(bug.toString()) == null) {
 								editor.addPagesToEditor(new UIBug(bug));
 							}
 						}
@@ -121,6 +120,7 @@ public class BugTreeViewer extends TreeViewer {
 					}
 				}
 			}
+
 		});
 	}
 
@@ -133,8 +133,7 @@ public class BugTreeViewer extends TreeViewer {
 	 * @throws PartInitException
 	 */
 	private IEditorPart getBugEditor(Bug bug) throws PartInitException {
-		return Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-				new UIBug(bug), Constants.EDITOR_EXTENSION);
+		return Activator.activePage().openEditor(new UIBug(bug), Constants.EDITOR_EXTENSION);
 	}
 
 	/**

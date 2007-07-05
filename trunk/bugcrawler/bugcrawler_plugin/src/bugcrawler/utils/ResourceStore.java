@@ -16,6 +16,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 
 import bugcrawler.runtime.Activator;
 
@@ -23,10 +24,6 @@ import bugcrawler.runtime.Activator;
  * A ResourceStore which easily handles images and colors in plugin-packages
  * 
  * @author TSO
- */
-/**
- * @author TSO
- * 
  */
 public class ResourceStore {
 
@@ -45,12 +42,18 @@ public class ResourceStore {
 	 */
 	private FontRegistry fontRegistry = new FontRegistry();
 
+	/**
+	 * Plugin-Bundle
+	 */
+	private Bundle bundle;
+	
 	private boolean directoryHasBeenSet = false;
 
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
-	public ResourceStore() {
+	public ResourceStore(Bundle bundle) {
+		this.bundle = bundle;
 	}
 
 	/**
@@ -65,7 +68,7 @@ public class ResourceStore {
 					imageDirectory.length() - 1) : imageDirectory;
 
 			// get the bundleDirectoryURL in the jar
-			URL bundelDirectoryURL = Activator.getDefault().getBundle().getEntry(imageDirectory);
+			URL bundelDirectoryURL = bundle.getEntry(imageDirectory);
 
 			// get all files in the cached directory
 			String[] imageNames = new File(FileLocator.toFileURL(bundelDirectoryURL).getFile()).list();
@@ -178,8 +181,8 @@ public class ResourceStore {
 	 * 
 	 * @param fontNames
 	 *            array with fontnames. If the first fontname isn't found the
-	 *            next will be used. If no fontname is found there is fallback to
-	 *            default
+	 *            next will be used. If no fontname is found there is fallback
+	 *            to default
 	 * @param size
 	 *            the size of the font in points
 	 * @param style
@@ -191,10 +194,12 @@ public class ResourceStore {
 			throw new RuntimeException(
 					"No valid style, please use SWT.BOLD,SWT.ITALIC or SWT.NORMAL - called style as int:"
 							+ style);
-		} else if (size <= 0) {
+		}
+		if (size <= 0) {
 			throw new RuntimeException("Size is smaller or equals 0 but has to be greater - called size:"
 					+ size);
-		} else if (testFontNames(fontNames)) {
+		}
+		if (testFontNames(fontNames)) {
 			throw new RuntimeException("One or more Fontnames are null - called fontnames:" + fontNames);
 		}
 		FontData[] fontData = new FontData[fontNames.length];

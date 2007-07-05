@@ -1,6 +1,7 @@
 package bugcrawler.runtime;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -25,7 +26,7 @@ public class Activator extends AbstractUIPlugin {
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		resourceStore = new ResourceStore();
+		resourceStore = new ResourceStore(getBundle());
 		resourceStore.setImagesPath("images");
 		
 		/*
@@ -61,5 +62,9 @@ public class Activator extends AbstractUIPlugin {
 			formColors.markShared();
 		}
 		return formColors;
+	}
+	
+	public static IWorkbenchPage activePage() {
+		return Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	}
 }

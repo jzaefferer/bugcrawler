@@ -195,8 +195,9 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 		}
 	}
 
-	/*
-	 * (non-Javadoc) Method declared on FieldEditor.
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.preference.FieldEditor#getNumberOfControls()
 	 */
 	public int getNumberOfControls() {
 		return 1;
@@ -246,13 +247,12 @@ public class CheckBoxGroupFieldEditor extends FieldEditor {
 				check.setFont(font);
 				check.addSelectionListener(new SelectionAdapter() {
 					public void widgetSelected(SelectionEvent event) {
-						Boolean checkState = ((Boolean) event.widget.getData()).booleanValue();
-
-						if (checkState.booleanValue() == true) {
-							fireValueChanged(VALUE, checkState, new Boolean(false));
+						Boolean checkState = (Boolean) event.widget.getData();
+						if (checkState.booleanValue()) {
+							fireValueChanged(VALUE, checkState, Boolean.FALSE);
 							event.widget.setData(new Boolean(false));
 						} else {
-							fireValueChanged(VALUE, checkState, new Boolean(true));
+							fireValueChanged(VALUE, checkState, Boolean.TRUE);
 							event.widget.setData(new Boolean(true));
 						}
 					}
