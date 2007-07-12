@@ -6,6 +6,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
+import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.filterdialog.BugTreeViewerFilterComponents;
 
 /**
@@ -16,16 +17,14 @@ import bugcrawler.runtime.filterdialog.BugTreeViewerFilterComponents;
 public class ProjectWizardFilterPage extends WizardPage{
 
 	private BugTreeViewerFilterComponents components;
-	
-	//private StringFieldEditor filter;
-
-	//private CheckBoxGroupFieldEditor filterOptions;
-	
+		
+	private BugTreeViewer bugTreeViewer;
 	/**
 	 * Initializes the FilterPage with Title and Description
 	 */
-	protected ProjectWizardFilterPage() {
+	protected ProjectWizardFilterPage(BugTreeViewer bugTreeViewer) {
 		super("Filter Page");
+		this.bugTreeViewer = bugTreeViewer;
 		setTitle("Filter Selection");
 		setDescription("Please select your Filter-Options to see a Buglistings you want to.");		
 	}
@@ -51,7 +50,7 @@ public class ProjectWizardFilterPage extends WizardPage{
 		
 		/*filter = */components.createFilterTextEditor(dialogContentContainer);
 		/*filterOptions = */components.createFilterOptionRadioBoxes(dialogContentContainer);
-		components.createRestoreButton(dialogContentContainer);
+		components.createRestoreButton(dialogContentContainer,bugTreeViewer);
 		
 		setControl(container);
 	}

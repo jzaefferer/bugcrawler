@@ -12,6 +12,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.data.TreeColumnTitles;
 import bugcrawler.utils.CheckBoxGroupFieldEditor;
@@ -122,7 +123,7 @@ public class BugTreeViewerFilterComponents {
 	 * @param dialogContentContainer
 	 *            the Composite where to create the button on
 	 */
-	public void createRestoreButton(Composite dialogContentContainer) {
+	public void createRestoreButton(Composite dialogContentContainer,final BugTreeViewer bugTreeViewer) {
 
 		Button defaults = new Button(dialogContentContainer, SWT.PUSH);
 		defaults.setText("Restore Defaults");
@@ -130,6 +131,7 @@ public class BugTreeViewerFilterComponents {
 			public void handleEvent(Event event) {
 				filterOptions.loadDefault();
 				filter.loadDefault();
+				bugTreeViewer.removeBugTreeFilter();
 			}
 		});
 
