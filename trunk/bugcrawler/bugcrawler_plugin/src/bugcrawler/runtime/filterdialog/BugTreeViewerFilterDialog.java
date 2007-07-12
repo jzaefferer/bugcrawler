@@ -74,7 +74,7 @@ public class BugTreeViewerFilterDialog extends Dialog {
 
 		components.createFilterTextEditor(dialogContentContainer);
 		components.createFilterOptionRadioBoxes(dialogContentContainer);
-		components.createRestoreButton(dialogContentContainer);
+		components.createRestoreButton(dialogContentContainer,bugTreeViewer);
 
 		return container;
 	}
@@ -97,7 +97,6 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		bugTreeViewer.removeBugTreeFilter();
 		super.cancelPressed();
 	}
 

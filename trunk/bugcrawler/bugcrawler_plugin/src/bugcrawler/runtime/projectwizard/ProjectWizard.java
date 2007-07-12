@@ -71,7 +71,7 @@ public class ProjectWizard extends Wizard implements INewWizard{
 		projectpage = new ProjectWizardProjectPage(bugTreeViewer);
 		addPage(projectpage);
 		
-		filterpage = new ProjectWizardFilterPage();
+		filterpage = new ProjectWizardFilterPage(bugTreeViewer);
 		addPage(filterpage);
 	}
 	
