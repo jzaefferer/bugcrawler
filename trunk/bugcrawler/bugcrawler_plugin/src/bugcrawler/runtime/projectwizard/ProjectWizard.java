@@ -56,7 +56,7 @@ public class ProjectWizard extends Wizard implements INewWizard{
 		bugTreeViewer.expandToLevel(-1);
 		BugDiagramView bugDiagramView = (BugDiagramView)Activator.activePage().findView("bugcrawler_plugin.views.BugDiagramView");
 		if(bugDiagramView != null){
-			Activator.getViewDataDistributor().saveViewData("");
+			Activator.getViewDataDistributor().saveViewData("SEND TEST-DATA TO ALL VIEWS");
 		}
 		return true;
 	}

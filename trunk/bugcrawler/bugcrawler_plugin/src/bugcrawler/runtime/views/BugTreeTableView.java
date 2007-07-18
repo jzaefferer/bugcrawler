@@ -14,18 +14,20 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.ViewPart;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
 import bugcrawler.utils.ResourceStoreOld;
+import bugcrawler.viewdatahandling.ViewDataListener;
 
 /**
  * The Main View which displays the bugTreeViewer
  * 
  * @author TSO
  */
-public class BugTreeTableView extends ViewPart{
+public class BugTreeTableView extends ViewPart implements ViewDataListener{
 
 	/**
 	 * the TreeViewer listen bugs to projects in priorities
@@ -56,6 +58,7 @@ public class BugTreeTableView extends ViewPart{
 	 * Default Constructor for initialize this ViewPart
 	 */
 	public BugTreeTableView() {
+		Activator.getViewDataDistributor().addView(this);
 	}
 
 	/**
@@ -150,5 +153,7 @@ public class BugTreeTableView extends ViewPart{
 	public void setFocus() {
 	}
 
-	public void update(Observable view, Object viewData) {}
+	public void update(Observable view, Object viewData) {
+		System.out.println("BugTreeTableView"+viewData);
+	}
 }

@@ -80,6 +80,6 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 		chartPanel.revalidate();
 		embeddedComposite.redraw();
 		embeddedComposite.populate();
-		System.out.println("test");
+		System.out.println("BugDiagramView"+viewData);
 	}
 }
