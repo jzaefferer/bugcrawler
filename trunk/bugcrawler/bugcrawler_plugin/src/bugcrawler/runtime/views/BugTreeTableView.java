@@ -1,5 +1,7 @@
 package bugcrawler.runtime.views;
 
+import java.util.Observable;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -23,7 +25,7 @@ import bugcrawler.utils.ResourceStoreOld;
  * 
  * @author TSO
  */
-public class BugTreeTableView extends ViewPart {
+public class BugTreeTableView extends ViewPart{
 
 	/**
 	 * the TreeViewer listen bugs to projects in priorities
@@ -147,4 +149,6 @@ public class BugTreeTableView extends ViewPart {
 	 */
 	public void setFocus() {
 	}
+
+	public void update(Observable view, Object viewData) {}
 }

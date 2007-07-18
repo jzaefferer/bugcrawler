@@ -7,6 +7,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import bugcrawler.utils.ResourceStore;
+import bugcrawler.viewdatahandling.ViewDataDistributor;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -18,6 +19,8 @@ public class Activator extends AbstractUIPlugin {
 
 	private static ResourceStore resourceStore;
 
+	private static ViewDataDistributor viewDataDistributor = new ViewDataDistributor();
+	
 	private FormColors formColors;
 
 	public Activator() {
@@ -28,12 +31,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		resourceStore = new ResourceStore(getBundle());
 		resourceStore.setImagesPath("images");
-		/*
-		 * if(Activator.getDefault().getPreferenceStore().getBoolean(Constants.LOADEDONCE)==false){
-		 * Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(ProgramView.ID);
-		 * Activator.getDefault().getPreferenceStore().setValue(Constants.LOADEDONCE,
-		 * true); }
-		 */
 	}
 
 
@@ -54,6 +51,10 @@ public class Activator extends AbstractUIPlugin {
 	public static ResourceStore getResourceStore() {
 		return resourceStore;
 	}
+	
+	public static ViewDataDistributor getViewDataDistributor() {
+		return viewDataDistributor;
+	}
 
 	public FormColors getFormColors(Display display) {
 		if (formColors == null) {
@@ -64,6 +65,6 @@ public class Activator extends AbstractUIPlugin {
 	}
 	
 	public static IWorkbenchPage activePage() {
-		return Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		return getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
 	}
 }
