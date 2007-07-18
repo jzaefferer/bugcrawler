@@ -8,7 +8,9 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.runtime.bugtree.BugTreeViewer;
+import bugcrawler.runtime.views.BugDiagramView;
 
 /**
  * Wizard for choosing a project for getting bug information
@@ -52,6 +54,10 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	public boolean performFinish() {
 		bugTreeViewer.setInput(Arrays.asList(projectpage.getSelected()));
 		bugTreeViewer.expandToLevel(-1);
+		BugDiagramView bugDiagramView = (BugDiagramView)Activator.activePage().findView("bugcrawler_plugin.views.BugDiagramView");
+		if(bugDiagramView != null){
+			Activator.getViewDataDistributor().saveViewData("");
+		}
 		return true;
 	}
 	

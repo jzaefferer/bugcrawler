@@ -1,5 +1,7 @@
 package bugcrawler.runtime.views;
 
+import java.util.Observable;
+
 import javax.swing.JComponent;
 
 import org.eclipse.swt.SWT;
@@ -13,18 +15,25 @@ import org.eclipse.ui.part.ViewPart;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
+import bugcrawler.runtime.Activator;
 import bugcrawler.swinginswt.EmbeddedSwingComposite;
+import bugcrawler.viewdatahandling.ViewDataListener;
 
 /**
  * The Diagram View which displays a swing JFreeChart Diagram
  * 
  * @author TSO
  */
-public class BugDiagramView extends ViewPart {
+public class BugDiagramView extends ViewPart implements ViewDataListener{
 
 	private EmbeddedSwingComposite embeddedComposite;
 	
-	public BugDiagramView() {}
+	private ChartPanel chartPanel;
+	private JFreeChart chart;
+	
+	public BugDiagramView() {
+		Activator.getViewDataDistributor().addView(this);
+	}
 
 	@Override
 	public void createPartControl(final Composite parent) {
@@ -51,8 +60,9 @@ public class BugDiagramView extends ViewPart {
 		});		
 		embeddedComposite = new EmbeddedSwingComposite(sectionContent, SWT.NONE) {
 			protected JComponent createSwingComponent() {
-				JFreeChart chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
-				return new ChartPanel(chart);
+				chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
+				chartPanel = new ChartPanel(chart);
+				return chartPanel;
 			}
 		};
 		embeddedComposite.setLayout(new GridLayout());
@@ -63,5 +73,13 @@ public class BugDiagramView extends ViewPart {
 	@Override
 	public void setFocus() {
 		// TODO Auto-generated method stub
+	}
+
+	public void update(Observable view, Object viewData) {
+		chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
+		chartPanel.revalidate();
+		embeddedComposite.redraw();
+		embeddedComposite.populate();
+		System.out.println("test");
 	}
 }
