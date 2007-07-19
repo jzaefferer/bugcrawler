@@ -1,6 +1,7 @@
 package bugcrawler.viewdatahandling;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,7 +14,7 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class ViewDataDistributor extends Observable {
 
-	private ArrayList<String> viewIds = new ArrayList<String>();
+	private List<String> viewIds = new ArrayList<String>();
 	
 	private Object viewData;
 
