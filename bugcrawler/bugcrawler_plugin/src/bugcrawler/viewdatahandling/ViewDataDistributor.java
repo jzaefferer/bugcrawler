@@ -13,9 +13,9 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class ViewDataDistributor extends Observable {
 
+	private ArrayList<String> viewIds = new ArrayList<String>();
+	
 	private Object viewData;
-
-	private ArrayList<Observer> views = new ArrayList<Observer>();
 
 	/**
 	 * Generates a new ViewDataDistributor. It is intended to use it in the
@@ -30,7 +30,8 @@ public class ViewDataDistributor extends Observable {
 	 * 
 	 * public static ViewDataDistributor getViewDataDistributor() {
 	 * 	return viewDataDistributor;
-	 * }</pre>
+	 * }
+	 * </pre>
 	 * 
 	 * Example-Call:
 	 * 
@@ -38,6 +39,10 @@ public class ViewDataDistributor extends Observable {
 	 * Activator.getViewDataDistributor().saveViewData(&quot;StringToSave&quot;);
 	 * Activator.getViewDataDistributor().getViewData();
 	 * </pre>
+	 * 
+	 * You also need to register a ViewDataListener to each view, which has to receive data
+	 * 
+	 * @see bugcrawler.viewdatahandling.ViewDataListener
 	 */
 	public ViewDataDistributor() {
 		super();
@@ -70,36 +75,29 @@ public class ViewDataDistributor extends Observable {
 	 * 
 	 * @param Observer
 	 *            ViewPart which has to be added.
+	 * 
+	 * @param viewId
+	 *            the unique Id of the View <b>Note</b>: it is <u>important</u> that
+	 *            this id is unique because otherwise the view could be
+	 *            registered serveral times
 	 */
-	public void addView(Observer viewPart) {
+	public void addView(Observer viewPart, String viewId) {
 		// check if the given Observer is a ViewPart
-		if (viewPart instanceof ViewPart) {
+		if (!(viewPart instanceof ViewPart)) {
 			throw new RuntimeException("Error the added observer isn't a view!");
 		}
-		// check if the view has been added before
-		for (Observer view : views) {
-			if (view.equals(viewPart)) {
+		
+		// check if the given viewPart is already known
+		for(String mentionedId : viewIds){
+			if(mentionedId.equals(viewId)){
 				return;
 			}
 		}
-		// add the view to the arraylist to be known
-		views.add(viewPart);
-
+		
+		// adding the viewId to the registered Ids
+		viewIds.add(viewId);
+		
 		// add the view to the created observer
 		this.addObserver(viewPart);
-	}
-
-	/**
-	 * Adds a new View to the created distributor. It will also be checked, if a
-	 * view was already added
-	 * 
-	 * @see addView(Observer viewPart);
-	 * 
-	 * @param Observer
-	 *            ViewPart which has to be added.
-	 * 
-	 */
-	public synchronized void addObserver(Observer o) {
-		addView(o);
 	}
 }

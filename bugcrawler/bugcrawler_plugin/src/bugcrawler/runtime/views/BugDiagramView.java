@@ -16,6 +16,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
 import bugcrawler.runtime.Activator;
+import bugcrawler.runtime.constants.Constants;
 import bugcrawler.swinginswt.EmbeddedSwingComposite;
 import bugcrawler.viewdatahandling.ViewDataListener;
 
@@ -32,8 +33,8 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 	private JFreeChart chart;
 	
 	public BugDiagramView() {
-		Activator.getViewDataDistributor().addView(this);
-		Activator.getViewDataDistributor2().addView(this);
+		Activator.getViewDataDistributor().addView(this,Constants.BUG_DIAGRAM_VIEW_ID);
+		Activator.getViewDataDistributor2().addView(this,Constants.BUG_DIAGRAM_VIEW_ID);
 	}
 
 	@Override
