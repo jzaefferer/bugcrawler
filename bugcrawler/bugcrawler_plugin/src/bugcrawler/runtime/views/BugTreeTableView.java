@@ -59,6 +59,9 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	 */
 	public BugTreeTableView() {
 		Activator.getViewDataDistributor().addView(this);
+		Activator.getViewDataDistributor2().addView(this);
+		Activator.getViewDataDistributor().saveViewData("- Information as String");
+		Activator.getViewDataDistributor2().saveViewData(new Integer(1));
 	}
 
 	/**
@@ -154,6 +157,10 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	}
 
 	public void update(Observable viewDataDistributor, Object viewData) {
-		System.out.println("BugTreeTableView"+viewData);
+		if(viewDataDistributor==Activator.getViewDataDistributor()){
+			System.out.println("ViewDataDistributor 1 has sent information: "+viewData);
+		}else if (viewDataDistributor==Activator.getViewDataDistributor2()){
+			System.out.println("ViewDataDistributor 2 has sent information: - "+viewData);
+		}
 	}
 }
