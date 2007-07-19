@@ -21,6 +21,8 @@ public class Activator extends AbstractUIPlugin {
 
 	private static ViewDataDistributor viewDataDistributor = new ViewDataDistributor();
 	
+	private static ViewDataDistributor viewDataDistributor2 = new ViewDataDistributor();
+	
 	private FormColors formColors;
 
 	public Activator() {
@@ -55,6 +57,10 @@ public class Activator extends AbstractUIPlugin {
 	public static ViewDataDistributor getViewDataDistributor() {
 		return viewDataDistributor;
 	}
+	
+	public static ViewDataDistributor getViewDataDistributor2() {
+		return viewDataDistributor2;
+	}	
 
 	public FormColors getFormColors(Display display) {
 		if (formColors == null) {
