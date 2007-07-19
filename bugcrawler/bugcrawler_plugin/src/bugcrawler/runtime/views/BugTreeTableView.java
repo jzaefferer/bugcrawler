@@ -153,7 +153,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	public void setFocus() {
 	}
 
-	public void update(Observable view, Object viewData) {
+	public void update(Observable viewDataDistributor, Object viewData) {
 		System.out.println("BugTreeTableView"+viewData);
 	}
 }
