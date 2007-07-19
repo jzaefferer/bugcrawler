@@ -75,7 +75,7 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 		// TODO Auto-generated method stub
 	}
 
-	public void update(Observable view, Object viewData) {
+	public void update(Observable viewDataDistributor, Object viewData) {
 		chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
 		chartPanel.revalidate();
 		embeddedComposite.redraw();
