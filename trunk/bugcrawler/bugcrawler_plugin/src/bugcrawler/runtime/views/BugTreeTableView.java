@@ -58,9 +58,9 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	 * Default Constructor for initialize this ViewPart
 	 */
 	public BugTreeTableView() {
-		Activator.getViewDataDistributor().addView(this);
-		Activator.getViewDataDistributor2().addView(this);
+		Activator.getViewDataDistributor().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
 		Activator.getViewDataDistributor().saveViewData(" - Information as String");
+		Activator.getViewDataDistributor2().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
 		Activator.getViewDataDistributor2().saveViewData(new Integer(1));
 	}
 
@@ -158,7 +158,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 
 	public void update(Observable viewDataDistributor, Object viewData) {
 		if(viewDataDistributor==Activator.getViewDataDistributor()){
-			System.out.println("ViewDataDistributor 1 has sent information: "+viewData);
+			System.out.println("ViewDataDistributor 1 has sent information:"+viewData);
 		}else if (viewDataDistributor==Activator.getViewDataDistributor2()){
 			System.out.println("ViewDataDistributor 2 has sent information: - "+viewData);
 		}

@@ -24,7 +24,7 @@ public interface ViewDataListener extends Observer {
 	 * 
 	 * public DefaultConstructorOfMyViewPart(){
 	 * 	ViewDataDistributor distributor = Activator.getViewDataDistributor();
-	 * 	distributor.addView(this);
+	 * 	distributor.addView(this,"bugcrawler_plugin.views.BugDiagramView");
 	 * 	distributor.saveViewData("When this method is called, the update method will be called");
 	 * }
 	 * 
