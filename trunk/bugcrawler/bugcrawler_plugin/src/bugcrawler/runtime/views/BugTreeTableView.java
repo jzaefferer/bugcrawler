@@ -60,7 +60,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	public BugTreeTableView() {
 		Activator.getViewDataDistributor().addView(this);
 		Activator.getViewDataDistributor2().addView(this);
-		Activator.getViewDataDistributor().saveViewData("- Information as String");
+		Activator.getViewDataDistributor().saveViewData(" - Information as String");
 		Activator.getViewDataDistributor2().saveViewData(new Integer(1));
 	}
 
