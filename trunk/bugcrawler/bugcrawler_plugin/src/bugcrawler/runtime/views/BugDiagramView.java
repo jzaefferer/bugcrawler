@@ -84,7 +84,7 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 		if(viewDataDistributor==Activator.getViewDataDistributor()){
 			System.out.println("ViewDataDistributor 1 has sent information:"+viewData);
 		}else if (viewDataDistributor==Activator.getViewDataDistributor2()){
-			System.out.println("ViewDataDistributor 2 has sent information:"+viewData);
+			System.out.println("ViewDataDistributor 2 has sent information: - "+viewData);
 		}
 	}
 }
