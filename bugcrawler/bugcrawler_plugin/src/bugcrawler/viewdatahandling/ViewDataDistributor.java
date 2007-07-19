@@ -78,7 +78,7 @@ public class ViewDataDistributor extends Observable {
 	 *            ViewPart which has to be added.
 	 * 
 	 * @param viewId
-	 *            the unique Id of the View <b>Note</b>: it is <u>important</u> that
+	 *            the unique Id of the viewPart <b>Note</b>: it is <u>important</u> that
 	 *            this id is unique because otherwise the view could be
 	 *            registered serveral times
 	 */
