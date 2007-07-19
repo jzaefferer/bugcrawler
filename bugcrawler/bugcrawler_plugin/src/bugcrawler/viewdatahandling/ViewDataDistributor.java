@@ -86,17 +86,14 @@ public class ViewDataDistributor extends Observable {
 		if (!(viewPart instanceof ViewPart)) {
 			throw new RuntimeException("Error the added observer isn't a view!");
 		}
-		
 		// check if the given viewPart is already known
 		for(String mentionedId : viewIds){
 			if(mentionedId.equals(viewId)){
 				return;
 			}
 		}
-		
 		// adding the viewId to the registered Ids
 		viewIds.add(viewId);
-		
 		// add the view to the created observer
 		this.addObserver(viewPart);
 	}
