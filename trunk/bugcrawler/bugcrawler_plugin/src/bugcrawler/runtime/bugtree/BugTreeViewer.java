@@ -91,6 +91,13 @@ public class BugTreeViewer extends TreeViewer {
 			if (i > 0) {
 				column.setMoveable(true);
 			}
+//			if(i ==0){
+//				column.setWidth(120);
+//			}else if(i == 1){
+//				column.setWidth(300);
+//			}else{
+//				column.setWidth(80);
+//			}
 		}
 	}
 
