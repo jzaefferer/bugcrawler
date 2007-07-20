@@ -58,10 +58,10 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	 * Default Constructor for initialize this ViewPart
 	 */
 	public BugTreeTableView() {
-		Activator.getViewDataDistributor().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
-		Activator.getViewDataDistributor().saveViewData(" - Information as String");
-		Activator.getViewDataDistributor2().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
-		Activator.getViewDataDistributor2().saveViewData(new Integer(1));
+//		Activator.getViewDataDistributor().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
+//		Activator.getViewDataDistributor().saveViewData(" - Information as String");
+//		Activator.getViewDataDistributor2().addView(this,Constants.BUG_TREE_TABLE_VIEW_ID);
+//		Activator.getViewDataDistributor2().saveViewData(new Integer(1));
 	}
 
 	/**

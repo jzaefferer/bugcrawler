@@ -34,7 +34,7 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 	
 	public BugDiagramView() {
 		Activator.getViewDataDistributor().addView(this,Constants.BUG_DIAGRAM_VIEW_ID);
-		Activator.getViewDataDistributor2().addView(this,Constants.BUG_DIAGRAM_VIEW_ID);
+//		Activator.getViewDataDistributor2().addView(this,Constants.BUG_DIAGRAM_VIEW_ID);
 	}
 
 	@Override
@@ -78,10 +78,10 @@ public class BugDiagramView extends ViewPart implements ViewDataListener{
 	}
 
 	public void update(Observable viewDataDistributor, Object viewData) {
-		/*chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
+		chart = BugDiagramComponent.getBugChart(BugDiagramComponent.getLabels(),BugDiagramComponent.getValues());
 		chartPanel.revalidate();
 		embeddedComposite.redraw();
-		embeddedComposite.populate();*/
+		embeddedComposite.populate();
 		if(viewDataDistributor==Activator.getViewDataDistributor()){
 			System.out.println("ViewDataDistributor 1 has sent information:"+viewData);
 		}else if (viewDataDistributor==Activator.getViewDataDistributor2()){
