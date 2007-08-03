@@ -48,6 +48,13 @@ public class ResourceStore {
 	}
 	
 	/**
+	 * Interface which should be implementet by enums
+	 */
+	public interface ImagePath {
+		String getPath();
+	}
+	
+	/**
 	 * Color-Constants
 	 */
 	public static enum DefaultColor{
@@ -219,6 +226,50 @@ public class ResourceStore {
 					"Image Directory hasn't been set - set it with store.setImagePath(String).");
 		}
 		Image image = imageRegistry.get(imageName);
+
+		if (image == null) {
+			throw new RuntimeException("Image not found in the registry - called name:" + imageName);
+		}
+		return image;
+	}
+	
+	/**
+	 * Gets an Image out of the ResourceStore.
+	 * 
+	 * <br><br>Example for enum class:
+	 * <pre>
+	 * enum Enum implements ImagePath {
+	 * 
+	 *	SOLVED("solved.png"),
+	 *	NOTSOLVE("notsolved.png");
+	 *	private String path;
+	 *
+	 *	Images(String path)  {
+	 *		this.path = path;
+	 *	}
+	 *	public String getPath() {
+	 *		return path;
+	 *	}
+	 * }
+	 * </pre> 
+	 * Example for call:<br><br>
+	 * <code>resourceStore.getImage(Enum.SOLVED);</code><br><br>
+	 * 
+	 * Warning: It is required to set the ImagePath. The path is the with <code>
+	 * ResourceStore store = new ResourceStore();
+	 * store.setImagePath("<my_image_directory_in_the_root_of_the_plugin>");
+	 * </code>
+	 * 
+	 * @param enum which implements the interface ImagePath
+	 * 
+	 * @return the image
+	 */
+	public Image getImage(ImagePath imageName) {
+		if (!directoryHasBeenSet) {
+			throw new RuntimeException(
+					"Image Directory hasn't been set - set it with store.setImagePath(String).");
+		}
+		Image image = imageRegistry.get(imageName.getPath());
 
 		if (image == null) {
 			throw new RuntimeException("Image not found in the registry - called name:" + imageName);
