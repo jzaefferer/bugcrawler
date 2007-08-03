@@ -6,7 +6,7 @@ import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import bugcrawler.utils.ResourceStoreOld;
+import bugcrawler.utils.ResourceStore;
 import bugcrawler.viewdatahandling.ViewDataDistributor;
 
 /**
@@ -17,7 +17,7 @@ public class Activator extends AbstractUIPlugin {
 	// The shared instance
 	private static Activator plugin;
 
-	private static ResourceStoreOld resourceStore;
+	private static ResourceStore resourceStore;
 
 	private static ViewDataDistributor viewDataDistributor = new ViewDataDistributor();
 	
@@ -31,8 +31,8 @@ public class Activator extends AbstractUIPlugin {
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		resourceStore = new ResourceStoreOld(getBundle());
-		resourceStore.setImagesPath("images");
+		resourceStore = new ResourceStore(getBundle());
+		resourceStore.setImagesPath("images",false);
 	}
 
 
@@ -50,7 +50,7 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public static ResourceStoreOld getResourceStore() {
+	public static ResourceStore getResourceStore() {
 		return resourceStore;
 	}
 	
