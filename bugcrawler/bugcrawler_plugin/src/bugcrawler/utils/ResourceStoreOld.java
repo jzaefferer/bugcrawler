@@ -23,7 +23,7 @@ import org.osgi.framework.Bundle;
  * 
  * @author TSO
  */
-public class ResourceStore {
+public class ResourceStoreOld {
 
 	/**
 	 * ImageRegistry to store Images
@@ -85,7 +85,7 @@ public class ResourceStore {
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
-	public ResourceStore(Bundle bundle) {
+	public ResourceStoreOld(Bundle bundle) {
 		this.bundle = bundle;
 	}
 
@@ -314,7 +314,7 @@ public class ResourceStore {
 	 * 
 	 * @return Color the new color registered in a ColorRegistry
 	 */
-	public Color getDefaultColor(ResourceStore.DefaultColor defaultColor){
+	public Color getDefaultColor(ResourceStoreOld.DefaultColor defaultColor){
 		switch(defaultColor){
 			case Black: return getColor(0, 0, 0);
 			case White: return getColor(255, 255, 255);
@@ -390,7 +390,7 @@ public class ResourceStore {
 	 *            or a combination SWT.BOLD|SWT.ITALIC
 	 * @return Font configured by the given values
 	 */	
-	public Font getDefaultFont(ResourceStore.DefaultFont defaultFont,int size,int style){
+	public Font getDefaultFont(ResourceStoreOld.DefaultFont defaultFont,int size,int style){
 		return getFont(new String[]{defaultFont.toString()},size,style);
 	}
 
