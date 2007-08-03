@@ -25,7 +25,7 @@ import bugcrawler.runtime.Activator;
  * 
  * @author TSO
  */
-public class ResourceStoreOld {
+public class ResourceStoreOldest {
 
 	/**
 	 * ImageRegistry to store Images
@@ -52,7 +52,7 @@ public class ResourceStoreOld {
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
-	public ResourceStoreOld(Bundle bundle) {
+	public ResourceStoreOldest(Bundle bundle) {
 		this.bundle = bundle;
 	}
 
