@@ -6,6 +6,7 @@ package bugcrawler.runtime.constants;
 public class Constants {
 	
 	// ID to find the extension-points
+	public static final String PLUGIN_ID = "bugcrawler.plugin";
 	public static final String EDITOR_EXTENSION = "bugcrawler_plugin.editor";
 	public static final String PREFERENCES_PAGE_EXTENSION = "bugcrawler_plugin.preferences.PreferencePageExt";
 	public static final String BUG_DIAGRAM_VIEW_ID = "bugcrawler_plugin.views.BugDiagramView";

@@ -19,7 +19,8 @@ import bugcrawler.runtime.bugtree.BugTreeViewer;
 import bugcrawler.runtime.constants.Constants;
 import bugcrawler.runtime.filterdialog.BugTreeViewerFilterDialog;
 import bugcrawler.runtime.projectwizard.ProjectWizard;
-import bugcrawler.utils.ResourceStoreOld;
+import bugcrawler.utils.ResourceStore;
+import bugcrawler.utils.ResourceStoreOldest;
 import bugcrawler.viewdatahandling.ViewDataListener;
 
 /**
@@ -117,7 +118,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 		};
 		preferences.setText("Bugcrawler Konfigurieren...");
 		preferences.setToolTipText("Einstellungen zum Konfigurieren des Bugcrawlers...");
-		preferences.setImageDescriptor(ResourceStoreOld.getImageDescriptor("images/preferences.png"));
+		preferences.setImageDescriptor(ResourceStore.getImageDescriptor(Constants.PLUGIN_ID,"images/preferences.png"));
 
 		projects = new Action() {
 			public void run() {
@@ -146,7 +147,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 		};
 		filter.setText("Bugfilter...");
 		filter.setToolTipText("Filtern relevanter Bugs");
-		filter.setImageDescriptor(ResourceStoreOld.getImageDescriptor("images/filter.png"));
+		filter.setImageDescriptor(ResourceStoreOldest.getImageDescriptor("images/filter.png"));
 
 	}
 
