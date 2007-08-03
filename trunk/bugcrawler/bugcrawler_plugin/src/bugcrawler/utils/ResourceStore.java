@@ -293,16 +293,16 @@ public class ResourceStore {
 	 * <pre>
 	 * enum Enum implements ImagePath {
 	 * 
-	 * SOLVED(&quot;solved.png&quot;),
-	 * NOTSOLVE(&quot;notsolved.png&quot;);
-	 * private String path;
+	 * 	SOLVED(&quot;solved.png&quot;),
+	 * 	NOTSOLVE(&quot;notsolved.png&quot;);
+	 * 	private String path;
 	 * 
-	 * Images(String path)  {
-	 * 	this.path = path;
-	 * }
-	 * public String getPath() {
-	 * 	return path;
-	 * }
+	 * 	Images(String path)  {
+	 * 		this.path = path;
+	 * 	}
+	 * 	public String getPath() {
+	 * 		return path;
+	 * 	}
 	 * }
 	 * </pre>
 	 * 
