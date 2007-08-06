@@ -31,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
 
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		resourceStore = new ResourceStore(getBundle());
+		resourceStore = new ResourceStore(this);
 		resourceStore.setImagesPath("images",false);
 	}
 

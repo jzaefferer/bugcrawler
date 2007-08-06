@@ -28,17 +28,17 @@ public class ResourceStore {
 	/**
 	 * ImageRegistry to store Images
 	 */
-	private ImageRegistry imageRegistry = new ImageRegistry();
+	private final AbstractUIPlugin plugin;
 
 	/**
 	 * ColorRegistry to store Colors
 	 */
-	private ColorRegistry colorRegistry = new ColorRegistry();
+	private  ColorRegistry colorRegistry;
 
 	/**
 	 * FontRegistry to store Fonts
 	 */
-	private FontRegistry fontRegistry = new FontRegistry();
+	private  FontRegistry fontRegistry;
 
 	/**
 	 * Font-Constants that are normaly cross-platform compatible
@@ -89,8 +89,9 @@ public class ResourceStore {
 	/**
 	 * Initializes the ResourceStore to handle Images, Colors or Fonts
 	 */
-	public ResourceStore(Bundle bundle) {
-		this.bundle = bundle;
+	public ResourceStore(AbstractUIPlugin plugin) {
+		this.plugin = plugin;
+		this.bundle = plugin.getBundle();
 	}
 
 	/**
@@ -179,11 +180,11 @@ public class ResourceStore {
 	 * access them.
 	 */
 	private Image registerImages(File image) {
-		imageRegistry.put(relativePath(image.getAbsolutePath()),
+		getImageRegistry().put(relativePath(image.getAbsolutePath()),
 				ImageDescriptor.createFromURL(bundle
 						.getEntry(relativePathWithImageDirectory(image
 								.getAbsolutePath()))));
-		return imageRegistry.get(relativePath(image.getAbsolutePath()));
+		return getImageRegistry().get(relativePath(image.getAbsolutePath()));
 	}
 
 	/**
@@ -270,7 +271,7 @@ public class ResourceStore {
 		}
 
 		// if lazyLoad register Images when they are needed
-		Image image = imageRegistry.get(imageName);
+		Image image = getImageRegistry().get(imageName);
 		if (image == null) {
 			if (lazyLoad) {
 				image = registerImages(new File(replaceSeparators(directory
@@ -346,10 +347,10 @@ public class ResourceStore {
 							+ ",GREEN-" + green + ",BLUE-" + blue);
 		}
 		String symbolicName = red + ";" + green + ";" + blue;
-		Color newColor = colorRegistry.get(symbolicName);
+		Color newColor = getColorRegistry().get(symbolicName);
 		if (newColor == null) {
-			colorRegistry.put(symbolicName, new RGB(red, green, blue));
-			newColor = colorRegistry.get(symbolicName);
+			getColorRegistry().put(symbolicName, new RGB(red, green, blue));
+			newColor = getColorRegistry().get(symbolicName);
 		}
 		return newColor;
 	}
@@ -434,10 +435,10 @@ public class ResourceStore {
 		}
 
 		// Put the given Fonts to the registry
-		fontRegistry.put(symbolicName.toString(), fontData);
+		getFontRegistry().put(symbolicName.toString(), fontData);
 
 		// Get the given Font or if no Font of the fontNames exists load default
-		return fontRegistry.get(symbolicName.toString());
+		return getFontRegistry().get(symbolicName.toString());
 	}
 
 	/**
@@ -474,5 +475,40 @@ public class ResourceStore {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get the imageRegistry from the AbstactPluginUI
+	 * 
+	 * @return ImageRegistry of the AbstractPluginUI
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin
+	 */
+	private ImageRegistry getImageRegistry() {
+		return plugin.getImageRegistry();
+	}
+	
+	/**
+	 * Get the fontRegistry from the ResourceStore
+	 * 
+	 * @return FontRegistry of the ResourceStore
+	 */
+	private FontRegistry getFontRegistry(){
+		if(fontRegistry == null){
+			fontRegistry = new FontRegistry();
+		}
+		return fontRegistry;
+	}
+	
+	/**
+	 * Get the colorRegistry from the ResourceStore
+	 * 
+	 * @return colorRegistry of the ResourceStore
+	 */
+	private ColorRegistry getColorRegistry(){
+		if(colorRegistry == null){
+			colorRegistry = new ColorRegistry();
+		}
+		return colorRegistry;
 	}
 }
