@@ -101,6 +101,60 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 		bars.getToolBarManager().add(projects);
 	}
 
+	/* ACTION DIE DIE LOCATION SPEICHERT UND ZURECHTSTUTZT, 
+	FALLS ANDERE PLUGINS NICHT IN DEN PREFERENCES ERSCHEINEN SOLLEN*/
+	
+	/*private class PreferencesAction extends Action {
+		
+		private PreferenceDialog dialog;
+		private String[] filter = PreferenceConstants.PREFERENCES_IDS;
+		private Shell dialogShell;
+		private IPreferenceStore store = ReportalDesignerPlugin.getDefault().getPreferenceStore(); 
+		
+		public PreferencesAction(){
+			super("Designer Preferences", Action.AS_PUSH_BUTTON);
+			this.setId(PreferenceConstants.PREFERENCES_ACTION_ID);
+			createDialog();
+			buildDialogEnvironment();
+		}
+		public void run() {
+			if(dialog == null){
+				createDialog();
+			}
+			int i = dialog.open();
+			if(i == Window.OK || i == Window.CANCEL){
+				dialog = null;
+				destroyDialogShell();
+			}
+		}
+		private void buildDialogEnvironment(){
+			List<IPreferenceNode> prefs = dialog.getPreferenceManager().getElements(PreferenceManager.PRE_ORDER);
+			Iterator prefit = prefs.iterator();
+			while(prefit.hasNext()){
+				String prefID = ((IPreferenceNode)prefit.next()).getId();
+				if(!prefID.startsWith("de.systemwerke")){
+					dialog.getPreferenceManager().remove(prefID);
+				}
+			}
+		}
+		private void createDialogShell(){
+			dialogShell = new Shell();
+			dialogShell.setLocation(store.getInt("Pref_Loc_X"),store.getInt("Pref_Loc_Y"));
+		}
+		private PreferenceDialog createDialog(){
+			createDialogShell();
+			dialog = PreferencesUtil.createPreferenceDialogOn(dialogShell, filter[0], null, null);
+			return dialog;
+		}
+		private void destroyDialogShell(){
+			Point location = dialogShell.getLocation();
+			store.setValue("Pref_Loc_X", location.x);
+			store.setValue("Pref_Loc_Y", location.y);
+			dialogShell.dispose();
+			dialogShell = null;
+		}
+	};*/
+	
 	/**
 	 * Creates the following actions shown in the view: Preferences which allow
 	 * to configure the preferences of the bugcrawler Projects opens a wizard to
@@ -133,7 +187,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 			}
 		};
 		projects.setText("Projekte...");
-		projects.setToolTipText("Projekten zum Einsehen von Bugs wählen.");
+		projects.setToolTipText("Projekten zum Einsehen von Bugs wï¿½hlen.");
 		projects.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
 				ISharedImages.IMG_TOOL_NEW_WIZARD));
 
