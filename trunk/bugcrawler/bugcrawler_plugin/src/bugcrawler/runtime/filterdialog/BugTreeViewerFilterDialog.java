@@ -138,4 +138,9 @@ public class BugTreeViewerFilterDialog extends Dialog {
 	protected Point getInitialSize() {
 		return new Point(200, 365);
 	}
+	@Override
+	protected void configureShell(Shell newShell) {
+		super.configureShell(newShell);
+		newShell.setText("Title");
+	}
 }
