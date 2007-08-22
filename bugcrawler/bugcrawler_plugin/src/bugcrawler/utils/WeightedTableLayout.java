@@ -3,6 +3,9 @@ package bugcrawler.utils;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
@@ -107,11 +110,25 @@ public class WeightedTableLayout extends TableLayout {
 			throw new IllegalArgumentException("Composite c is neither a " + Table.class.getName()
 					+ " nor a " + Tree.class.getName());
 
+		
 		int width = c.getBounds().width;
 		ScrollBar sb = c.getVerticalBar();
-		if (sb.isEnabled() && sb.isVisible())
-			width -= sb.getSize().x;
+		
+		Rectangle area = c.getClientArea();
+		
+		Point preferredSize = c.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		int height = 0;
+		if(c instanceof Table)
+			height = ((Table)c).getHeaderHeight();
+		if (c instanceof Tree)
+			height = ((Tree)c).getHeaderHeight();
 
+		if (preferredSize.y > area.height + height) {
+			width -= sb.getSize().x;
+			width = area.width - 2*c.getBorderWidth();
+		}else{
+			width = area.width - c.getBorderWidth();
+		}
 		int totalWeight = 0;
 		int totalFixedWidth = 0;
 		for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
