@@ -3,9 +3,6 @@ package bugcrawler.utils;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
@@ -111,6 +108,7 @@ public class WeightedTableLayout extends TableLayout {
 					+ " nor a " + Tree.class.getName());
 
 		
+		/* STACK OVERFLOW!!!!
 		int width = c.getBounds().width;
 		ScrollBar sb = c.getVerticalBar();
 		
@@ -128,7 +126,13 @@ public class WeightedTableLayout extends TableLayout {
 			width = area.width - 2*c.getBorderWidth();
 		}else{
 			width = area.width - c.getBorderWidth();
-		}
+		}*/
+		
+		int width = c.getBounds().width;
+		ScrollBar sb = c.getVerticalBar();
+		if (sb.isEnabled() && sb.isVisible())
+			width -= sb.getSize().x;
+
 		int totalWeight = 0;
 		int totalFixedWidth = 0;
 		for (int columnIndex = 0; columnIndex < columnCount; columnIndex++) {
