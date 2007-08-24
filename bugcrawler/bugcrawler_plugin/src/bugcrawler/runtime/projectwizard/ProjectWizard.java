@@ -3,6 +3,7 @@ package bugcrawler.runtime.projectwizard;
 import java.util.Arrays;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.ui.INewWizard;
@@ -53,7 +54,7 @@ public class ProjectWizard extends Wizard implements INewWizard{
 	 */
 	public boolean performFinish() {
 		bugTreeViewer.setInput(Arrays.asList(projectpage.getSelected()));
-		bugTreeViewer.expandToLevel(-1);
+		bugTreeViewer.expandToLevel(TreeViewer.ALL_LEVELS);
 		BugDiagramView bugDiagramView = (BugDiagramView)Activator.activePage().findView("bugcrawler_plugin.views.BugDiagramView");
 		if(bugDiagramView != null){
 			Activator.getViewDataDistributor().saveViewData("SEND TEST-DATA TO ALL VIEWS");
