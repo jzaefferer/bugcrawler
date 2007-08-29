@@ -17,13 +17,17 @@
    <windowImages i16="/bugcrawler_app/icons/alt_window_16.gif"/>
 
    <splash
-      location="bugcrawler" />
+      location="bugcrawler"
+      startupProgressRect="0,259,420,15"
+      startupMessageRect="0,240,420,20"
+      startupForegroundColor="000000" />
    <launcher>
       <solaris/>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <plugins>
       <plugin id="bugcrawler"/>
