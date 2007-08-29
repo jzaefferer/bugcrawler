@@ -28,9 +28,21 @@
          <property
                name="windowImages"
                value="icons/alt_window_16.gif"/>
+         <property 
+         	   name="preferenceCustomization" 
+         	   value="plugin_customization.ini"/>
          <property
                name="aboutText"
                value="Dummes stupides Drecksprogramm"/>
+         <property
+               name="startupForegroundColor"
+               value="000000"/>
+         <property
+               name="startupMessageRect"
+               value="0,240,420,20"/>
+         <property
+               name="startupProgressRect"
+               value="0,259,420,15"/>
       </product>
    </extension>
 
