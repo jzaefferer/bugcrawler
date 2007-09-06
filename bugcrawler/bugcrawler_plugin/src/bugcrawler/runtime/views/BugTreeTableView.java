@@ -107,12 +107,11 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 	/*private class PreferencesAction extends Action {
 		
 		private PreferenceDialog dialog;
-		private String[] filter = PreferenceConstants.PREFERENCES_IDS;
 		private Shell dialogShell;
 		private IPreferenceStore store = ReportalDesignerPlugin.getDefault().getPreferenceStore(); 
 		
 		public PreferencesAction(){
-			super("Designer Preferences", Action.AS_PUSH_BUTTON);
+			super("Preferences...", Action.AS_PUSH_BUTTON);
 			this.setId(PreferenceConstants.PREFERENCES_ACTION_ID);
 			createDialog();
 			buildDialogEnvironment();
@@ -143,6 +142,7 @@ public class BugTreeTableView extends ViewPart implements ViewDataListener{
 		}
 		private PreferenceDialog createDialog(){
 			createDialogShell();
+			String[] filter = PreferenceConstants.PREFERENCES_IDS;
 			dialog = PreferencesUtil.createPreferenceDialogOn(dialogShell, filter[0], null, null);
 			return dialog;
 		}
